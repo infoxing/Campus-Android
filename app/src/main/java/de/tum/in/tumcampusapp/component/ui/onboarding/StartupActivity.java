@@ -137,7 +137,7 @@ public class StartupActivity extends AppCompatActivity {
         if (hasPermissions()) {
             openMainActivityIfInitializationFinished();
         } else if (shouldShowRationale()) {
-            showRationalDialog();
+            showRationaleDialog();
         } else {
             ActivityCompat.requestPermissions(this, PERMISSIONS_LOCATION, REQUEST_LOCATION);
         }
@@ -153,7 +153,7 @@ public class StartupActivity extends AppCompatActivity {
                 || ActivityCompat.shouldShowRequestPermissionRationale(this, ACCESS_FINE_LOCATION);
     }
 
-    private void showRationalDialog() {
+    private void showRationaleDialog() {
         runOnUiThread(() -> {
             AlertDialog dialog = new AlertDialog.Builder(this)
                     .setMessage(getString(R.string.permission_location_explanation))
@@ -180,7 +180,13 @@ public class StartupActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-        openMainActivityIfInitializationFinished();
+        if (requestCode == REQUEST_LOCATION) {
+            if (grantResults.length > 0 && grantResults[0] == PERMISSION_GRANTED) {
+                openMainActivityIfInitializationFinished();
+            } else {
+                showRationaleDialog();
+            }
+        }
     }
 
     private void openMainActivityIfInitializationFinished() {
