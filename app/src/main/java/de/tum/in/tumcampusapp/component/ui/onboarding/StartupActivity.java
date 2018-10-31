@@ -5,13 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.core.widget.ContentLoadingProgressBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -19,6 +12,13 @@ import com.crashlytics.android.Crashlytics;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.widget.ContentLoadingProgressBar;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import de.tum.in.tumcampusapp.BuildConfig;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.api.app.AuthenticationManager;
@@ -134,37 +134,42 @@ public class StartupActivity extends AppCompatActivity {
      * Request the Location Permission
      */
     private void requestLocationPermission() {
-        //Check, if we already have permission
-        if (ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_GRANTED
-                && ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PERMISSION_GRANTED) {
-            // We already got the permissions, to proceed normally
+        if (hasPermissions()) {
             openMainActivityIfInitializationFinished();
-        } else if (ActivityCompat.shouldShowRequestPermissionRationale(this, ACCESS_COARSE_LOCATION) ||
-                ActivityCompat.shouldShowRequestPermissionRationale(this, ACCESS_FINE_LOCATION)) {
-            // Provide an additional rationale to the user if the permission was not granted
-            // and the user would benefit from additional context for the use of the permission.
-            // For example, if the request has been denied previously.
-
-            // Display an AlertDialog with an explanation and a button to trigger the request.
-            runOnUiThread(() -> {
-                AlertDialog dialog = new AlertDialog.Builder(this)
-                        .setMessage(getString(R.string.permission_location_explanation))
-                        .setPositiveButton(R.string.ok, (dialogInterface, id) -> {
-                            ActivityCompat.requestPermissions(
-                                    this, PERMISSIONS_LOCATION, REQUEST_LOCATION);
-                        })
-                        .create();
-
-                if (dialog.getWindow() != null) {
-                    dialog.getWindow().setBackgroundDrawableResource(
-                            R.drawable.rounded_corners_background);
-                }
-
-                dialog.show();
-            });
+        } else if (shouldShowRationale()) {
+            showRationalDialog();
         } else {
             ActivityCompat.requestPermissions(this, PERMISSIONS_LOCATION, REQUEST_LOCATION);
         }
+    }
+
+    private boolean hasPermissions() {
+        return ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PERMISSION_GRANTED;
+    }
+
+    private boolean shouldShowRationale() {
+        return ActivityCompat.shouldShowRequestPermissionRationale(this, ACCESS_COARSE_LOCATION)
+                || ActivityCompat.shouldShowRequestPermissionRationale(this, ACCESS_FINE_LOCATION);
+    }
+
+    private void showRationalDialog() {
+        runOnUiThread(() -> {
+            AlertDialog dialog = new AlertDialog.Builder(this)
+                    .setMessage(getString(R.string.permission_location_explanation))
+                    .setPositiveButton(R.string.ok, (dialogInterface, id) -> {
+                        ActivityCompat.requestPermissions(
+                                this, PERMISSIONS_LOCATION, REQUEST_LOCATION);
+                    })
+                    .create();
+
+            if (dialog.getWindow() != null) {
+                dialog.getWindow().setBackgroundDrawableResource(
+                        R.drawable.rounded_corners_background);
+            }
+
+            dialog.show();
+        });
     }
 
     /**

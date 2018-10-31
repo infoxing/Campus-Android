@@ -44,12 +44,9 @@
         <item name="android:background">@drawable/wear_tuition_fee</item>
     </style>
 
-    <style name="AppThemeStartup" parent="Theme.MaterialComponents.NoActionBar">
+    <style name="AppTheme.Startup" parent="AppTheme">
         <item name="colorPrimaryDark">@android:color/white</item>
         <item name="android:windowBackground">@android:color/white</item>
-
-        <!-- Light system UI -->
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
 
         <!-- Light navigation bar -->
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
