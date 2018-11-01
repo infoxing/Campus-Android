@@ -44,6 +44,7 @@ public class StartupActivity extends AppCompatActivity {
 
     final AtomicBoolean initializationFinished = new AtomicBoolean(false);
     private int tapCounter; // for easter egg
+    private boolean hasShownRationaleDialog;
 
     /**
      * Broadcast receiver gets notified if {@link de.tum.in.tumcampusapp.service.BackgroundService}
@@ -136,8 +137,6 @@ public class StartupActivity extends AppCompatActivity {
     private void requestLocationPermission() {
         if (hasPermissions()) {
             openMainActivityIfInitializationFinished();
-        } else if (shouldShowRationale()) {
-            showRationaleDialog();
         } else {
             ActivityCompat.requestPermissions(this, PERMISSIONS_LOCATION, REQUEST_LOCATION);
         }
@@ -181,10 +180,12 @@ public class StartupActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         if (requestCode == REQUEST_LOCATION) {
-            if (grantResults.length > 0 && grantResults[0] == PERMISSION_GRANTED) {
-                openMainActivityIfInitializationFinished();
-            } else {
+            if (shouldShowRationale() && !hasShownRationaleDialog) {
+                hasShownRationaleDialog = true;
                 showRationaleDialog();
+            } else {
+                // Open MainActivity even if we did not get the location permission
+                openMainActivityIfInitializationFinished();
             }
         }
     }
