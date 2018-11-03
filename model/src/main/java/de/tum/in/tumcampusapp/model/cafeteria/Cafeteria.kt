@@ -1,4 +1,4 @@
-package de.tum.`in`.tumcampusapp.component.ui.cafeteria.model
+package de.tum.`in`.tumcampusapp.model.cafeteria
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -27,5 +27,5 @@ data class Cafeteria(@field:PrimaryKey
 
     override fun toString(): String = name
 
-    override fun compareTo(other: Cafeteria): Int = java.lang.Float.compare(distance, other.distance)
+    override fun compareTo(other: Cafeteria): Int = distance.compareTo(other.distance)
 }

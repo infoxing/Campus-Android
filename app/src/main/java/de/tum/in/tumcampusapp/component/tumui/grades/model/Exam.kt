@@ -5,7 +5,7 @@ import androidx.core.content.ContextCompat
 import com.tickaroo.tikxml.annotation.PropertyElement
 import com.tickaroo.tikxml.annotation.Xml
 import de.tum.`in`.tumcampusapp.R
-import de.tum.`in`.tumcampusapp.api.tumonline.converters.DateTimeConverter
+import de.tum.`in`.tumcampusapp.model.converters.DateTimeConverter
 import de.tum.`in`.tumcampusapp.component.other.generic.adapter.SimpleStickyListHeadersAdapter
 import de.tum.`in`.tumcampusapp.utils.tryOrNull
 import org.joda.time.DateTime

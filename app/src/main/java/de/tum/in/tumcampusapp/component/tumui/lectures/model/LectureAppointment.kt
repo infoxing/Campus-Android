@@ -2,7 +2,7 @@ package de.tum.`in`.tumcampusapp.component.tumui.lectures.model
 
 import com.tickaroo.tikxml.annotation.PropertyElement
 import com.tickaroo.tikxml.annotation.Xml
-import de.tum.`in`.tumcampusapp.api.tumonline.converters.DateTimeConverter
+import de.tum.`in`.tumcampusapp.model.converters.DateTimeConverter
 import org.joda.time.DateTime
 
 /**

@@ -20,6 +20,8 @@ android {
     }
 }
 
+def tikXmlVersion = '0.8.13'
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -30,6 +32,11 @@ dependencies {
 
     api 'net.danlew:android.joda:2.10.1'
     api 'com.google.code.gson:gson:2.8.5'
+
+    // XML Parsing
+    api "com.tickaroo.tikxml:annotation:$tikXmlVersion"
+    api "com.tickaroo.tikxml:core:$tikXmlVersion"
+    kapt "com.tickaroo.tikxml:processor:$tikXmlVersion"
 
     implementation 'androidx.appcompat:appcompat:1.0.0'
     testImplementation 'junit:junit:4.12'

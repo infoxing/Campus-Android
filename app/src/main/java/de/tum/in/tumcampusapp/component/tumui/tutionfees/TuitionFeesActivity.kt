@@ -3,16 +3,13 @@ package de.tum.`in`.tumcampusapp.component.tumui.tutionfees
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import com.google.android.material.button.MaterialButton
-import androidx.core.content.ContextCompat
 import android.widget.TextView
+import com.google.android.material.button.MaterialButton
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.api.tumonline.CacheControl
 import de.tum.`in`.tumcampusapp.component.other.generic.activity.ActivityForAccessingTumOnline
-import de.tum.`in`.tumcampusapp.component.tumui.tutionfees.model.TuitionList
-import org.joda.time.DateTime
-import org.joda.time.format.DateTimeFormat
-import java.util.*
+import de.tum.`in`.tumcampusapp.model.tuition.TuitionList
+import de.tum.`in`.tumcampusapp.component.tumui.tutionfees.viewmodel.TuitionViewEntity
 
 /**
  * Activity to show the user's tuition fees status
@@ -47,28 +44,15 @@ class TuitionFeesActivity : ActivityForAccessingTumOnline<TuitionList>(R.layout.
 
     override fun onDownloadSuccessful(response: TuitionList) {
         val tuition = response.tuitions.first()
+        val viewEntity = TuitionViewEntity.create(this, tuition)
 
-        val amountText = tuition.getAmountText(this)
-        amountTextView.text = amountText
+        amountTextView.text = viewEntity.formattedAmountText
 
-        val deadline = tuition.deadline
-        val formatter = DateTimeFormat.longDate().withLocale(Locale.getDefault())
-        val formattedDeadline = formatter.print(deadline)
+        val formattedDeadline = viewEntity.longFormattedDeadline
         deadlineTextView.text = getString(R.string.due_on_format_string, formattedDeadline)
 
         semesterTextView.text = tuition.semester
-
-        if (tuition.isPaid) {
-            amountTextView.setTextColor(ContextCompat.getColor(this, R.color.sections_green))
-        } else {
-            // check if the deadline is less than a week from now
-            val nextWeek = DateTime().plusWeeks(1)
-            if (nextWeek.isAfter(deadline)) {
-                amountTextView.setTextColor(ContextCompat.getColor(this, R.color.error))
-            } else {
-                amountTextView.setTextColor(ContextCompat.getColor(this, R.color.black))
-            }
-        }
+        amountTextView.setTextColor(viewEntity.color)
     }
 
 }

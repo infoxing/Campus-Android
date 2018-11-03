@@ -1,4 +1,4 @@
-package de.tum.`in`.tumcampusapp.component.ui.cafeteria.model
+package de.tum.`in`.tumcampusapp.component.ui.cafeteria.viewmodel
 
 import android.content.Context
 import android.content.Intent
@@ -12,7 +12,7 @@ import java.util.*
 data class CafeteriaWithMenus(val id: Int) {
 
     var name: String? = null
-    var menus: List<CafeteriaMenu> = ArrayList()
+    var menus: List<CafeteriaMenuViewEntity> = ArrayList()
     var menuDates: List<DateTime> = ArrayList()
 
     val nextMenuDate: DateTime

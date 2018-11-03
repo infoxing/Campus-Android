@@ -1,6 +1,6 @@
 package de.tum.`in`.tumcampusapp.component.tumui.tutionfees
 
-import de.tum.`in`.tumcampusapp.component.tumui.tutionfees.model.Tuition
+import de.tum.`in`.tumcampusapp.model.tuition.Tuition
 import org.joda.time.DateTime
 import org.joda.time.Days
 

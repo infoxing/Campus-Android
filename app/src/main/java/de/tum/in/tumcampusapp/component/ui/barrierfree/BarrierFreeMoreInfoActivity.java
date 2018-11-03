@@ -13,7 +13,8 @@ import java.util.List;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
 import de.tum.in.tumcampusapp.component.other.generic.activity.ActivityForLoadingInBackground;
-import de.tum.in.tumcampusapp.component.ui.barrierfree.model.BarrierfreeMoreInfo;
+import de.tum.in.tumcampusapp.model.barrierfree.BarrierfreeMoreInfo;
+import de.tum.in.tumcampusapp.component.ui.barrierfree.viewmodel.BarrierfreeMoreInfoViewEntity;
 import de.tum.in.tumcampusapp.utils.Utils;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
@@ -22,7 +23,7 @@ public class BarrierFreeMoreInfoActivity
         implements AdapterView.OnItemClickListener {
 
     public StickyListHeadersListView listview;
-    public List<BarrierfreeMoreInfo> infos;
+    public List<BarrierfreeMoreInfoViewEntity> infos;
     public BarrierfreeMoreInfoAdapter adapter;
 
     public BarrierFreeMoreInfoActivity() {
@@ -45,7 +46,13 @@ public class BarrierFreeMoreInfoActivity
             return;
         }
 
-        infos = result;
+        List<BarrierfreeMoreInfoViewEntity> viewEntities = new ArrayList<>();
+        for (BarrierfreeMoreInfo info : result) {
+            viewEntities.add(BarrierfreeMoreInfoViewEntity.create(info));
+        }
+
+        infos = viewEntities;
+
         adapter = new BarrierfreeMoreInfoAdapter(this, infos);
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(this);

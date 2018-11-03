@@ -112,8 +112,6 @@ dependencies {
     implementation 'com.crashlytics.sdk.android:crashlytics:2.9.5'
 
     // XML Parsing
-    implementation "com.tickaroo.tikxml:annotation:$tikXmlVersion"
-    implementation "com.tickaroo.tikxml:core:$tikXmlVersion"
     kapt "com.tickaroo.tikxml:processor:$tikXmlVersion"
 
     // Kotlin

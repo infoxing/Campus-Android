@@ -1,4 +1,4 @@
-package de.tum.`in`.tumcampusapp.component.ui.cafeteria.model
+package de.tum.`in`.tumcampusapp.model.cafeteria
 
 import com.google.gson.annotations.SerializedName
 

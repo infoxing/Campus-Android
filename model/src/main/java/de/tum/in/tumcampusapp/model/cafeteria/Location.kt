@@ -1,4 +1,4 @@
-package de.tum.`in`.tumcampusapp.component.ui.cafeteria.model
+package de.tum.`in`.tumcampusapp.model.cafeteria
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -19,22 +19,28 @@ import androidx.room.RoomWarnings
  */
 @Entity
 @SuppressWarnings(RoomWarnings.DEFAULT_CONSTRUCTOR)
-data class Location(@PrimaryKey
-                    var id: Int = -1,
-                    var category: String = "",
-                    var name: String = "",
-                    var address: String = "",
-                    var room: String = "",
-                    var transport: String = "",
-                    var hours: String = "",
-                    var remark: String = "",
-                    var url: String = "") {
+data class Location(
+        @PrimaryKey
+        var id: Int = -1,
+        var category: String = "",
+        var name: String = "",
+        var address: String = "",
+        var room: String = "",
+        var transport: String = "",
+        var hours: String = "",
+        var remark: String = "",
+        var url: String = ""
+) {
 
     companion object {
 
-        @JvmStatic fun fromCSVRow(row: Array<out String>) =
-                Location(row[0].toInt(), row[1], row[2],
-                        row[3], row[4], row[5], row[6], row[7], row[8])
+        @JvmStatic fun fromCSVRow(row: Array<out String>): Location {
+            return Location(
+                    row[0].toInt(), row[1], row[2], row[3],
+                    row[4], row[5], row[6], row[7], row[8]
+            )
+        }
+
 
     }
 

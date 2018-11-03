@@ -1,9 +1,9 @@
 package de.tum.`in`.tumcampusapp.component.ui.cafeteria.repository
 
 import de.tum.`in`.tumcampusapp.component.ui.cafeteria.controller.CafeteriaManager
-import de.tum.`in`.tumcampusapp.component.ui.cafeteria.model.Cafeteria
-import de.tum.`in`.tumcampusapp.component.ui.cafeteria.model.CafeteriaMenu
-import de.tum.`in`.tumcampusapp.component.ui.cafeteria.model.CafeteriaWithMenus
+import de.tum.`in`.tumcampusapp.model.cafeteria.Cafeteria
+import de.tum.`in`.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaWithMenus
+import de.tum.`in`.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaMenuViewEntity
 import de.tum.`in`.tumcampusapp.database.TcaDb
 import de.tum.`in`.tumcampusapp.utils.sync.model.Sync
 import io.reactivex.Flowable
@@ -31,12 +31,13 @@ object CafeteriaLocalRepository {
 
     // Menu methods //
 
-    fun getCafeteriaMenus(id: Int, date: DateTime): List<CafeteriaMenu> {
-        return db.cafeteriaMenuDao().getTypeNameFromDbCard(id, date)
+    fun getCafeteriaMenus(id: Int, date: DateTime): List<CafeteriaMenuViewEntity> {
+        return db.cafeteriaMenuDao()
+                .getTypeNameFromDbCard(id, date)
+                .map { CafeteriaMenuViewEntity.create(it) }
     }
 
     fun getAllMenuDates(): List<DateTime> = db.cafeteriaMenuDao().allDates
-
 
     // Canteen methods //
 
@@ -45,7 +46,6 @@ object CafeteriaLocalRepository {
     fun getCafeteria(id: Int): Cafeteria? = db.cafeteriaDao().getById(id)
 
     fun addCafeteria(cafeteria: Cafeteria) = executor.execute { db.cafeteriaDao().insert(cafeteria) }
-
 
     // Sync methods //
 

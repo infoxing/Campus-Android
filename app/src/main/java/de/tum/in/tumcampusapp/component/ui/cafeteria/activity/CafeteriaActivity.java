@@ -29,7 +29,7 @@ import de.tum.in.tumcampusapp.component.ui.cafeteria.CafeteriaMenuInflater;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.controller.CafeteriaManager;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.details.CafeteriaDetailsSectionsPagerAdapter;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.details.CafeteriaViewModel;
-import de.tum.in.tumcampusapp.component.ui.cafeteria.model.Cafeteria;
+import de.tum.in.tumcampusapp.model.cafeteria.Cafeteria;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.repository.CafeteriaLocalRepository;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.repository.CafeteriaRemoteRepository;
 import de.tum.in.tumcampusapp.database.TcaDb;

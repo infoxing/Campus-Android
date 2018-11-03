@@ -9,7 +9,7 @@ import org.joda.time.DateTime;
 
 import java.util.List;
 
-import de.tum.in.tumcampusapp.component.ui.cafeteria.model.CafeteriaMenu;
+import de.tum.in.tumcampusapp.model.cafeteria.CafeteriaMenu;
 import io.reactivex.Flowable;
 
 @Dao

@@ -15,7 +15,7 @@ import org.joda.time.format.DateTimeFormat;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.activity.CafeteriaActivity;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.controller.CafeteriaManager;
-import de.tum.in.tumcampusapp.component.ui.cafeteria.model.Cafeteria;
+import de.tum.in.tumcampusapp.model.cafeteria.Cafeteria;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.repository.CafeteriaLocalRepository;
 import de.tum.in.tumcampusapp.database.TcaDb;
 import de.tum.in.tumcampusapp.service.MensaWidgetService;

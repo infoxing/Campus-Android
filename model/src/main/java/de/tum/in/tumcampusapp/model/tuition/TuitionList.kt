@@ -1,4 +1,4 @@
-package de.tum.`in`.tumcampusapp.component.tumui.tutionfees.model
+package de.tum.`in`.tumcampusapp.model.tuition
 
 import com.tickaroo.tikxml.annotation.Element
 import com.tickaroo.tikxml.annotation.Xml

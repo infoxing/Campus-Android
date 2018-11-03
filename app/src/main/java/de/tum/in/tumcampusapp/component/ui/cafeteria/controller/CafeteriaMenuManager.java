@@ -16,8 +16,8 @@ import de.tum.in.tumcampusapp.component.notifications.persistence.NotificationTy
 import de.tum.in.tumcampusapp.component.ui.cafeteria.CafeteriaMenuDao;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.CafeteriaNotificationSettings;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.FavoriteDishDao;
-import de.tum.in.tumcampusapp.component.ui.cafeteria.model.CafeteriaMenu;
-import de.tum.in.tumcampusapp.component.ui.cafeteria.model.CafeteriaResponse;
+import de.tum.in.tumcampusapp.model.cafeteria.CafeteriaMenu;
+import de.tum.in.tumcampusapp.model.cafeteria.CafeteriaResponse;
 import de.tum.in.tumcampusapp.database.TcaDb;
 import de.tum.in.tumcampusapp.utils.DateTimeUtils;
 import de.tum.in.tumcampusapp.utils.Utils;

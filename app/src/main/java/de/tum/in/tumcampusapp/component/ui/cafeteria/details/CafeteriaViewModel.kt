@@ -2,9 +2,9 @@ package de.tum.`in`.tumcampusapp.component.ui.cafeteria.details
 
 import androidx.lifecycle.ViewModel
 import android.location.Location
-import de.tum.`in`.tumcampusapp.component.ui.cafeteria.model.Cafeteria
-import de.tum.`in`.tumcampusapp.component.ui.cafeteria.model.CafeteriaMenu
-import de.tum.`in`.tumcampusapp.component.ui.cafeteria.model.CafeteriaWithMenus
+import de.tum.`in`.tumcampusapp.model.cafeteria.Cafeteria
+import de.tum.`in`.tumcampusapp.model.cafeteria.CafeteriaMenu
+import de.tum.`in`.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaWithMenus
 import de.tum.`in`.tumcampusapp.component.ui.cafeteria.repository.CafeteriaLocalRepository
 import de.tum.`in`.tumcampusapp.component.ui.cafeteria.repository.CafeteriaRemoteRepository
 import de.tum.`in`.tumcampusapp.utils.Utils

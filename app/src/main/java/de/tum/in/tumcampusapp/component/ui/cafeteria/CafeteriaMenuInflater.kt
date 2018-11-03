@@ -8,9 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import de.tum.`in`.tumcampusapp.R
-import de.tum.`in`.tumcampusapp.component.ui.cafeteria.model.CafeteriaMenu
-import de.tum.`in`.tumcampusapp.component.ui.cafeteria.model.CafeteriaPrices
-import de.tum.`in`.tumcampusapp.component.ui.cafeteria.model.FavoriteDish
+import de.tum.`in`.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaPrices
+import de.tum.`in`.tumcampusapp.model.cafeteria.FavoriteDish
+import de.tum.`in`.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaMenuViewEntity
 import de.tum.`in`.tumcampusapp.database.TcaDb
 import de.tum.`in`.tumcampusapp.utils.Utils
 import kotlinx.android.synthetic.main.card_list_header.view.*
@@ -35,7 +35,7 @@ class CafeteriaMenuInflater(
         TcaDb.getInstance(context).favoriteDishDao()
     }
 
-    fun inflate(menu: CafeteriaMenu, isFirstInSection: Boolean): View? {
+    fun inflate(menu: CafeteriaMenuViewEntity, isFirstInSection: Boolean): View? {
         val typeShort = menu.typeShort
         val shouldShow = Utils.getSettingBool(
                 context,
@@ -55,11 +55,8 @@ class CafeteriaMenuInflater(
 
         val menuView = inflater.inflate(R.layout.card_price_line, rootView, false)
 
-        if (!isBigLayout) {
-            menu.name = prepare(menu.name)
-        }
-
-        val menuSpan = menuToSpan(context, menu.name)
+        val menuName = if (isBigLayout) menu.formattedName else prepare(menu.formattedName)
+        val menuSpan = menuToSpan(context, menuName)
         menuView.line_name.text = menuSpan
 
         val isPriceAvailable = rolePrices.containsKey(menu.typeLong)
@@ -73,13 +70,13 @@ class CafeteriaMenuInflater(
         return menuView
     }
 
-    private fun inflateWithPrice(view: View, menu: CafeteriaMenu) = with(view) {
+    private fun inflateWithPrice(view: View, menu: CafeteriaMenuViewEntity) = with(view) {
         val price = rolePrices[menu.typeLong]
         price?.let {
             line_price.text = String.format("%s €", it)
         }
 
-        val tag = "${menu.name}__${menu.cafeteriaId}"
+        val tag = "${menu.formattedName}__${menu.cafeteriaId}"
         val isFavorite = dao.checkIfFavoriteDish(tag).isNotEmpty()
 
         favoriteDish.isSelected = isFavorite

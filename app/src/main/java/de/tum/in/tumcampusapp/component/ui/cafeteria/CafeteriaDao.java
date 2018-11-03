@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
-import de.tum.in.tumcampusapp.component.ui.cafeteria.model.Cafeteria;
+import de.tum.in.tumcampusapp.model.cafeteria.Cafeteria;
 import io.reactivex.Flowable;
 
 @Dao

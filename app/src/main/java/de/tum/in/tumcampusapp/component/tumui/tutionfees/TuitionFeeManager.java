@@ -1,7 +1,6 @@
 package de.tum.in.tumcampusapp.component.tumui.tutionfees;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -11,13 +10,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import de.tum.in.tumcampusapp.api.tumonline.CacheControl;
 import de.tum.in.tumcampusapp.api.tumonline.TUMOnlineClient;
 import de.tum.in.tumcampusapp.component.notifications.NotificationScheduler;
 import de.tum.in.tumcampusapp.component.notifications.ProvidesNotifications;
 import de.tum.in.tumcampusapp.component.notifications.persistence.NotificationType;
-import de.tum.in.tumcampusapp.component.tumui.tutionfees.model.Tuition;
-import de.tum.in.tumcampusapp.component.tumui.tutionfees.model.TuitionList;
+import de.tum.in.tumcampusapp.model.tuition.Tuition;
+import de.tum.in.tumcampusapp.model.tuition.TuitionList;
+import de.tum.in.tumcampusapp.component.tumui.tutionfees.viewmodel.TuitionViewEntity;
 import de.tum.in.tumcampusapp.component.ui.overview.card.Card;
 import de.tum.in.tumcampusapp.component.ui.overview.card.ProvidesCard;
 import de.tum.in.tumcampusapp.utils.Utils;
@@ -44,9 +45,9 @@ public class TuitionFeeManager implements ProvidesCard, ProvidesNotifications {
             return results;
         }
 
-
+        TuitionViewEntity viewEntity = TuitionViewEntity.create(mContext, tuition);
         TuitionFeesCard card = new TuitionFeesCard(mContext);
-        card.setTuition(tuition);
+        card.setTuition(viewEntity);
 
         results.add(card.getIfShowOnStart());
         return results;

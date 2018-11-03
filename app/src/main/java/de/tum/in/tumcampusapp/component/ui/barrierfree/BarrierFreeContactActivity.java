@@ -9,7 +9,8 @@ import java.util.List;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
 import de.tum.in.tumcampusapp.component.other.generic.activity.ActivityForLoadingInBackground;
-import de.tum.in.tumcampusapp.component.ui.barrierfree.model.BarrierfreeContact;
+import de.tum.in.tumcampusapp.model.barrierfree.BarrierfreeContact;
+import de.tum.in.tumcampusapp.component.ui.barrierfree.viewmodel.BarrierfreeContactViewEntity;
 import de.tum.in.tumcampusapp.utils.Utils;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
@@ -50,7 +51,12 @@ public class BarrierFreeContactActivity extends ActivityForLoadingInBackground<V
             return;
         }
 
-        BarrierfreeContactAdapter adapter = new BarrierfreeContactAdapter(this, result);
+        List<BarrierfreeContactViewEntity> viewEntities = new ArrayList<>();
+        for (BarrierfreeContact contact : result) {
+            viewEntities.add(BarrierfreeContactViewEntity.create(contact));
+        }
+
+        BarrierfreeContactAdapter adapter = new BarrierfreeContactAdapter(this, viewEntities);
         listview.setAdapter(adapter);
     }
 }

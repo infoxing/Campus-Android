@@ -21,7 +21,7 @@ import de.tum.`in`.tumcampusapp.component.tumui.lectures.model.LecturesResponse
 import de.tum.`in`.tumcampusapp.component.tumui.person.model.Employee
 import de.tum.`in`.tumcampusapp.component.tumui.person.model.IdentitySet
 import de.tum.`in`.tumcampusapp.component.tumui.person.model.PersonList
-import de.tum.`in`.tumcampusapp.component.tumui.tutionfees.model.TuitionList
+import de.tum.`in`.tumcampusapp.model.tuition.TuitionList
 import de.tum.`in`.tumcampusapp.utils.CacheManager
 import de.tum.`in`.tumcampusapp.utils.Const
 import de.tum.`in`.tumcampusapp.utils.DateTimeUtils

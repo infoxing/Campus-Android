@@ -2,7 +2,7 @@ package de.tum.`in`.tumcampusapp.component.ui.cafeteria
 
 import android.view.View
 import de.tum.`in`.tumcampusapp.component.ui.cafeteria.details.CafeteriaDetailsSectionFragment
-import de.tum.`in`.tumcampusapp.component.ui.cafeteria.model.CafeteriaWithMenus
+import de.tum.`in`.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaWithMenus
 import de.tum.`in`.tumcampusapp.component.ui.overview.card.CardViewHolder
 import kotlinx.android.synthetic.main.card_cafeteria_menu.view.*
 import org.joda.time.format.DateTimeFormat

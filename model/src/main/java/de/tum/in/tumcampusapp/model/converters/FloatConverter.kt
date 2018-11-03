@@ -1,11 +1,11 @@
-package de.tum.`in`.tumcampusapp.api.tumonline.converters
+package de.tum.`in`.tumcampusapp.model.converters
 
 import com.tickaroo.tikxml.TypeConverter
 import java.text.NumberFormat
 import java.text.ParseException
 import java.util.*
 
-class FloatConverter : TypeConverter<Float> {
+class sFloatConverter : TypeConverter<Float> {
 
     override fun read(value: String?): Float {
         return try {

@@ -7,7 +7,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import de.tum.in.tumcampusapp.component.ui.cafeteria.model.Location;
+import de.tum.in.tumcampusapp.model.cafeteria.Location;
 
 @Dao
 public interface CafeteriaLocationDao {

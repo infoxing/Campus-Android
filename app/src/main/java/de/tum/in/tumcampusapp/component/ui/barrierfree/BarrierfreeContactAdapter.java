@@ -14,15 +14,17 @@ import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.other.generic.adapter.SimpleStickyListHeadersAdapter;
 import de.tum.in.tumcampusapp.component.tumui.person.PersonDetailsActivity;
 import de.tum.in.tumcampusapp.component.tumui.person.model.Person;
-import de.tum.in.tumcampusapp.component.ui.barrierfree.model.BarrierfreeContact;
+import de.tum.in.tumcampusapp.component.ui.barrierfree.viewmodel.BarrierfreeContactViewEntity;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 
 /**
  * An adapter used to display contact information in barrierfree page.
  */
-public class BarrierfreeContactAdapter extends SimpleStickyListHeadersAdapter<BarrierfreeContact>
+public class BarrierfreeContactAdapter
+        extends SimpleStickyListHeadersAdapter<BarrierfreeContactViewEntity>
         implements StickyListHeadersAdapter {
-    public BarrierfreeContactAdapter(Context context, List<BarrierfreeContact> infos) {
+
+    BarrierfreeContactAdapter(Context context, List<BarrierfreeContactViewEntity> infos) {
         super(context, infos);
     }
 
@@ -41,7 +43,7 @@ public class BarrierfreeContactAdapter extends SimpleStickyListHeadersAdapter<Ba
         }
 
         // display information of current person
-        final BarrierfreeContact contact = getInfoList().get(position);
+        final BarrierfreeContactViewEntity contact = getInfoList().get(position);
 
         if (!contact.isValid()) {
             view.setVisibility(View.GONE);
@@ -69,7 +71,7 @@ public class BarrierfreeContactAdapter extends SimpleStickyListHeadersAdapter<Ba
             more = view.findViewById(R.id.barrierfreeContactMoreTextView);
         }
 
-        void setContent(final BarrierfreeContact contact) {
+        void setContent(final BarrierfreeContactViewEntity contact) {
             name.setText(contact.getName());
             phone.setText(contact.getTelephone(), TextView.BufferType.SPANNABLE);
             Linkify.addLinks(phone, Linkify.ALL);

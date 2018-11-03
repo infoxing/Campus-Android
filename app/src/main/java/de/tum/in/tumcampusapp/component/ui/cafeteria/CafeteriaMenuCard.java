@@ -17,7 +17,7 @@ import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.other.navigation.NavigationDestination;
 import de.tum.in.tumcampusapp.component.other.navigation.SystemActivity;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.activity.CafeteriaActivity;
-import de.tum.in.tumcampusapp.component.ui.cafeteria.model.CafeteriaWithMenus;
+import de.tum.in.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaWithMenus;
 import de.tum.in.tumcampusapp.component.ui.overview.CardManager;
 import de.tum.in.tumcampusapp.component.ui.overview.card.Card;
 import de.tum.in.tumcampusapp.component.ui.overview.card.CardViewHolder;

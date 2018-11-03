@@ -2,10 +2,6 @@ package de.tum.in.tumcampusapp.component.ui.cafeteria.details;
 
 import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.core.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,17 +14,23 @@ import org.joda.time.format.DateTimeFormatter;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.CafeteriaMenuCard;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.CafeteriaMenuInflater;
-import de.tum.in.tumcampusapp.component.ui.cafeteria.model.CafeteriaMenu;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.repository.CafeteriaLocalRepository;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.repository.CafeteriaRemoteRepository;
+import de.tum.in.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaMenuViewEntity;
+import de.tum.in.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaMenuViewEntityMapper;
 import de.tum.in.tumcampusapp.database.TcaDb;
 import de.tum.in.tumcampusapp.utils.Const;
 import de.tum.in.tumcampusapp.utils.DateTimeUtils;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Fragment for each cafeteria-page.
@@ -48,8 +50,9 @@ public class CafeteriaDetailsSectionFragment extends Fragment {
      * @param date        Date
      * @param isBigLayout True to show big lines in the Activity, false to show small lines in Card
      */
-    public static void showMenu(LinearLayout rootView, int cafeteriaId, DateTime date,
-                                boolean isBigLayout, List<CafeteriaMenu> cafeteriaMenus) {
+    public static void showMenu(LinearLayout rootView, int cafeteriaId,
+                                DateTime date, boolean isBigLayout,
+                                List<? extends CafeteriaMenuViewEntity> cafeteriaMenus) {
         final Context context = rootView.getContext();
 
         if (!isBigLayout) {
@@ -69,12 +72,12 @@ public class CafeteriaDetailsSectionFragment extends Fragment {
         }
 
         // Show cafeteria menu
-        String curShort = "";
+        String currentShortType = "";
         CafeteriaMenuInflater menuInflater =
                 new CafeteriaMenuInflater(context, rootView, isBigLayout);
 
-        for (CafeteriaMenu cafeteriaMenu : cafeteriaMenus) {
-            boolean isFirstInSection = !cafeteriaMenu.getTypeShort().equals(curShort);
+        for (CafeteriaMenuViewEntity cafeteriaMenu : cafeteriaMenus) {
+            boolean isFirstInSection = !cafeteriaMenu.getTypeShort().equals(currentShortType);
             View view = menuInflater.inflate(cafeteriaMenu, isFirstInSection);
 
             if (view != null) {
@@ -122,12 +125,14 @@ public class CafeteriaDetailsSectionFragment extends Fragment {
         int cafeteriaId = getArguments().getInt(Const.CAFETERIA_ID);
         DateTime date = DateTimeUtils.INSTANCE.getDate(dateString);
 
-        mDisposable.add(
-                cafeteriaViewModel
-                        .getCafeteriaMenus(cafeteriaId, date)
-                        .subscribe(menu -> showMenu(root, cafeteriaId, date, true, menu))
-        );
+        CafeteriaMenuViewEntityMapper mapper = new CafeteriaMenuViewEntityMapper();
 
+        Disposable disposable = cafeteriaViewModel
+                .getCafeteriaMenus(cafeteriaId, date)
+                .map(mapper)
+                .subscribe(menu -> showMenu(root, cafeteriaId, date, true, menu));
+
+        mDisposable.add(disposable);
         return rootView;
     }
 

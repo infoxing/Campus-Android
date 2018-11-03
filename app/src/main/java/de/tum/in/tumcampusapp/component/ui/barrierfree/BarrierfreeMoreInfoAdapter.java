@@ -9,11 +9,12 @@ import java.util.List;
 
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.other.generic.adapter.SimpleStickyListHeadersAdapter;
-import de.tum.in.tumcampusapp.component.ui.barrierfree.model.BarrierfreeMoreInfo;
+import de.tum.in.tumcampusapp.component.ui.barrierfree.viewmodel.BarrierfreeMoreInfoViewEntity;
 
-public class BarrierfreeMoreInfoAdapter extends SimpleStickyListHeadersAdapter<BarrierfreeMoreInfo> {
+public class BarrierfreeMoreInfoAdapter
+        extends SimpleStickyListHeadersAdapter<BarrierfreeMoreInfoViewEntity> {
 
-    public BarrierfreeMoreInfoAdapter(Context context, List<BarrierfreeMoreInfo> infos) {
+    public BarrierfreeMoreInfoAdapter(Context context, List<BarrierfreeMoreInfoViewEntity> infos) {
         super(context, infos);
     }
 
@@ -33,7 +34,7 @@ public class BarrierfreeMoreInfoAdapter extends SimpleStickyListHeadersAdapter<B
         }
 
         // set title
-        final BarrierfreeMoreInfo info = getInfoList().get(position);
+        final BarrierfreeMoreInfoViewEntity info = getInfoList().get(position);
         if (info != null) {
             holder.title.setText(info.getTitle());
         }

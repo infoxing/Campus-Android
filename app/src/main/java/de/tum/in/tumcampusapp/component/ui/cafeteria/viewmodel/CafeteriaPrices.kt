@@ -1,4 +1,4 @@
-package de.tum.`in`.tumcampusapp.component.ui.cafeteria.model
+package de.tum.`in`.tumcampusapp.component.ui.cafeteria.viewmodel
 
 import android.content.Context
 import de.tum.`in`.tumcampusapp.utils.Const

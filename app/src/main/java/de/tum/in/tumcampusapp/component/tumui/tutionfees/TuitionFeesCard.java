@@ -3,25 +3,22 @@ package de.tum.in.tumcampusapp.component.tumui.tutionfees;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.jetbrains.annotations.Nullable;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.other.navigation.NavigationDestination;
 import de.tum.in.tumcampusapp.component.other.navigation.SystemActivity;
-import de.tum.in.tumcampusapp.component.tumui.tutionfees.model.Tuition;
+import de.tum.in.tumcampusapp.component.tumui.tutionfees.viewmodel.TuitionViewEntity;
 import de.tum.in.tumcampusapp.component.ui.overview.CardManager;
 import de.tum.in.tumcampusapp.component.ui.overview.card.Card;
 import de.tum.in.tumcampusapp.component.ui.overview.card.CardViewHolder;
-import de.tum.in.tumcampusapp.utils.DateTimeUtils;
 
 /**
  * Card that shows information about your fees that have to be paid or have been paid
@@ -31,7 +28,7 @@ public class TuitionFeesCard extends Card {
     private static final String LAST_FEE_FRIST = "fee_frist";
     private static final String LAST_FEE_SOLL = "fee_soll";
 
-    private Tuition mTuition;
+    private TuitionViewEntity mTuition;
 
     TuitionFeesCard(Context context) {
         super(CardManager.CARD_TUITION_FEE, context, "card_tuition_fee");
@@ -77,14 +74,13 @@ public class TuitionFeesCard extends Card {
             String text = String.format(placeholderText, mTuition.getSemester());
             reregisterInfoTextView.setText(text);
         } else {
-            DateTime date = mTuition.getDeadline();
-            String dateText = DateTimeFormat.mediumDate().print(date);
+            String dateText = mTuition.getFormattedDeadline();
 
             String text = String.format(getContext().getString(R.string.reregister_todo), dateText);
             reregisterInfoTextView.setText(text);
 
             String textWithPlaceholder = getContext().getString(R.string.amount_dots_card);
-            String balanceText = String.format(textWithPlaceholder, mTuition.getAmountText(getContext()));
+            String balanceText = String.format(textWithPlaceholder, mTuition.getFormattedAmountText());
             outstandingBalanceTextView.setText(balanceText);
             outstandingBalanceTextView.setVisibility(View.VISIBLE);
         }
@@ -97,20 +93,20 @@ public class TuitionFeesCard extends Card {
 
         // If app gets started for the first time and fee is already paid don't annoy user
         // by showing him that he has been re-registered successfully
-        String deadline = DateTimeUtils.INSTANCE.getDateString(mTuition.getDeadline());
+        String deadline = mTuition.getFormattedDeadline();
         String amount = Float.toString(mTuition.getAmount());
         return !(prevDeadline.isEmpty() && mTuition.isPaid()) &&
                (prevDeadline.compareTo(deadline) < 0 || prevAmount.compareTo(amount) > 0);
     }
 
     public void discard(@NonNull Editor editor) {
-        String deadline = DateTimeUtils.INSTANCE.getDateString(mTuition.getDeadline());
+        String deadline = mTuition.getFormattedDeadline();
         String amount = Float.toString(mTuition.getAmount());
         editor.putString(LAST_FEE_FRIST, deadline);
         editor.putString(LAST_FEE_SOLL, amount);
     }
 
-    public void setTuition(@NonNull Tuition tuition) {
+    public void setTuition(@NonNull TuitionViewEntity tuition) {
         mTuition = tuition;
     }
 

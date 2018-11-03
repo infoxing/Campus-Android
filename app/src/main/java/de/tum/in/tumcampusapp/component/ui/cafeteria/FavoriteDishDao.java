@@ -6,8 +6,8 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import de.tum.in.tumcampusapp.component.ui.cafeteria.model.CafeteriaMenu;
-import de.tum.in.tumcampusapp.component.ui.cafeteria.model.FavoriteDish;
+import de.tum.in.tumcampusapp.model.cafeteria.CafeteriaMenu;
+import de.tum.in.tumcampusapp.model.cafeteria.FavoriteDish;
 
 @Dao
 public interface FavoriteDishDao {
