@@ -28,7 +28,7 @@ import de.tum.in.tumcampusapp.component.ui.chat.model.ChatRoom;
 import de.tum.in.tumcampusapp.component.ui.news.model.News;
 import de.tum.in.tumcampusapp.component.ui.news.model.NewsAlert;
 import de.tum.in.tumcampusapp.component.ui.news.model.NewsSources;
-import de.tum.in.tumcampusapp.component.ui.studyroom.model.StudyRoomGroup;
+import de.tum.in.tumcampusapp.model.studyroom.StudyRoomGroup;
 import de.tum.in.tumcampusapp.model.ticket.RawEvent;
 import de.tum.in.tumcampusapp.model.ticket.RawTicket;
 import de.tum.in.tumcampusapp.model.ticket.TicketType;

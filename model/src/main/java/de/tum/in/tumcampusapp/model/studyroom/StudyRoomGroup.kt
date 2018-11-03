@@ -1,4 +1,4 @@
-package de.tum.`in`.tumcampusapp.component.ui.studyroom.model
+package de.tum.`in`.tumcampusapp.model.studyroom
 
 import androidx.room.Entity
 import androidx.room.Ignore

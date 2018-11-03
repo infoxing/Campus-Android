@@ -7,7 +7,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import de.tum.in.tumcampusapp.component.ui.studyroom.model.StudyRoom;
+import de.tum.in.tumcampusapp.model.studyroom.StudyRoom;
 
 @Dao
 public interface StudyRoomDao {

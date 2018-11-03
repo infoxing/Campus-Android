@@ -1,8 +1,8 @@
 package de.tum.`in`.tumcampusapp.component.ui.studyroom
 
 import android.content.Context
-import de.tum.`in`.tumcampusapp.component.ui.studyroom.model.StudyRoom
-import de.tum.`in`.tumcampusapp.component.ui.studyroom.model.StudyRoomGroup
+import de.tum.`in`.tumcampusapp.model.studyroom.StudyRoom
+import de.tum.`in`.tumcampusapp.model.studyroom.StudyRoomGroup
 import de.tum.`in`.tumcampusapp.database.TcaDb
 import org.jetbrains.anko.doAsync
 

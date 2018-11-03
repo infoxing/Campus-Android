@@ -16,7 +16,7 @@ import android.widget.TextView
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.component.other.generic.activity.ActivityForAccessingTumCabe
 import de.tum.`in`.tumcampusapp.component.tumui.roomfinder.RoomFinderActivity
-import de.tum.`in`.tumcampusapp.component.ui.studyroom.model.StudyRoomGroup
+import de.tum.`in`.tumcampusapp.model.studyroom.StudyRoomGroup
 import kotlinx.android.synthetic.main.activity_study_rooms.*
 
 /**

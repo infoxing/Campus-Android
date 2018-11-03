@@ -1,4 +1,4 @@
-package de.tum.`in`.tumcampusapp.component.ui.studyroom.model
+package de.tum.`in`.tumcampusapp.model.studyroom
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
