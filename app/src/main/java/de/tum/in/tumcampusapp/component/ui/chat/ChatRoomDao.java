@@ -8,8 +8,8 @@ import androidx.room.Update;
 
 import java.util.List;
 
-import de.tum.in.tumcampusapp.component.ui.chat.model.ChatRoomAndLastMessage;
-import de.tum.in.tumcampusapp.component.ui.chat.model.ChatRoomDbRow;
+import de.tum.in.tumcampusapp.model.chat.ChatRoomAndLastMessage;
+import de.tum.in.tumcampusapp.model.chat.ChatRoomDbRow;
 
 /**
  * Queries needed for the ChatRoomActivity/Controller.

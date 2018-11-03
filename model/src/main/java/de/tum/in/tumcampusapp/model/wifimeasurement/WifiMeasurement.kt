@@ -1,9 +1,9 @@
-package de.tum.`in`.tumcampusapp.component.other.wifimeasurement.model
+package de.tum.`in`.tumcampusapp.model.wifimeasurement
 
+import android.net.wifi.ScanResult
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.RoomWarnings
-import android.net.wifi.ScanResult
 import org.joda.time.DateTime
 
 @Entity(tableName = "wifi_measurement")

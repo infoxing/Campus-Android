@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
-import de.tum.in.tumcampusapp.component.other.wifimeasurement.model.WifiMeasurement;
+import de.tum.in.tumcampusapp.model.wifimeasurement.WifiMeasurement;
 
 @Dao
 public interface WifiMeasurementDao {

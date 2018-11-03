@@ -1,4 +1,4 @@
-package de.tum.`in`.tumcampusapp.component.ui.alarm.model
+package de.tum.`in`.tumcampusapp.model.alarms
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

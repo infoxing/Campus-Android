@@ -27,7 +27,7 @@ import de.tum.in.tumcampusapp.api.app.model.TUMCabeVerification;
 import de.tum.in.tumcampusapp.api.app.model.UploadStatus;
 import de.tum.in.tumcampusapp.api.tumonline.TUMOnlineClient;
 import de.tum.in.tumcampusapp.api.tumonline.model.TokenConfirmation;
-import de.tum.in.tumcampusapp.component.ui.chat.model.ChatMember;
+import de.tum.in.tumcampusapp.model.chat.ChatMember;
 import de.tum.in.tumcampusapp.service.FcmTokenHandler;
 import de.tum.in.tumcampusapp.model.Const;
 import de.tum.in.tumcampusapp.utils.RSASigner;

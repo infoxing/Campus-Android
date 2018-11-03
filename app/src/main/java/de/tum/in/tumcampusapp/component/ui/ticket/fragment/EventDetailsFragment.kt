@@ -19,7 +19,7 @@ import de.tum.`in`.tumcampusapp.component.ui.ticket.EventsController
 import de.tum.`in`.tumcampusapp.component.ui.ticket.activity.BuyTicketActivity
 import de.tum.`in`.tumcampusapp.component.ui.ticket.activity.ShowTicketActivity
 import de.tum.`in`.tumcampusapp.model.ticket.RawEvent
-import de.tum.`in`.tumcampusapp.component.ui.ticket.payload.TicketStatus
+import de.tum.`in`.tumcampusapp.model.ticket.payload.TicketStatus
 import de.tum.`in`.tumcampusapp.component.ui.ticket.viewmodel.EventViewEntity
 import de.tum.`in`.tumcampusapp.model.Const
 import de.tum.`in`.tumcampusapp.model.Const.KEY_EVENT_ID

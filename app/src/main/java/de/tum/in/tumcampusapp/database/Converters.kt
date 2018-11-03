@@ -2,8 +2,8 @@ package de.tum.`in`.tumcampusapp.database
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
-import de.tum.`in`.tumcampusapp.component.ui.alarm.model.FcmNotificationLocation
-import de.tum.`in`.tumcampusapp.component.ui.chat.model.ChatMember
+import de.tum.`in`.tumcampusapp.model.alarms.FcmNotificationLocation
+import de.tum.`in`.tumcampusapp.model.chat.ChatMember
 import de.tum.`in`.tumcampusapp.utils.DateTimeUtils
 import org.joda.time.DateTime
 

@@ -1,17 +1,15 @@
-package de.tum.in.tumcampusapp.component.ui.chat.model;
+package de.tum.in.tumcampusapp.model.chat;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-import android.content.Context;
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import org.joda.time.DateTime;
-
-import de.tum.in.tumcampusapp.R;
-import de.tum.in.tumcampusapp.utils.DateTimeUtils;
 
 @Entity(tableName = "chat_message")
 public class ChatMessage implements Parcelable {
@@ -61,7 +59,7 @@ public class ChatMessage implements Parcelable {
         this.member = member;
         this.sendingStatus = STATUS_SENDING;
         this.previous = 0;
-        this.timestamp = DateTimeUtils.INSTANCE.getDateTimeString(DateTime.now());
+        this.timestamp = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss").print(DateTime.now());
     }
 
     @Ignore
@@ -70,7 +68,7 @@ public class ChatMessage implements Parcelable {
         this.id = id;
         this.text = text;
         this.member = member;
-        this.timestamp = DateTimeUtils.INSTANCE.getDateTimeString(timestamp);
+        this.timestamp = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss").print(timestamp);
         this.sendingStatus = STATUS_SENDING;
         this.previous = previous;
     }
@@ -150,14 +148,6 @@ public class ChatMessage implements Parcelable {
         return timestamp;
     }
 
-    public DateTime getDateTime() {
-        return DateTimeUtils.INSTANCE.getDate(timestamp);
-    }
-
-    public String getFormattedTimestamp(Context context) {
-        return DateTimeUtils.INSTANCE.formatTimeOrDay(getDateTime(), context);
-    }
-
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
@@ -170,15 +160,6 @@ public class ChatMessage implements Parcelable {
         this.signature = signature;
     }
 
-    public int getStatusStringRes() {
-        if (sendingStatus == STATUS_SENT) {
-            return R.string.status_sent;
-        } else if (sendingStatus == STATUS_SENDING) {
-            return R.string.status_sending;
-        } else {
-            return R.string.status_sending_failed;
-        }
-    }
     public boolean isNewMessage() {
         return id == 0;
     }

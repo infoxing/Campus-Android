@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.tum.in.tumcampusapp.component.ui.chat.model.ChatMember;
+import de.tum.in.tumcampusapp.model.chat.ChatMember;
 
 public class MemberSuggestionsListAdapter extends BaseAdapter implements Filterable{
 

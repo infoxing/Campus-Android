@@ -13,7 +13,7 @@ import androidx.lifecycle.MediatorLiveData;
 import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
 import de.tum.in.tumcampusapp.api.app.exception.NoPrivateKey;
 import de.tum.in.tumcampusapp.api.tumonline.CacheControl;
-import de.tum.in.tumcampusapp.component.ui.chat.model.ChatMember;
+import de.tum.in.tumcampusapp.model.chat.ChatMember;
 import de.tum.in.tumcampusapp.component.ui.overview.card.Card;
 import de.tum.in.tumcampusapp.component.ui.overview.card.ProvidesCard;
 import de.tum.in.tumcampusapp.model.ticket.RawEvent;

@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.tum.in.tumcampusapp.component.ui.chat.ChatMessageValidator;
-import de.tum.in.tumcampusapp.component.ui.chat.model.ChatMessage;
-import de.tum.in.tumcampusapp.component.ui.chat.model.ChatPublicKey;
+import de.tum.in.tumcampusapp.model.chat.ChatMessage;
+import de.tum.in.tumcampusapp.model.chat.ChatPublicKey;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

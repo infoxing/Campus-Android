@@ -16,7 +16,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.component.other.wifimeasurement.WifiMeasurementLocationListener
-import de.tum.`in`.tumcampusapp.component.other.wifimeasurement.model.WifiMeasurement
+import de.tum.`in`.tumcampusapp.model.wifimeasurement.WifiMeasurement
 import de.tum.`in`.tumcampusapp.component.ui.eduroam.EduroamController
 import de.tum.`in`.tumcampusapp.component.ui.eduroam.SetupEduroamActivity
 import de.tum.`in`.tumcampusapp.model.Const

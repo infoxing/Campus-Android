@@ -1,7 +1,7 @@
 package de.tum.`in`.tumcampusapp.component.ui.chat.repository
 
 
-import de.tum.`in`.tumcampusapp.component.ui.chat.model.ChatMessage
+import de.tum.`in`.tumcampusapp.model.chat.ChatMessage
 import de.tum.`in`.tumcampusapp.database.TcaDb
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors

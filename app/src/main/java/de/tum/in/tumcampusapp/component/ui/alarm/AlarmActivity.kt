@@ -7,7 +7,7 @@ import android.webkit.WebView
 import android.widget.TextView
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.component.other.generic.activity.BaseActivity
-import de.tum.`in`.tumcampusapp.component.ui.alarm.model.FcmNotification
+import de.tum.`in`.tumcampusapp.model.alarms.FcmNotification
 
 import de.tum.`in`.tumcampusapp.utils.DateTimeUtils
 import de.tum.`in`.tumcampusapp.utils.Utils

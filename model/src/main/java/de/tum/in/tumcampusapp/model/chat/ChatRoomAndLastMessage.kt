@@ -1,8 +1,7 @@
-package de.tum.`in`.tumcampusapp.component.ui.chat.model
+package de.tum.`in`.tumcampusapp.model.chat
 
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
-
 
 class ChatRoomAndLastMessage {
 

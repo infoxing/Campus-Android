@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import java.util.Calendar;
 
-import de.tum.in.tumcampusapp.component.other.wifimeasurement.model.WifiMeasurement;
+import de.tum.in.tumcampusapp.model.wifimeasurement.WifiMeasurement;
 
 /**
  * This class defines the minimum requirements for a wifi measurement to be stored to the local database,

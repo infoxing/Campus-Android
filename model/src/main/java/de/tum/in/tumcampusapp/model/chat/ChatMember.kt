@@ -1,4 +1,4 @@
-package de.tum.`in`.tumcampusapp.component.ui.chat.model
+package de.tum.`in`.tumcampusapp.model.chat
 
 import android.os.Parcel
 import android.os.Parcelable

@@ -11,10 +11,6 @@ import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
-import androidx.annotation.NonNull;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AbsListView;
@@ -25,9 +21,14 @@ import android.widget.ProgressBar;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
 import de.tum.in.tumcampusapp.api.app.model.TUMCabeVerification;
@@ -37,15 +38,16 @@ import de.tum.in.tumcampusapp.component.ui.chat.ChatMessageViewModel;
 import de.tum.in.tumcampusapp.component.ui.chat.ChatRoomController;
 import de.tum.in.tumcampusapp.component.ui.chat.FcmChat;
 import de.tum.in.tumcampusapp.component.ui.chat.adapter.ChatHistoryAdapter;
-import de.tum.in.tumcampusapp.component.ui.chat.model.ChatMember;
-import de.tum.in.tumcampusapp.component.ui.chat.model.ChatMessage;
-import de.tum.in.tumcampusapp.component.ui.chat.model.ChatRoom;
+import de.tum.in.tumcampusapp.model.chat.ChatMessage;
+import de.tum.in.tumcampusapp.component.ui.chat.model.ChatMessageViewEntity;
 import de.tum.in.tumcampusapp.component.ui.chat.repository.ChatMessageLocalRepository;
 import de.tum.in.tumcampusapp.component.ui.chat.repository.ChatMessageRemoteRepository;
 import de.tum.in.tumcampusapp.component.ui.overview.CardManager;
 import de.tum.in.tumcampusapp.database.TcaDb;
-import de.tum.in.tumcampusapp.service.SendMessageService;
 import de.tum.in.tumcampusapp.model.Const;
+import de.tum.in.tumcampusapp.model.chat.ChatMember;
+import de.tum.in.tumcampusapp.model.chat.ChatRoom;
+import de.tum.in.tumcampusapp.service.SendMessageService;
 import de.tum.in.tumcampusapp.utils.Utils;
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
@@ -334,7 +336,9 @@ public class ChatActivity extends ActivityForDownloadingExternal
     private void sendMessage(String text) {
         final ChatMessage message = new ChatMessage(text, currentChatMember);
         message.setRoom(currentChatRoom.getId());
-        chatHistoryAdapter.add(message);
+
+        final ChatMessageViewEntity viewEntity = ChatMessageViewEntity.create(this, message);
+        chatHistoryAdapter.add(viewEntity);
         chatMessageViewModel.addToUnsent(message);
 
         SendMessageService.enqueueWork(this, new Intent());
@@ -347,7 +351,13 @@ public class ChatActivity extends ActivityForDownloadingExternal
         sendMessage(message.getText());
 
         List<ChatMessage> messages = chatMessageViewModel.getAll(currentChatRoom.getId());
-        chatHistoryAdapter.updateHistory(messages);
+        List<ChatMessageViewEntity> viewEntities = new ArrayList<>();
+
+        for (ChatMessage item : messages) {
+            viewEntities.add(ChatMessageViewEntity.create(this, item));
+        }
+
+        chatHistoryAdapter.updateHistory(viewEntities);
     }
 
     /**
@@ -408,7 +418,7 @@ public class ChatActivity extends ActivityForDownloadingExternal
             observable = chatMessageViewModel.getNewMessages(currentChatRoom, verification);
             //chatMessageViewModel.getNewMessages(currentChatRoom.getId(), verification, this::onMessagesLoaded);
         } else {
-            ChatMessage latestMessage = chatHistoryAdapter.getItem(0);
+            ChatMessageViewEntity latestMessage = chatHistoryAdapter.getItem(0);
             long latestId = latestMessage.getId();
             observable = chatMessageViewModel.getOlderMessages(currentChatRoom, latestId, verification);
             //chatMessageViewModel.getOlderMessages(currentChatRoom.getId(), latestId, verification, this::onMessagesLoaded);
@@ -433,8 +443,14 @@ public class ChatActivity extends ActivityForDownloadingExternal
         List<ChatMessage> unsent = chatMessageViewModel.getUnsentInChatRoom(currentChatRoom);
         messages.addAll(unsent);
 
-        Collections.sort(messages, (lhs, rhs) -> lhs.getDateTime().compareTo(rhs.getDateTime()));
-        chatHistoryAdapter.updateHistory(messages);
+        List<ChatMessageViewEntity> viewEntities = new ArrayList<>();
+        for (ChatMessage message : messages) {
+            viewEntities.add(ChatMessageViewEntity.create(this, message));
+        }
+
+        Collections.sort(viewEntities, (lhs, rhs) -> lhs.getTimestamp().compareTo(rhs.getTimestamp()));
+
+        chatHistoryAdapter.updateHistory(viewEntities);
 
         if (messages.isEmpty()) {
             messagesListView.removeHeaderView(progressbar);

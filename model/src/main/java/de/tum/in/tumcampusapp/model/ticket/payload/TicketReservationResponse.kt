@@ -1,4 +1,4 @@
-package de.tum.`in`.tumcampusapp.component.ui.ticket.payload
+package de.tum.`in`.tumcampusapp.model.ticket.payload
 
 import com.google.gson.annotations.SerializedName
 

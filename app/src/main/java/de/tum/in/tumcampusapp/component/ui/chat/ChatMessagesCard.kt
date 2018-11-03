@@ -11,9 +11,9 @@ import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.component.other.navigation.NavigationDestination
 import de.tum.`in`.tumcampusapp.component.other.navigation.SystemActivity
 import de.tum.`in`.tumcampusapp.component.ui.chat.activity.ChatActivity
-import de.tum.`in`.tumcampusapp.component.ui.chat.model.ChatMessage
-import de.tum.`in`.tumcampusapp.component.ui.chat.model.ChatRoom
-import de.tum.`in`.tumcampusapp.component.ui.chat.model.ChatRoomDbRow
+import de.tum.`in`.tumcampusapp.model.chat.ChatMessage
+import de.tum.`in`.tumcampusapp.model.chat.ChatRoom
+import de.tum.`in`.tumcampusapp.model.chat.ChatRoomDbRow
 import de.tum.`in`.tumcampusapp.component.ui.overview.CardManager.CARD_CHAT
 import de.tum.`in`.tumcampusapp.component.ui.overview.card.Card
 import de.tum.`in`.tumcampusapp.component.ui.overview.card.CardViewHolder

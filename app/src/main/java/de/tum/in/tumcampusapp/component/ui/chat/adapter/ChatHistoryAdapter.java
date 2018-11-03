@@ -2,8 +2,6 @@ package de.tum.in.tumcampusapp.component.ui.chat.adapter;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +14,19 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import de.tum.in.tumcampusapp.R;
-import de.tum.in.tumcampusapp.component.ui.chat.model.ChatMember;
-import de.tum.in.tumcampusapp.component.ui.chat.model.ChatMessage;
+import de.tum.in.tumcampusapp.model.chat.ChatMessage;
+import de.tum.in.tumcampusapp.component.ui.chat.model.ChatMessageViewEntity;
+import de.tum.in.tumcampusapp.model.chat.ChatMember;
 
 public class ChatHistoryAdapter extends BaseAdapter {
 
     private static final int OUTGOING_MESSAGE = 0;
     private static final int INCOMING_MESSAGE = 1;
 
-    private List<ChatMessage> chatHistoryList = new ArrayList<>();
+    private List<ChatMessageViewEntity> chatHistoryList = new ArrayList<>();
 
     private Context mContext;
     private OnRetrySendListener mRetryListener;
@@ -40,7 +41,7 @@ public class ChatHistoryAdapter extends BaseAdapter {
         currentChatMember = member;
     }
 
-    public void updateHistory(List<ChatMessage> newHistory) {
+    public void updateHistory(List<ChatMessageViewEntity> newHistory) {
         chatHistoryList = newHistory;
         notifyDataSetChanged();
     }
@@ -51,7 +52,7 @@ public class ChatHistoryAdapter extends BaseAdapter {
     }
 
     @Override
-    public ChatMessage getItem(int position) {
+    public ChatMessageViewEntity getItem(int position) {
         return chatHistoryList.get(position);
     }
 
@@ -80,7 +81,7 @@ public class ChatHistoryAdapter extends BaseAdapter {
         int layout = isOutgoing ? R.layout.activity_chat_history_row_outgoing
                                 : R.layout.activity_chat_history_row_incoming;
 
-        ChatMessage message = getItem(position);
+        ChatMessageViewEntity message = getItem(position);
         ViewHolder holder;
 
         if (convertView == null) {
@@ -95,7 +96,7 @@ public class ChatHistoryAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public void add(ChatMessage unsentMessage) {
+    public void add(ChatMessageViewEntity unsentMessage) {
         chatHistoryList.add(unsentMessage);
         notifyDataSetChanged();
     }
@@ -127,7 +128,7 @@ public class ChatHistoryAdapter extends BaseAdapter {
             }
         }
 
-        public void bind(Context context, ChatMessage message,
+        public void bind(Context context, ChatMessageViewEntity message,
                          boolean isOutgoingMessage, OnRetrySendListener retryListener) {
             messageTextView.setText(message.getText());
 
@@ -146,7 +147,7 @@ public class ChatHistoryAdapter extends BaseAdapter {
                 timestampTextView.setText("");
             }
 
-            containerLayout.setOnClickListener(view -> resendIfError(context, message, retryListener));
+            containerLayout.setOnClickListener(view -> resendIfError(context, message.getRaw(), retryListener));
 
             // TODO
             /*
@@ -183,7 +184,7 @@ public class ChatHistoryAdapter extends BaseAdapter {
             }
         }
 
-        private void updateSendingStatus(Context context, ChatMessage message) {
+        private void updateSendingStatus(Context context, ChatMessageViewEntity message) {
             boolean inProgress = message.getSendingStatus() == ChatMessage.STATUS_SENDING;
 
             statusImageView.setVisibility(inProgress ? View.GONE : View.VISIBLE);
@@ -193,7 +194,7 @@ public class ChatHistoryAdapter extends BaseAdapter {
 
             if (inProgress) {
                 timestampTextView.setTextColor(darkTextColor);
-                timestampTextView.setText(message.getFormattedTimestamp(context));
+                timestampTextView.setText(message.getFormattedTimestamp());
                 return;
             }
 
@@ -216,7 +217,7 @@ public class ChatHistoryAdapter extends BaseAdapter {
             } else {
                 int textColor = ContextCompat.getColor(context, R.color.text_dark_secondary);
                 timestampTextView.setTextColor(textColor);
-                timestampTextView.setText(message.getFormattedTimestamp(context));
+                timestampTextView.setText(message.getFormattedTimestamp());
             }
 
             if (statusIcon != null) {
