@@ -1,24 +1,25 @@
 package de.tum.in.tumcampusapp.component.ui.ticket;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
 import android.content.Context;
-import androidx.annotation.NonNull;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
 import de.tum.in.tumcampusapp.api.app.exception.NoPrivateKey;
 import de.tum.in.tumcampusapp.api.tumonline.CacheControl;
 import de.tum.in.tumcampusapp.component.ui.chat.model.ChatMember;
 import de.tum.in.tumcampusapp.component.ui.overview.card.Card;
 import de.tum.in.tumcampusapp.component.ui.overview.card.ProvidesCard;
-import de.tum.in.tumcampusapp.component.ui.ticket.model.Event;
-import de.tum.in.tumcampusapp.component.ui.ticket.model.Ticket;
+import de.tum.in.tumcampusapp.component.ui.ticket.model.RawEvent;
+import de.tum.in.tumcampusapp.component.ui.ticket.model.RawTicket;
 import de.tum.in.tumcampusapp.component.ui.ticket.model.TicketType;
+import de.tum.in.tumcampusapp.component.ui.ticket.viewmodel.EventViewEntity;
 import de.tum.in.tumcampusapp.database.TcaDb;
 import de.tum.in.tumcampusapp.utils.Const;
 import de.tum.in.tumcampusapp.utils.Utils;
@@ -52,11 +53,11 @@ public class EventsController implements ProvidesCard {
     }
 
     public void downloadFromService() {
-        Callback<List<Event>> eventCallback = new Callback<List<Event>>() {
+        Callback<List<RawEvent>> eventCallback = new Callback<List<RawEvent>>() {
 
             @Override
-            public void onResponse(@NonNull Call<List<Event>> call, Response<List<Event>> response) {
-                List<Event> events = response.body();
+            public void onResponse(@NonNull Call<List<RawEvent>> call, Response<List<RawEvent>> response) {
+                List<RawEvent> events = response.body();
                 if (events == null) {
                     return;
                 }
@@ -64,24 +65,24 @@ public class EventsController implements ProvidesCard {
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<Event>> call, @NonNull  Throwable t) {
+            public void onFailure(@NonNull Call<List<RawEvent>> call, @NonNull  Throwable t) {
                 Utils.log(t);
             }
         };
 
-        Callback<List<Ticket>> ticketCallback = new Callback<List<Ticket>>() {
+        Callback<List<RawTicket>> ticketCallback = new Callback<List<RawTicket>>() {
             @Override
-            public void onResponse(@NonNull Call<List<Ticket>> call, Response<List<Ticket>> response) {
-                List<Ticket> tickets = response.body();
+            public void onResponse(@NonNull Call<List<RawTicket>> call, Response<List<RawTicket>> response) {
+                List<RawTicket> tickets = response.body();
                 if (tickets == null) {
                     return;
                 }
-                insert(tickets.toArray(new Ticket[0]));
+                insert(tickets.toArray(new RawTicket[0]));
                 loadTicketTypesForTickets(tickets);
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<Ticket>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<List<RawTicket>> call, @NonNull Throwable t) {
                 Utils.log(t);
             }
         };
@@ -89,8 +90,8 @@ public class EventsController implements ProvidesCard {
         getEventsAndTicketsFromServer(eventCallback, ticketCallback);
     }
 
-    public void getEventsAndTicketsFromServer(Callback<List<Event>> eventCallback,
-                                              Callback<List<Ticket>> ticketCallback) {
+    public void getEventsAndTicketsFromServer(Callback<List<RawEvent>> eventCallback,
+                                              Callback<List<RawTicket>> ticketCallback) {
         // Delete all too old items
         eventDao.removePastEvents();
 
@@ -107,9 +108,9 @@ public class EventsController implements ProvidesCard {
         }
     }
 
-    private void loadTicketTypesForTickets(Iterable<Ticket> tickets){
+    private void loadTicketTypesForTickets(Iterable<RawTicket> tickets){
         // get ticket type information for all tickets
-        for (Ticket ticket : tickets){
+        for (RawTicket ticket : tickets){
             TUMCabeClient.getInstance(context).fetchTicketTypes(ticket.getEventId(),
                     new Callback<List<TicketType>>(){
 
@@ -135,7 +136,7 @@ public class EventsController implements ProvidesCard {
 
     // Event methods
 
-    public void storeEvents(List<Event> events) {
+    public void storeEvents(List<RawEvent> events) {
         eventDao.insert(events);
     }
 
@@ -143,22 +144,22 @@ public class EventsController implements ProvidesCard {
         eventDao.setDismissed(id);
     }
 
-    public LiveData<List<Event>> getEvents() {
+    public LiveData<List<RawEvent>> getEvents() {
         return eventDao.getAll();
     }
 
     /**
      * @return all events for which a ticket exists
      */
-    public MediatorLiveData<List<Event>> getBookedEvents() {
-        LiveData<List<Ticket>> tickets = ticketDao.getAll();
-        MediatorLiveData<List<Event>> events = new MediatorLiveData<>();
+    public MediatorLiveData<List<RawEvent>> getBookedEvents() {
+        LiveData<List<RawTicket>> tickets = ticketDao.getAll();
+        MediatorLiveData<List<RawEvent>> events = new MediatorLiveData<>();
 
         events.addSource(tickets, newTickets -> {
-            List<Event> bookedEvents = new ArrayList<>();
+            List<RawEvent> bookedEvents = new ArrayList<>();
 
-            for (Ticket ticket : newTickets) {
-                Event event = getEventById(ticket.getEventId());
+            for (RawTicket ticket : newTickets) {
+                RawEvent event = getEventById(ticket.getEventId());
                 // the event may be null if the corresponding event of a ticket has already been deleted
                 // these event should not be returned
                 if (event != null) {
@@ -172,18 +173,18 @@ public class EventsController implements ProvidesCard {
         return events;
     }
 
-    public boolean isEventBooked(Event event) {
-        Ticket ticket = ticketDao.getByEventId(event.getId());
+    public boolean isEventBooked(int eventId) {
+        RawTicket ticket = ticketDao.getByEventId(eventId);
         return ticket != null;
     }
 
-    public Event getEventById(int id) {
+    public RawEvent getEventById(int id) {
         return eventDao.getEventById(id);
     }
 
     // Ticket methods
 
-    public Ticket getTicketByEventId(int eventId) {
+    public RawTicket getTicketByEventId(int eventId) {
         return ticketDao.getByEventId(eventId);
     }
 
@@ -191,7 +192,7 @@ public class EventsController implements ProvidesCard {
         return ticketTypeDao.getById(id);
     }
 
-    public void insert(Ticket... tickets) {
+    public void insert(RawTicket... tickets) {
         ticketDao.insert(tickets);
     }
 
@@ -205,10 +206,11 @@ public class EventsController implements ProvidesCard {
         List<Card> results = new ArrayList<>();
 
         // Only add the next upcoming event for now
-        Event event = eventDao.getNextEvent();
+        RawEvent event = eventDao.getNextEvent();
         if (event != null) {
             EventCard eventCard = new EventCard(context);
-            eventCard.setEvent(event);
+            EventViewEntity viewEntity = EventViewEntity.create(context, event);
+            eventCard.setEvent(viewEntity);
             results.add(eventCard);
         }
 

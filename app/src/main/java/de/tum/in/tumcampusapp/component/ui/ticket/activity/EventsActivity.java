@@ -16,7 +16,7 @@ import androidx.viewpager.widget.ViewPager;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.other.generic.activity.ActivityForDownloadingExternal;
 import de.tum.in.tumcampusapp.component.ui.ticket.fragment.EventsFragment;
-import de.tum.in.tumcampusapp.component.ui.ticket.model.EventType;
+import de.tum.in.tumcampusapp.component.ui.ticket.viewmodel.EventType;
 import de.tum.in.tumcampusapp.utils.Const;
 import de.tum.in.tumcampusapp.utils.Utils;
 

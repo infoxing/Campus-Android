@@ -2,8 +2,6 @@ package de.tum.in.tumcampusapp.component.ui.ticket.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import android.transition.TransitionManager;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,15 +14,18 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
 import de.tum.in.tumcampusapp.api.app.model.TUMCabeVerification;
 import de.tum.in.tumcampusapp.component.other.generic.activity.BaseActivity;
 import de.tum.in.tumcampusapp.component.ui.ticket.EventsController;
-import de.tum.in.tumcampusapp.component.ui.ticket.model.Event;
+import de.tum.in.tumcampusapp.component.ui.ticket.model.RawEvent;
 import de.tum.in.tumcampusapp.component.ui.ticket.model.TicketType;
 import de.tum.in.tumcampusapp.component.ui.ticket.payload.TicketReservation;
 import de.tum.in.tumcampusapp.component.ui.ticket.payload.TicketReservationResponse;
+import de.tum.in.tumcampusapp.component.ui.ticket.viewmodel.EventViewEntity;
 import de.tum.in.tumcampusapp.utils.Const;
 import de.tum.in.tumcampusapp.utils.Utils;
 import retrofit2.Call;
@@ -97,13 +98,12 @@ public class BuyTicketActivity extends BaseActivity {
         TextView locationView = findViewById(R.id.ticket_details_location);
         TextView dateView = findViewById(R.id.ticket_details_date);
 
-        Event event = eventsController.getEventById(eventId);
+        RawEvent event = eventsController.getEventById(eventId);
+        EventViewEntity viewEntity = EventViewEntity.create(this, event);
 
-        eventView.setText(event.getTitle());
-        locationView.setText(event.getLocality());
-
-        String formattedStartTime = event.getFormattedStartDateTime(this);
-        dateView.setText(formattedStartTime);
+        eventView.setText(viewEntity.getTitle());
+        locationView.setText(viewEntity.getLocality());
+        dateView.setText(viewEntity.getFormattedStartTime());
     }
 
     private void initTicketTypeSpinner() {

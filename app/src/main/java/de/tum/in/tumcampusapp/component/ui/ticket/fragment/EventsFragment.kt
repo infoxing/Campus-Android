@@ -1,22 +1,24 @@
 package de.tum.`in`.tumcampusapp.component.ui.ticket.fragment
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.component.other.generic.adapter.EqualSpacingItemDecoration
 import de.tum.`in`.tumcampusapp.component.ui.ticket.EventsController
 import de.tum.`in`.tumcampusapp.component.ui.ticket.EventsViewModel
 import de.tum.`in`.tumcampusapp.component.ui.ticket.adapter.EventsAdapter
-import de.tum.`in`.tumcampusapp.component.ui.ticket.model.Event
-import de.tum.`in`.tumcampusapp.component.ui.ticket.model.EventType
-import de.tum.`in`.tumcampusapp.component.ui.ticket.model.Ticket
+import de.tum.`in`.tumcampusapp.component.ui.ticket.model.RawEvent
+import de.tum.`in`.tumcampusapp.component.ui.ticket.viewmodel.EventType
+import de.tum.`in`.tumcampusapp.component.ui.ticket.model.RawTicket
+import de.tum.`in`.tumcampusapp.component.ui.ticket.viewmodel.EventViewEntitiesMapper
+import de.tum.`in`.tumcampusapp.component.ui.ticket.viewmodel.EventViewEntity
 import de.tum.`in`.tumcampusapp.utils.Utils
 import de.tum.`in`.tumcampusapp.utils.observeNonNull
 import kotlinx.android.synthetic.main.fragment_events.*
@@ -29,8 +31,8 @@ class EventsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     private lateinit var eventType: EventType
     private lateinit var eventsController: EventsController
 
-    private val eventsCallback = object : Callback<List<Event>> {
-        override fun onResponse(call: Call<List<Event>>, response: Response<List<Event>>) {
+    private val eventsCallback = object : Callback<List<RawEvent>> {
+        override fun onResponse(call: Call<List<RawEvent>>, response: Response<List<RawEvent>>) {
             val events = response.body() ?: return
             eventsController.storeEvents(events)
 
@@ -39,7 +41,7 @@ class EventsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
             }
         }
 
-        override fun onFailure(call: Call<List<Event>>, t: Throwable) {
+        override fun onFailure(call: Call<List<RawEvent>>, t: Throwable) {
             val c = requireContext()
             Utils.log(t)
             Utils.showToast(c, R.string.error_something_wrong)
@@ -50,14 +52,14 @@ class EventsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         }
     }
 
-    private val ticketsCallback = object : Callback<List<Ticket>> {
-        override fun onResponse(call: Call<List<Ticket>>, response: Response<List<Ticket>>) {
+    private val ticketsCallback = object : Callback<List<RawTicket>> {
+        override fun onResponse(call: Call<List<RawTicket>>, response: Response<List<RawTicket>>) {
             val tickets = response.body() ?: return
             eventsController.insert(*tickets.toTypedArray())
             eventsRefreshLayout.isRefreshing = false
         }
 
-        override fun onFailure(call: Call<List<Ticket>>, t: Throwable) {
+        override fun onFailure(call: Call<List<RawTicket>>, t: Throwable) {
             val c = requireContext()
             Utils.log(t)
             Utils.showToast(c, R.string.error_something_wrong)
@@ -96,13 +98,14 @@ class EventsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         eventType = arguments?.getSerializable(KEY_EVENT_TYPE) as EventType
         eventsController = EventsController(context)
 
-        val factory = EventsViewModel.Factory(requireActivity().application, eventType)
+        val mapper = EventViewEntitiesMapper(requireContext())
+        val factory = EventsViewModel.Factory(eventsController, eventType, mapper)
         val viewModel = ViewModelProviders.of(this, factory).get(EventsViewModel::class.java)
 
-        viewModel.events.observeNonNull(this) { showEvents(it) }
+        viewModel.eventViewEntities.observeNonNull(this) { showEvents(it) }
     }
 
-    private fun showEvents(events: List<Event>) {
+    private fun showEvents(events: List<EventViewEntity>) {
         val isEmpty = events.isEmpty()
         eventsRecyclerView.visibility = if (isEmpty) View.GONE else View.VISIBLE
         placeholderTextView.visibility = if (isEmpty) View.VISIBLE else View.GONE

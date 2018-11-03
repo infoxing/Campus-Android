@@ -4,12 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.RoomWarnings
-import android.content.Context
-import android.text.format.DateFormat
 import com.google.gson.annotations.SerializedName
-import de.tum.`in`.tumcampusapp.R
 import org.joda.time.DateTime
-import org.joda.time.format.DateTimeFormat
 
 /**
  * Ticket
@@ -22,7 +18,7 @@ import org.joda.time.format.DateTimeFormat
  */
 @Entity(tableName = "tickets")
 @SuppressWarnings(RoomWarnings.DEFAULT_CONSTRUCTOR)
-data class Ticket(
+data class RawTicket(
         @PrimaryKey
         @SerializedName("ticket_history")
         var id: Int = 0,
@@ -34,18 +30,4 @@ data class Ticket(
         @SerializedName("ticket_type")
         var ticketTypeId: Int = 0,
         var redemption: DateTime? = null
-) {
-
-    fun getFormattedRedemptionDate(context: Context): String? {
-        return if (redemption != null) {
-            val date = DateTimeFormat.shortDate().print(redemption)
-            val pattern = if (DateFormat.is24HourFormat(context)) "H:mm" else "h:mm aa"
-            val time = DateTimeFormat.forPattern(pattern).print(redemption)
-            "$date, $time"
-        } else {
-            context.getString(R.string.no)
-        }
-    }
-
-
-}
+)

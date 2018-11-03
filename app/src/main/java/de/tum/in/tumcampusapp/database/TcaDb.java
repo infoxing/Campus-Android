@@ -50,8 +50,8 @@ import de.tum.in.tumcampusapp.component.ui.studyroom.model.StudyRoomGroup;
 import de.tum.in.tumcampusapp.component.ui.ticket.EventDao;
 import de.tum.in.tumcampusapp.component.ui.ticket.TicketDao;
 import de.tum.in.tumcampusapp.component.ui.ticket.TicketTypeDao;
-import de.tum.in.tumcampusapp.component.ui.ticket.model.Event;
-import de.tum.in.tumcampusapp.component.ui.ticket.model.Ticket;
+import de.tum.in.tumcampusapp.component.ui.ticket.model.RawEvent;
+import de.tum.in.tumcampusapp.component.ui.ticket.model.RawTicket;
 import de.tum.in.tumcampusapp.component.ui.ticket.model.TicketType;
 import de.tum.in.tumcampusapp.component.ui.transportation.TransportDao;
 import de.tum.in.tumcampusapp.component.ui.transportation.model.TransportFavorites;
@@ -75,8 +75,8 @@ import de.tum.in.tumcampusapp.utils.sync.model.Sync;
         Sync.class,
         BuildingToGps.class,
         RawKino.class,
-        Event.class,
-        Ticket.class,
+        RawEvent.class,
+        RawTicket.class,
         TicketType.class,
         ChatMessage.class,
         Location.class,

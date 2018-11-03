@@ -1,6 +1,5 @@
 package de.tum.`in`.tumcampusapp.component.ui.ticket.fragment
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -19,8 +18,9 @@ import de.tum.`in`.tumcampusapp.component.tumui.calendar.CreateEventActivity
 import de.tum.`in`.tumcampusapp.component.ui.ticket.EventsController
 import de.tum.`in`.tumcampusapp.component.ui.ticket.activity.BuyTicketActivity
 import de.tum.`in`.tumcampusapp.component.ui.ticket.activity.ShowTicketActivity
-import de.tum.`in`.tumcampusapp.component.ui.ticket.model.Event
+import de.tum.`in`.tumcampusapp.component.ui.ticket.model.RawEvent
 import de.tum.`in`.tumcampusapp.component.ui.ticket.payload.TicketStatus
+import de.tum.`in`.tumcampusapp.component.ui.ticket.viewmodel.EventViewEntity
 import de.tum.`in`.tumcampusapp.utils.Const
 import de.tum.`in`.tumcampusapp.utils.Const.KEY_EVENT_ID
 import de.tum.`in`.tumcampusapp.utils.DateTimeUtils
@@ -35,22 +35,21 @@ import retrofit2.Response
 import java.util.*
 
 /**
- * Fragment for displaying information about an [Event]. Manages content that's shown in the
+ * Fragment for displaying information about an [RawEvent]. Manages content that's shown in the
  * PagerAdapter.
  */
 class EventDetailsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
-    private var event: Event? = null
-    private lateinit var eventsController: EventsController
+    private val eventsController: EventsController by lazy {
+        EventsController(requireContext())
+    }
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
+    private val rawEvent: RawEvent by lazy {
+        arguments?.getParcelable(Const.KEY_EVENT) ?: throw IllegalArgumentException()
+    }
 
-        eventsController = EventsController(context)
-
-        arguments?.let { args ->
-            event = args.getParcelable(Const.KEY_EVENT)
-        }
+    private val event: EventViewEntity by lazy {
+        EventViewEntity.create(requireContext(), rawEvent)
     }
 
     override fun onCreateView(inflater: LayoutInflater,
@@ -70,24 +69,18 @@ class EventDetailsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        event?.let {
-            showEventDetails(it)
-            loadAvailableTicketCount(it)
-        }
+        showEventDetails()
+        loadAvailableTicketCount()
     }
 
     override fun onRefresh() {
-        event?.let {
-            loadAvailableTicketCount(it)
-        }
+        loadAvailableTicketCount()
     }
 
     override fun onResume() {
         super.onResume()
-        event?.let {
-            if (!eventsController.isEventBooked(it) && isEventImminent(it)) {
-                ticketButton.visibility = View.GONE
-            }
+        if (!eventsController.isEventBooked(event.id) && isEventImminent(event.startTime)) {
+            ticketButton.visibility = View.GONE
         }
     }
 
@@ -95,9 +88,8 @@ class EventDetailsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
      * Checks if the event starts less than 4 hours from now.
      * (-> user won't be able to buy tickets anymore)
      */
-    private fun isEventImminent(event: Event): Boolean {
-        val eventStart = DateTime(event.startTime)
-        return DateTime.now().isAfter(eventStart.minusHours(4))
+    private fun isEventImminent(startTime: DateTime): Boolean {
+        return DateTime.now().isAfter(startTime.minusHours(4))
     }
 
     private fun showEventImminentDialog() {
@@ -112,7 +104,7 @@ class EventDetailsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         }
     }
 
-    private fun showEventDetails(event: Event) {
+    private fun showEventDetails() {
         val url = event.imageUrl
         if (url != null) {
             Picasso.get()
@@ -125,34 +117,34 @@ class EventDetailsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
             posterProgressBar.visibility = View.GONE
         }
 
-        if (eventsController.isEventBooked(event)) {
+        if (eventsController.isEventBooked(event.id)) {
             ticketButton.text = getString(R.string.show_ticket)
-            ticketButton.setOnClickListener { showTicket(event) }
+            ticketButton.setOnClickListener { showTicket() }
         } else {
             ticketButton.text = getString(R.string.buy_ticket)
-            ticketButton.setOnClickListener { buyTicket(event) }
+            ticketButton.setOnClickListener { buyTicket() }
         }
 
         context?.let {
-            dateTextView.text = event.getFormattedStartDateTime(it)
-            dateContainer.setOnClickListener { _ -> displayAddToCalendarDialog() }
+            dateTextView.text = event.formattedStartTime
+            dateContainer.setOnClickListener { displayAddToCalendarDialog() }
         }
 
         locationTextView.text = event.locality
-        locationContainer.setOnClickListener { openMaps(event) }
+        locationContainer.setOnClickListener { openMaps() }
 
         descriptionTextView.text = event.description
 
-        linkButton.setOnClickListener { openEventLink(event) }
+        linkButton.setOnClickListener { openEventLink() }
         linkButton.visibility = if (event.eventUrl.isNotBlank()) View.VISIBLE else View.GONE
     }
 
-    private fun openEventLink(event: Event) {
+    private fun openEventLink() {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(event.eventUrl))
         startActivity(intent)
     }
 
-    private fun loadAvailableTicketCount(event: Event) {
+    private fun loadAvailableTicketCount() {
         TUMCabeClient
                 .getInstance(context)
                 .fetchTicketStats(event.id, object : Callback<List<TicketStatus>> {
@@ -180,24 +172,22 @@ class EventDetailsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
                 })
     }
 
-    private fun showTicket(event: Event) {
+    private fun showTicket() {
         val intent = Intent(context, ShowTicketActivity::class.java).apply {
             putExtra(KEY_EVENT_ID, event.id)
         }
         startActivity(intent)
     }
 
-    private fun buyTicket(event: Event) {
-        val c = context ?: return
-
-        if (isEventImminent(event)) {
+    private fun buyTicket() {
+        if (isEventImminent(event.startTime)) {
             showEventImminentDialog()
             ticketButton.visibility = View.GONE
             return
         }
 
-        val lrzId = Utils.getSetting(c, Const.LRZ_ID, "")
-        val chatRoomName = Utils.getSetting(c, Const.CHAT_ROOM_DISPLAY_NAME, "")
+        val lrzId = Utils.getSetting(requireContext(), Const.LRZ_ID, "")
+        val chatRoomName = Utils.getSetting(requireContext(), Const.CHAT_ROOM_DISPLAY_NAME, "")
         val isLoggedIn = AccessTokenManager.hasValidAccessToken(context)
 
         if (!isLoggedIn || lrzId.isEmpty() || chatRoomName.isEmpty()) {
@@ -222,7 +212,7 @@ class EventDetailsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     private fun addToTUMCalendar() {
         val event = event ?: return
-        val endTime = event.endTime ?: event.startTime.plus(Event.defaultDuration.toLong())
+        val endTime = event.endTime ?: event.startTime.plus(RawEvent.defaultDuration.toLong())
 
         val intent = Intent(context, CreateEventActivity::class.java).apply {
             putExtra(Const.EVENT_EDIT, false)
@@ -237,7 +227,7 @@ class EventDetailsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     private fun addToExternalCalendar() {
         val event = event ?: return
-        val endTime = event.endTime ?: event.startTime.plus(Event.defaultDuration.toLong())
+        val endTime = event.endTime ?: event.startTime.plus(RawEvent.defaultDuration.toLong())
         val eventEnd = DateTimeUtils.getDateTimeString(endTime)
 
         val intent = Intent(Intent.ACTION_INSERT).apply {
@@ -254,7 +244,7 @@ class EventDetailsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         startActivity(intent)
     }
 
-    private fun openMaps(event: Event) {
+    private fun openMaps() {
         val url = "http://maps.google.co.in/maps?q=${event.locality}"
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(intent)
@@ -292,7 +282,7 @@ class EventDetailsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     companion object {
 
         @JvmStatic
-        fun newInstance(event: Event): EventDetailsFragment {
+        fun newInstance(event: RawEvent): EventDetailsFragment {
             return EventDetailsFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(Const.KEY_EVENT, event)

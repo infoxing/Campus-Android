@@ -29,8 +29,8 @@ import de.tum.in.tumcampusapp.component.ui.news.model.News;
 import de.tum.in.tumcampusapp.component.ui.news.model.NewsAlert;
 import de.tum.in.tumcampusapp.component.ui.news.model.NewsSources;
 import de.tum.in.tumcampusapp.component.ui.studyroom.model.StudyRoomGroup;
-import de.tum.in.tumcampusapp.component.ui.ticket.model.Event;
-import de.tum.in.tumcampusapp.component.ui.ticket.model.Ticket;
+import de.tum.in.tumcampusapp.component.ui.ticket.model.RawEvent;
+import de.tum.in.tumcampusapp.component.ui.ticket.model.RawTicket;
 import de.tum.in.tumcampusapp.component.ui.ticket.model.TicketType;
 import de.tum.in.tumcampusapp.component.ui.ticket.payload.TicketReservationResponse;
 import de.tum.in.tumcampusapp.component.ui.ticket.payload.TicketStatus;
@@ -215,15 +215,15 @@ public interface TUMCabeAPIService {
     // Getting Event information
 
     @GET(API_EVENTS + "list")
-    Call<List<Event>> getEvents();
+    Call<List<RawEvent>> getEvents();
 
     // Getting Ticket information
 
     @POST(API_EVENTS + API_TICKET + "my")
-    Call<List<Ticket>> getTickets(@Body TUMCabeVerification verification);
+    Call<List<RawTicket>> getTickets(@Body TUMCabeVerification verification);
 
     @POST(API_EVENTS + API_TICKET + "{ticketID}")
-    Call<Ticket> getTicket(@Path("ticketID") int ticketID, @Body TUMCabeVerification verification);
+    Call<RawTicket> getTicket(@Path("ticketID") int ticketID, @Body TUMCabeVerification verification);
 
     @GET(API_EVENTS + API_TICKET + "type/{eventID}")
     Call<List<TicketType>> getTicketTypes(@Path("eventID") int eventID);
@@ -236,7 +236,7 @@ public interface TUMCabeAPIService {
     // Ticket purchase
 
     @POST(API_EVENTS + API_TICKET + "payment/stripe/purchase")
-    Call<Ticket> purchaseTicketStripe(@Body TUMCabeVerification verification);
+    Call<RawTicket> purchaseTicketStripe(@Body TUMCabeVerification verification);
 
     @POST(API_EVENTS + API_TICKET + "payment/stripe/ephemeralkey")
     Call<HashMap<String, Object>> retrieveEphemeralKey(@Body TUMCabeVerification verification);

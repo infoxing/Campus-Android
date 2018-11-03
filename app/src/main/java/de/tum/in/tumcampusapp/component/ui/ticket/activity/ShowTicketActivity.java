@@ -5,8 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -20,14 +18,18 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
+import androidx.annotation.NonNull;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
 import de.tum.in.tumcampusapp.api.app.exception.NoPrivateKey;
 import de.tum.in.tumcampusapp.component.other.generic.activity.BaseActivity;
 import de.tum.in.tumcampusapp.component.ui.ticket.EventsController;
-import de.tum.in.tumcampusapp.component.ui.ticket.model.Event;
-import de.tum.in.tumcampusapp.component.ui.ticket.model.Ticket;
+import de.tum.in.tumcampusapp.component.ui.ticket.model.RawEvent;
+import de.tum.in.tumcampusapp.component.ui.ticket.model.RawTicket;
 import de.tum.in.tumcampusapp.component.ui.ticket.model.TicketType;
+import de.tum.in.tumcampusapp.component.ui.ticket.viewmodel.EventViewEntity;
+import de.tum.in.tumcampusapp.component.ui.ticket.viewmodel.TicketViewEntity;
 import de.tum.in.tumcampusapp.utils.Const;
 import de.tum.in.tumcampusapp.utils.Utils;
 import retrofit2.Call;
@@ -46,8 +48,8 @@ public class ShowTicketActivity extends BaseActivity {
 
     private EventsController eventsController;
 
-    private Ticket ticket;
-    private Event event;
+    private TicketViewEntity ticket;
+    private EventViewEntity event;
     private TicketType ticketType;
 
     public ShowTicketActivity() {
@@ -88,11 +90,11 @@ public class ShowTicketActivity extends BaseActivity {
         try {
             TUMCabeClient.getInstance(this)
                     .fetchTicket(this, ticket.getId())
-                    .enqueue(new Callback<Ticket>() {
+                    .enqueue(new Callback<RawTicket>() {
                         @Override
-                        public void onResponse(@NonNull Call<Ticket> call,
-                                               @NonNull Response<Ticket> response) {
-                            Ticket ticket = response.body();
+                        public void onResponse(@NonNull Call<RawTicket> call,
+                                               @NonNull Response<RawTicket> response) {
+                            RawTicket ticket = response.body();
                             if (response.isSuccessful() && ticket != null) {
                                 handleTicketRefreshSuccess(ticket);
                             } else {
@@ -101,7 +103,7 @@ public class ShowTicketActivity extends BaseActivity {
                         }
 
                         @Override
-                        public void onFailure(@NonNull Call<Ticket> call, @NonNull Throwable t) {
+                        public void onFailure(@NonNull Call<RawTicket> call, @NonNull Throwable t) {
                             Utils.log(t);
                             handleTicketRefreshFailure();
                         }
@@ -111,8 +113,8 @@ public class ShowTicketActivity extends BaseActivity {
         }
     }
 
-    private void handleTicketRefreshSuccess(Ticket ticket) {
-        this.ticket = ticket;
+    private void handleTicketRefreshSuccess(RawTicket ticket) {
+        this.ticket = TicketViewEntity.create(this, ticket);
         eventsController.insert(ticket);
 
         setViewData();
@@ -128,17 +130,20 @@ public class ShowTicketActivity extends BaseActivity {
         eventsController = new EventsController(this);
         int eventId = getIntent().getIntExtra(Const.KEY_EVENT_ID, 0);
 
-        ticket = eventsController.getTicketByEventId(eventId);
-        event = eventsController.getEventById(ticket.getEventId());
+        RawTicket rawTicket = eventsController.getTicketByEventId(eventId);
+        ticket = TicketViewEntity.create(this, rawTicket);
         ticketType = eventsController.getTicketTypeById(ticket.getTicketTypeId());
+
+        RawEvent rawEvent = eventsController.getEventById(ticket.getEventId());
+        event = EventViewEntity.create(this, rawEvent);
     }
 
     private void setViewData() {
         titleTextView.setText(event.getTitle());
-        dateTextView.setText(event.getFormattedStartDateTime(this));
+        dateTextView.setText(event.getFormattedStartTime());
         priceTextView.setText(ticketType.getFormattedPrice());
 
-        String formattedDateTime = ticket.getFormattedRedemptionDate(this);
+        String formattedDateTime = ticket.getFormattedRedemptionDate();
         String redemptionState = getString(R.string.redeemed_format_string, formattedDateTime);
         redemptionStateTextView.setText(redemptionState);
 

@@ -3,9 +3,9 @@ package de.tum.`in`.tumcampusapp.component.ui.ticket
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.component.other.navigation.NavigationDestination
 import de.tum.`in`.tumcampusapp.component.other.navigation.SystemActivity
@@ -14,18 +14,18 @@ import de.tum.`in`.tumcampusapp.component.ui.overview.card.Card
 import de.tum.`in`.tumcampusapp.component.ui.overview.card.CardViewHolder
 import de.tum.`in`.tumcampusapp.component.ui.ticket.activity.EventDetailsActivity
 import de.tum.`in`.tumcampusapp.component.ui.ticket.adapter.EventsAdapter
-import de.tum.`in`.tumcampusapp.component.ui.ticket.model.Event
+import de.tum.`in`.tumcampusapp.component.ui.ticket.viewmodel.EventViewEntity
 
 class EventCard(context: Context) : Card(CardManager.CARD_EVENT, context, "card_event") {
 
-    var event: Event? = null
+    lateinit var event: EventViewEntity
     private val eventsController = EventsController(context)
 
     override fun updateViewHolder(viewHolder: RecyclerView.ViewHolder) {
         super.updateViewHolder(viewHolder)
 
         val eventViewHolder = viewHolder as? EventsAdapter.EventViewHolder ?: return
-        val hasTicket = eventsController.isEventBooked(event)
+        val hasTicket = eventsController.isEventBooked(event.id)
         eventViewHolder.bind(event, hasTicket)
     }
 
@@ -35,13 +35,11 @@ class EventCard(context: Context) : Card(CardManager.CARD_EVENT, context, "card_
     }
 
     override fun shouldShow(prefs: SharedPreferences): Boolean {
-        return event?.dismissed == 0
+        return event.dismissed == 0
     }
 
     override fun discard(editor: SharedPreferences.Editor) {
-        event?.let {
-            eventsController.setDismissed(it.id)
-        }
+        eventsController.setDismissed(event.id)
     }
 
     companion object {

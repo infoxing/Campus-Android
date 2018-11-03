@@ -8,19 +8,19 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import de.tum.in.tumcampusapp.component.ui.ticket.model.Ticket;
+import de.tum.in.tumcampusapp.component.ui.ticket.model.RawTicket;
 
 @Dao
 public interface TicketDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Ticket... ticket);
+    void insert(RawTicket... ticket);
 
     @Query("SELECT * FROM tickets")
-    LiveData<List<Ticket>> getAll();
+    LiveData<List<RawTicket>> getAll();
 
     @Query("SELECT * FROM tickets where event_id = :eventId")
-    Ticket getByEventId(int eventId);
+    RawTicket getByEventId(int eventId);
 
     @Query("DELETE FROM tickets")
     void flush();

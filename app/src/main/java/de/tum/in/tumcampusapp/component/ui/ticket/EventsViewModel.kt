@@ -1,34 +1,36 @@
 package de.tum.`in`.tumcampusapp.component.ui.ticket
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import de.tum.`in`.tumcampusapp.component.ui.ticket.model.Event
-import de.tum.`in`.tumcampusapp.component.ui.ticket.model.EventType
+import de.tum.`in`.tumcampusapp.component.ui.ticket.model.RawEvent
+import de.tum.`in`.tumcampusapp.component.ui.ticket.viewmodel.EventType
+import de.tum.`in`.tumcampusapp.component.ui.ticket.viewmodel.EventViewEntitiesMapper
 
 class EventsViewModel(
-        application: Application,
-        private val type: EventType
-) : AndroidViewModel(application) {
+        private val controller: EventsController,
+        private val type: EventType,
+        mapper: EventViewEntitiesMapper
+) : ViewModel() {
 
-    private val controller = EventsController(application.applicationContext)
-
-    val events: LiveData<List<Event>>
+    val events: LiveData<List<RawEvent>>
         get() = when (type) {
             EventType.ALL -> controller.events
             else -> controller.bookedEvents
         }
 
+    val eventViewEntities = Transformations.map(events, mapper)
+
     class Factory(
-            private val application: Application,
-            private val eventType: EventType
-    ) : ViewModelProvider.AndroidViewModelFactory(application) {
+            private val controller: EventsController,
+            private val eventType: EventType,
+            private val mapper: EventViewEntitiesMapper
+    ) : ViewModelProvider.Factory {
 
         @Suppress("UNCHECKED_CAST") // no good way around this
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return EventsViewModel(application, eventType) as T
+            return EventsViewModel(controller, eventType, mapper) as T
         }
 
     }

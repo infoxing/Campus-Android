@@ -41,8 +41,8 @@ import de.tum.in.tumcampusapp.component.ui.news.model.News;
 import de.tum.in.tumcampusapp.component.ui.news.model.NewsAlert;
 import de.tum.in.tumcampusapp.component.ui.news.model.NewsSources;
 import de.tum.in.tumcampusapp.component.ui.studyroom.model.StudyRoomGroup;
-import de.tum.in.tumcampusapp.component.ui.ticket.model.Event;
-import de.tum.in.tumcampusapp.component.ui.ticket.model.Ticket;
+import de.tum.in.tumcampusapp.component.ui.ticket.model.RawEvent;
+import de.tum.in.tumcampusapp.component.ui.ticket.model.RawTicket;
 import de.tum.in.tumcampusapp.component.ui.ticket.model.TicketType;
 import de.tum.in.tumcampusapp.component.ui.ticket.payload.EphimeralKey;
 import de.tum.in.tumcampusapp.component.ui.ticket.payload.TicketPurchaseStripe;
@@ -361,18 +361,18 @@ public final class TUMCabeClient {
     // TICKET SALE
 
     // Getting event information
-    public void fetchEvents(Callback<List<Event>> cb) {
+    public void fetchEvents(Callback<List<RawEvent>> cb) {
         service.getEvents().enqueue(cb);
     }
 
     // Getting ticket information
 
-    public void fetchTickets(Context context, Callback<List<Ticket>> cb) throws NoPrivateKey {
+    public void fetchTickets(Context context, Callback<List<RawTicket>> cb) throws NoPrivateKey {
         TUMCabeVerification verification = getVerification(context, null);
         service.getTickets(verification).enqueue(cb);
     }
 
-    public Call<Ticket> fetchTicket(Context context, int ticketID) throws NoPrivateKey {
+    public Call<RawTicket> fetchTicket(Context context, int ticketID) throws NoPrivateKey {
         TUMCabeVerification verification = getVerification(context, null);
         return service.getTicket(ticketID, verification);
     }
@@ -392,7 +392,7 @@ public final class TUMCabeClient {
 
     public void purchaseTicketStripe(
             Context context, int ticketHistory, @NonNull String token,
-            @NonNull String customerName, Callback<Ticket> cb) throws NoPrivateKey {
+            @NonNull String customerName, Callback<RawTicket> cb) throws NoPrivateKey {
         TicketPurchaseStripe purchase = new TicketPurchaseStripe(ticketHistory, token, customerName);
         TUMCabeVerification verification = getVerification(context, purchase);
         service.purchaseTicketStripe(verification).enqueue(cb);

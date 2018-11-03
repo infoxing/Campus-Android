@@ -1,18 +1,15 @@
 package de.tum.`in`.tumcampusapp.component.ui.ticket.model
 
+import android.os.Parcel
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.RoomWarnings
-import android.content.Context
-import android.os.Parcel
-import android.os.Parcelable
-import android.text.format.DateFormat
 import com.google.gson.annotations.SerializedName
 import de.tum.`in`.tumcampusapp.utils.readDateTime
 import de.tum.`in`.tumcampusapp.utils.writeDateTime
 import org.joda.time.DateTime
-import org.joda.time.format.DateTimeFormat
 
 /**
  * Event
@@ -28,7 +25,7 @@ import org.joda.time.format.DateTimeFormat
  */
 @Entity(tableName = "events")
 @SuppressWarnings(RoomWarnings.DEFAULT_CONSTRUCTOR)
-data class Event(
+data class RawEvent(
         @PrimaryKey
         @SerializedName("event")
         var id: Int = 0,
@@ -48,7 +45,7 @@ data class Event(
         var eventUrl: String = "",
         @ColumnInfo(name = "dismissed")
         var dismissed: Int = 0
-) : Parcelable, Comparable<Event> {
+) : Parcelable, Comparable<RawEvent> {
 
     // Unsafe calls are only ok because we control writeToParcel().
     // Keep in sync with writeToParcel()!
@@ -75,14 +72,7 @@ data class Event(
         parcel.writeInt(dismissed)
     }
 
-    fun getFormattedStartDateTime(context: Context): String {
-        val date = DateTimeFormat.longDate().print(startTime)
-        val pattern = if (DateFormat.is24HourFormat(context)) "H:mm" else "h:mm aa"
-        val time = DateTimeFormat.forPattern(pattern).print(startTime)
-        return "$date, $time"
-    }
-
-    override fun compareTo(other: Event): Int {
+    override fun compareTo(other: RawEvent): Int {
         return startTime.compareTo(other.startTime)
     }
 
@@ -94,10 +84,10 @@ data class Event(
 
         const val defaultDuration = 7200000 // Milliseconds
 
-        @JvmField var CREATOR = object : Parcelable.Creator<Event> {
-            override fun createFromParcel(parcel: Parcel) = Event(parcel)
+        @JvmField var CREATOR = object : Parcelable.Creator<RawEvent> {
+            override fun createFromParcel(parcel: Parcel) = RawEvent(parcel)
 
-            override fun newArray(size: Int) = arrayOfNulls<Event?>(size)
+            override fun newArray(size: Int) = arrayOfNulls<RawEvent?>(size)
         }
 
     }

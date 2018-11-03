@@ -36,7 +36,7 @@ import de.tum.in.tumcampusapp.api.app.exception.NoPrivateKey;
 import de.tum.in.tumcampusapp.component.other.generic.activity.BaseActivity;
 import de.tum.in.tumcampusapp.component.ui.ticket.EventsController;
 import de.tum.in.tumcampusapp.component.ui.ticket.TicketEphemeralKeyProvider;
-import de.tum.in.tumcampusapp.component.ui.ticket.model.Ticket;
+import de.tum.in.tumcampusapp.component.ui.ticket.model.RawTicket;
 import de.tum.in.tumcampusapp.utils.Const;
 import de.tum.in.tumcampusapp.utils.Utils;
 import retrofit2.Call;
@@ -142,18 +142,18 @@ public class StripePaymentActivity extends BaseActivity {
             TUMCabeClient
                     .getInstance(this)
                     .purchaseTicketStripe(this, ticketHistory,
-                            methodId, cardholder, new Callback<Ticket>() {
+                            methodId, cardholder, new Callback<RawTicket>() {
                                 @Override
-                                public void onResponse(@NonNull Call<Ticket> call,
-                                                       @NonNull Response<Ticket> response) {
-                                    Ticket ticket = response.body();
+                                public void onResponse(@NonNull Call<RawTicket> call,
+                                                       @NonNull Response<RawTicket> response) {
+                                    RawTicket ticket = response.body();
                                     if (ticket != null) {
                                         handleTicketPurchaseSuccess(ticket);
                                     }
                                 }
 
                                 @Override
-                                public void onFailure(@NonNull Call<Ticket> call, @NonNull Throwable t) {
+                                public void onFailure(@NonNull Call<RawTicket> call, @NonNull Throwable t) {
                                     Utils.log(t);
                                     handleTicketPurchaseFailure();
                                 }
@@ -164,19 +164,19 @@ public class StripePaymentActivity extends BaseActivity {
         }
     }
 
-    private void handleTicketPurchaseSuccess(@NonNull Ticket ticket) {
+    private void handleTicketPurchaseSuccess(@NonNull RawTicket ticket) {
         showLoading(false);
 
-        List<Ticket> tickets = new ArrayList<>();
+        List<RawTicket> tickets = new ArrayList<>();
         tickets.add(ticket);
 
         EventsController controller = new EventsController(this);
-        controller.insert(tickets.toArray(new Ticket[0]));
+        controller.insert(tickets.toArray(new RawTicket[0]));
 
         openPaymentConfirmation(ticket);
     }
 
-    private void openPaymentConfirmation(Ticket ticket) {
+    private void openPaymentConfirmation(RawTicket ticket) {
         Intent intent = new Intent(this, PaymentConfirmationActivity.class);
         intent.putExtra(Const.KEY_EVENT_ID, ticket.getEventId());
         startActivity(intent);
