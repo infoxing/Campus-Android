@@ -1,21 +1,21 @@
 package de.tum.in.tumcampusapp.component.ui.news;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import de.tum.in.tumcampusapp.R;
-import de.tum.in.tumcampusapp.component.ui.news.model.News;
+import de.tum.in.tumcampusapp.component.ui.news.viewmodel.NewsViewEntity;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder> {
 
-    private final List<News> news;
+    private final List<NewsViewEntity> news;
     private final NewsInflater newsInflater;
 
-    NewsAdapter(Context context, List<News> news) {
+    NewsAdapter(Context context, List<NewsViewEntity> news) {
         this.news = news;
         this.newsInflater = new NewsInflater(context);
     }
@@ -33,8 +33,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        News newsItem = news.get(position);
-
+        NewsViewEntity newsItem = news.get(position);
         if (newsItem.isFilm()) {
             return R.layout.card_news_film_item;
         } else {

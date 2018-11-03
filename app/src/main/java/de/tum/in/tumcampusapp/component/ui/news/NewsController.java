@@ -1,7 +1,6 @@
 package de.tum.in.tumcampusapp.component.ui.news;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 
 import org.jetbrains.annotations.NotNull;
 import org.joda.time.DateTime;
@@ -11,13 +10,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
 import de.tum.in.tumcampusapp.api.tumonline.CacheControl;
 import de.tum.in.tumcampusapp.component.notifications.NotificationScheduler;
 import de.tum.in.tumcampusapp.component.notifications.ProvidesNotifications;
 import de.tum.in.tumcampusapp.component.notifications.model.AppNotification;
-import de.tum.in.tumcampusapp.component.ui.news.model.News;
-import de.tum.in.tumcampusapp.component.ui.news.model.NewsSources;
+import de.tum.in.tumcampusapp.model.news.News;
+import de.tum.in.tumcampusapp.model.news.NewsSources;
+import de.tum.in.tumcampusapp.component.ui.news.viewmodel.NewsViewEntity;
 import de.tum.in.tumcampusapp.component.ui.overview.card.Card;
 import de.tum.in.tumcampusapp.component.ui.overview.card.ProvidesCard;
 import de.tum.in.tumcampusapp.component.ui.tufilm.FilmCard;
@@ -199,7 +200,8 @@ public class NewsController implements ProvidesCard, ProvidesNotifications {
                 card = new NewsCard(context);
             }
 
-            card.setNews(n);
+            NewsViewEntity viewEntity = NewsViewEntity.create(n);
+            card.setNews(viewEntity);
             results.add(card.getIfShowOnStart());
         }
 

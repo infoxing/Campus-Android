@@ -25,9 +25,9 @@ import de.tum.in.tumcampusapp.component.ui.cafeteria.model.Cafeteria;
 import de.tum.in.tumcampusapp.component.ui.chat.model.ChatMember;
 import de.tum.in.tumcampusapp.component.ui.chat.model.ChatMessage;
 import de.tum.in.tumcampusapp.component.ui.chat.model.ChatRoom;
-import de.tum.in.tumcampusapp.component.ui.news.model.News;
-import de.tum.in.tumcampusapp.component.ui.news.model.NewsAlert;
-import de.tum.in.tumcampusapp.component.ui.news.model.NewsSources;
+import de.tum.in.tumcampusapp.model.news.News;
+import de.tum.in.tumcampusapp.model.news.NewsAlert;
+import de.tum.in.tumcampusapp.model.news.NewsSources;
 import de.tum.in.tumcampusapp.model.studyroom.StudyRoomGroup;
 import de.tum.in.tumcampusapp.model.ticket.RawEvent;
 import de.tum.in.tumcampusapp.model.ticket.RawTicket;
@@ -189,7 +189,7 @@ public interface TUMCabeAPIService {
     Call<Success> sendFeedback(@Body Feedback feedback);
 
     @Multipart
-    @POST(API_FEEDBACK + "{id}/{image}/")
+    @POST(API_FEEDBACK + "{id}/{imageUrl}/")
     Call<Success> sendFeedbackImage(@Part MultipartBody.Part image, @Path("image") int imageNr, @Path("id") String feedbackId);
 
     @GET(API_CAFETERIAS)

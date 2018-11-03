@@ -32,7 +32,7 @@ class TopNewsViewModel(private val remoteRepository: TopNewsRemoteRepository,
                             val oldShowUntil = Utils.getSetting(context, Const.NEWS_ALERT_SHOW_UNTIL, "")
                             val oldImage = Utils.getSetting(context, Const.NEWS_ALERT_IMAGE, "");
 
-                            // there is a NewsAlert update if the image link or the date changed
+                            // there is a NewsAlert update if the imageUrl link or the date changed
                             // --> Card should be displayed again
                             val update = oldShowUntil != newsAlert.displayUntil || oldImage != newsAlert.url
                             if (update) {

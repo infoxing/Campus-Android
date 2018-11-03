@@ -16,7 +16,7 @@ import java.util.List;
 
 import de.tum.in.tumcampusapp.TestApp;
 import de.tum.in.tumcampusapp.component.ui.news.NewsDao;
-import de.tum.in.tumcampusapp.component.ui.news.model.News;
+import de.tum.in.tumcampusapp.model.news.News;
 import de.tum.in.tumcampusapp.database.TcaDb;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -46,7 +46,7 @@ public class NewsDaoTest {
                 Integer.toString(newsIdx),
                 "dummy link",
                 source,
-                "dummy image",
+                "dummy imageUrl",
                 date,
                 date,
                 0);

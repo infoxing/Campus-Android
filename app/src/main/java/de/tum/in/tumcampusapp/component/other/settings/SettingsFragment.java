@@ -33,7 +33,7 @@ import de.tum.in.tumcampusapp.api.tumonline.AccessTokenManager;
 import de.tum.in.tumcampusapp.component.tumui.calendar.CalendarController;
 import de.tum.in.tumcampusapp.component.ui.eduroam.SetupEduroamActivity;
 import de.tum.in.tumcampusapp.component.ui.news.NewsController;
-import de.tum.in.tumcampusapp.component.ui.news.model.NewsSources;
+import de.tum.in.tumcampusapp.model.news.NewsSources;
 import de.tum.in.tumcampusapp.component.ui.onboarding.StartupActivity;
 import de.tum.in.tumcampusapp.database.TcaDb;
 import de.tum.in.tumcampusapp.service.BackgroundService;
@@ -117,7 +117,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
 
             // Load news source icon in background and set it
             final String url = newsSource.getIcon();
-            if (!url.trim().isEmpty()) { // Skip News that do not have a image
+            if (!url.trim().isEmpty()) { // Skip News that do not have a imageUrl
                 new Thread(() -> {
                     try {
                         Bitmap bmp = Picasso.get().load(url).get();

@@ -452,7 +452,7 @@ public class FeedbackActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             if (requestCode == REQUEST_TAKE_PHOTO) {
-                // get picture, resize it and write back the image
+                // get picture, resize it and write back the imageUrl
                 rescaleBitmap(Uri.fromFile(new File(mCurrentPhotoPath)), new File(mCurrentPhotoPath));
 
                 picturePaths.add(mCurrentPhotoPath);
@@ -509,7 +509,7 @@ public class FeedbackActivity extends BaseActivity {
     }
 
     /**
-     * scales down the image and writes it to the destination file
+     * scales down the imageUrl and writes it to the destination file
      *
      * @param src
      * @param destination
@@ -580,7 +580,7 @@ public class FeedbackActivity extends BaseActivity {
     }
 
     private File createImageFile() throws IOException {
-        // Create an image file name
+        // Create an imageUrl file name
         String timeStamp = DateTimeFormat.forPattern("yyyyMMdd_HHmmss")
                                          .withLocale(Locale.GERMANY)
                                          .print(DateTime.now());
@@ -599,7 +599,7 @@ public class FeedbackActivity extends BaseActivity {
 
     private void openGallery() {
         Intent intent = new Intent();
-        intent.setType("image/*");
+        intent.setType("imageUrl/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);//
         startActivityForResult(Intent.createChooser(intent, "Select File"), REQUEST_GALLERY);
     }

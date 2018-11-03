@@ -120,10 +120,10 @@ public class FeedbackThumbnailsAdapter extends RecyclerView.Adapter<FeedbackThum
         int photoW = bmOptions.outWidth;
         int photoH = bmOptions.outHeight;
 
-        // Determine how much to scale down the image
+        // Determine how much to scale down the imageUrl
         int scaleFactor = Math.min(photoW / targetSize, photoH / targetSize);
 
-        // Decode the image file into a Bitmap sized to fill the View
+        // Decode the imageUrl file into a Bitmap sized to fill the View
         bmOptions.inJustDecodeBounds = false;
         bmOptions.inSampleSize = scaleFactor;
 

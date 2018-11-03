@@ -15,7 +15,7 @@ import de.tum.`in`.tumcampusapp.utils.NetUtils
 import de.tum.`in`.tumcampusapp.utils.Utils
 
 /**
- * Activity to show News (message, image, date)
+ * Activity to show News (message, imageUrl, date)
  */
 class NewsActivity : ActivityForDownloadingExternal(Const.NEWS, R.layout.activity_news), DialogInterface.OnMultiChoiceClickListener {
 

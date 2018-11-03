@@ -468,7 +468,7 @@ object Utils {
     }
 
     /**
-     * Creates a bitmap for a vector image (.xml) to be able to use it for notifications.
+     * Creates a bitmap for a vector imageUrl (.xml) to be able to use it for notifications.
      *
      * @param c   the current context
      * @param res the resource id of the drawable we want

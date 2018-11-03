@@ -37,9 +37,9 @@ import de.tum.in.tumcampusapp.component.ui.cafeteria.model.Cafeteria;
 import de.tum.in.tumcampusapp.component.ui.chat.model.ChatMember;
 import de.tum.in.tumcampusapp.component.ui.chat.model.ChatMessage;
 import de.tum.in.tumcampusapp.component.ui.chat.model.ChatRoom;
-import de.tum.in.tumcampusapp.component.ui.news.model.News;
-import de.tum.in.tumcampusapp.component.ui.news.model.NewsAlert;
-import de.tum.in.tumcampusapp.component.ui.news.model.NewsSources;
+import de.tum.in.tumcampusapp.model.news.News;
+import de.tum.in.tumcampusapp.model.news.NewsAlert;
+import de.tum.in.tumcampusapp.model.news.NewsSources;
 import de.tum.in.tumcampusapp.model.studyroom.StudyRoomGroup;
 import de.tum.in.tumcampusapp.model.ticket.RawEvent;
 import de.tum.in.tumcampusapp.model.ticket.RawTicket;
@@ -312,7 +312,7 @@ public final class TUMCabeClient {
 
         for (int i = 0; i < imagePaths.length; i++) {
             File file = new File(imagePaths[i]);
-            RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
+            RequestBody reqFile = RequestBody.create(MediaType.parse("imageUrl/*"), file);
             MultipartBody.Part body = MultipartBody.Part.createFormData("feedback_image", i + ".png", reqFile);
 
             service.sendFeedbackImage(body, i + 1, feedback.getId())

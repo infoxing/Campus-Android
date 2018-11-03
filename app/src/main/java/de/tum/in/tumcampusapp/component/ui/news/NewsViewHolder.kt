@@ -4,18 +4,18 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import androidx.constraintlayout.widget.Group
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.Group
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
 import de.tum.`in`.tumcampusapp.R
-import de.tum.`in`.tumcampusapp.component.ui.news.model.News
-import de.tum.`in`.tumcampusapp.component.ui.news.model.NewsSources
+import de.tum.`in`.tumcampusapp.model.news.NewsSources
+import de.tum.`in`.tumcampusapp.component.ui.news.viewmodel.NewsViewEntity
 import de.tum.`in`.tumcampusapp.component.ui.overview.card.CardViewHolder
 import de.tum.`in`.tumcampusapp.component.ui.tufilm.FilmCard
 import de.tum.`in`.tumcampusapp.utils.addCompoundDrawablesWithIntrinsicBounds
@@ -33,7 +33,7 @@ class NewsViewHolder(
     private val dateTextView: TextView by lazy { itemView.findViewById<TextView>(R.id.news_src_date) }
     private val sourceTextView: TextView by lazy { itemView.findViewById<TextView>(R.id.news_src_title) }
 
-    fun bind(newsItem: News, newsSource: NewsSources) = with(itemView) {
+    fun bind(newsItem: NewsViewEntity, newsSource: NewsSources) = with(itemView) {
         val card = if (newsItem.isFilm) FilmCard(context) else NewsCard(context)
         card.setNews(newsItem)
         currentCard = card
@@ -69,16 +69,16 @@ class NewsViewHolder(
         }
     }
 
-    private fun bindFilmItem(newsItem: News) {
+    private fun bindFilmItem(newsItem: NewsViewEntity) {
         Picasso.get()
-                .load(newsItem.image)
+                .load(newsItem.imageUrl)
                 .into(imageView)
 
         titleTextView?.text = COMPILE.matcher(newsItem.title).replaceAll("")
     }
 
-    private fun bindNews(newsItem: News) {
-        val imageUrl = newsItem.image
+    private fun bindNews(newsItem: NewsViewEntity) {
+        val imageUrl = newsItem.imageUrl
         if (imageUrl.isNotEmpty()) {
             loadNewsImage(imageUrl)
         } else {

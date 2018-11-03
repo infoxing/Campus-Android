@@ -3,7 +3,7 @@ package de.tum.`in`.tumcampusapp.component.ui.news
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import de.tum.`in`.tumcampusapp.component.ui.news.model.News
+import de.tum.`in`.tumcampusapp.component.ui.news.viewmodel.NewsViewEntity
 import de.tum.`in`.tumcampusapp.database.TcaDb
 
 class NewsInflater(context: Context) {
@@ -18,7 +18,7 @@ class NewsInflater(context: Context) {
         return NewsViewHolder(view, showOptionsButton)
     }
 
-    fun onBindNewsView(viewHolder: NewsViewHolder, newsItem: News) {
+    fun onBindNewsView(viewHolder: NewsViewHolder, newsItem: NewsViewEntity) {
         val newsSource = newsSourcesDao.getNewsSource(newsItem.src.toInt())
         viewHolder.bind(newsItem, newsSource)
     }

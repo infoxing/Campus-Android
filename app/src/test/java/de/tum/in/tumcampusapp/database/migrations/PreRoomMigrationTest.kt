@@ -36,7 +36,7 @@ class PreRoomMigrationTest {
                CREATE TABLE favorite_dishes (id INTEGER PRIMARY KEY AUTOINCREMENT, mensaId INTEGER, dishName VARCHAR,date VARCHAR, tag VARCHAR);
                CREATE TABLE kino (id INTEGER PRIMARY KEY, title TEXT, year VARCHAR, runtime VARCHAR,genre VARCHAR, director TEXT, actors TEXT, rating VARCHAR, description TEXT, cover TEXT, trailer TEXT, date VARCHAR, created VARCHAR,link TEXT);
                CREATE TABLE news_sources (id INTEGER PRIMARY KEY, icon VARCHAR, title VARCHAR);
-               CREATE TABLE news (id INTEGER PRIMARY KEY, src INTEGER, title TEXT, link VARCHAR, image VARCHAR, date VARCHAR, created VARCHAR, dismissed INTEGER);
+               CREATE TABLE news (id INTEGER PRIMARY KEY, src INTEGER, title TEXT, link VARCHAR, imageUrl VARCHAR, date VARCHAR, created VARCHAR, dismissed INTEGER);
                CREATE TABLE room_locations (title VARCHAR PRIMARY KEY, latitude VARCHAR, longitude VARCHAR);
                CREATE TABLE calendar (nr VARCHAR PRIMARY KEY, status VARCHAR, url VARCHAR, title VARCHAR, description VARCHAR, dtstart VARCHAR, dtend VARCHAR, location VARCHAR REFERENCES room_locations);
                CREATE TABLE widgets_timetable_blacklist (widget_id INTEGER, lecture_title VARCHAR, PRIMARY KEY (widget_id, lecture_title));
