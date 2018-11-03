@@ -7,6 +7,7 @@ import de.tum.`in`.tumcampusapp.core.Utils
 import de.tum.`in`.tumcampusapp.database.TcaDb
 import de.tum.`in`.tumcampusapp.database.daos.BuildingToGpsDao
 import de.tum.`in`.tumcampusapp.model.locations.BuildingToGps
+import de.tum.`in`.tumcampusapp.model.locations.Geo
 import java.io.IOException
 
 class TumLocationManager(private val context: Context) {
@@ -25,8 +26,8 @@ class TumLocationManager(private val context: Context) {
      *
      * @return the id of current building
      */
-    fun getBuildingIDFromCurrentLocation(): String? {
-        val location = locationManager.getCurrentOrNextLocation()
+    fun getBuildingIDFromCurrentLocation(likelyNextLocation: Geo?): String? {
+        val location = locationManager.getCurrentOrNextLocation(likelyNextLocation)
         return getBuildingIDFromLocation(location)
     }
 

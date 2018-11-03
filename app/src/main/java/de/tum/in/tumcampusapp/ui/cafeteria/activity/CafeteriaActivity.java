@@ -23,19 +23,21 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.viewpager.widget.ViewPager;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
-import de.tum.in.tumcampusapp.ui.cafeteria.CafeteriaMenuInflater;
-import de.tum.in.tumcampusapp.ui.cafeteria.controller.CafeteriaManager;
-import de.tum.in.tumcampusapp.ui.cafeteria.details.CafeteriaDetailsSectionsPagerAdapter;
-import de.tum.in.tumcampusapp.ui.cafeteria.details.CafeteriaViewModel;
-import de.tum.in.tumcampusapp.ui.cafeteria.repository.CafeteriaLocalRepository;
-import de.tum.in.tumcampusapp.ui.cafeteria.repository.CafeteriaRemoteRepository;
-import de.tum.in.tumcampusapp.ui.generic.activity.ActivityForDownloadingExternal;
 import de.tum.in.tumcampusapp.core.Const;
 import de.tum.in.tumcampusapp.core.NetUtils;
 import de.tum.in.tumcampusapp.core.Utils;
 import de.tum.in.tumcampusapp.database.TcaDb;
 import de.tum.in.tumcampusapp.locations.LocationManager;
 import de.tum.in.tumcampusapp.model.cafeteria.Cafeteria;
+import de.tum.in.tumcampusapp.model.locations.Geo;
+import de.tum.in.tumcampusapp.ui.cafeteria.CafeteriaMenuInflater;
+import de.tum.in.tumcampusapp.ui.cafeteria.controller.CafeteriaManager;
+import de.tum.in.tumcampusapp.ui.cafeteria.details.CafeteriaDetailsSectionsPagerAdapter;
+import de.tum.in.tumcampusapp.ui.cafeteria.details.CafeteriaViewModel;
+import de.tum.in.tumcampusapp.ui.cafeteria.repository.CafeteriaLocalRepository;
+import de.tum.in.tumcampusapp.ui.cafeteria.repository.CafeteriaRemoteRepository;
+import de.tum.in.tumcampusapp.ui.calendar.CalendarController;
+import de.tum.in.tumcampusapp.ui.generic.activity.ActivityForDownloadingExternal;
 import io.reactivex.Flowable;
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -160,7 +162,12 @@ public class CafeteriaActivity extends ActivityForDownloadingExternal implements
         spinner.setAdapter(adapterCafeterias);
         spinner.setOnItemSelectedListener(this);
 
-        Location currLocation = new LocationManager(this).getCurrentOrNextLocation();
+        CalendarController calendarController = new CalendarController(this);
+        Geo nextLocation = calendarController.getNextCalendarItemGeo();
+
+        LocationManager locationManager = new LocationManager(this);
+        Location currLocation = locationManager.getCurrentOrNextLocation(nextLocation);
+
         Flowable<List<Cafeteria>> cafeterias = cafeteriaViewModel.getAllCafeterias(currLocation);
         mDisposable.add(
                 cafeterias.subscribe(

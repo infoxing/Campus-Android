@@ -17,8 +17,7 @@ import de.tum.`in`.tumcampusapp.database.daos.BuildingToGpsDao
 import de.tum.`in`.tumcampusapp.model.cafeteria.Cafeteria
 import de.tum.`in`.tumcampusapp.model.locations.Geo
 import de.tum.`in`.tumcampusapp.model.roomfinder.RoomFinderCoordinate
-import de.tum.`in`.tumcampusapp.ui.calendar.CalendarController
-import de.tum.`in`.tumcampusapp.ui.transportation.viewmodel.StationResultViewEntity
+import de.tum.`in`.tumcampusapp.model.transportation.StationResult
 import java.io.IOException
 import java.lang.Double.parseDouble
 import java.util.*
@@ -77,8 +76,8 @@ class LocationManager(c: Context) {
      *
      * @return Campus id
      */
-    private fun getCafeterias(): List<Cafeteria> {
-        val location = getCurrentOrNextLocation()
+    private fun getCafeterias(likelyNextLocation: Geo?): List<Cafeteria> {
+        val location = getCurrentOrNextLocation(likelyNextLocation)
 
         val lat = location.latitude
         val lng = location.longitude
@@ -98,8 +97,8 @@ class LocationManager(c: Context) {
      *
      * @return Any of the above described locations.
      */
-    fun getCurrentOrNextLocation(): Location {
-        return getCurrentLocation() ?: getNextLocation()
+    fun getCurrentOrNextLocation(likelyNextLocation: Geo?): Location {
+        return getCurrentLocation() ?: getNextLocation(likelyNextLocation)
     }
 
     /**
@@ -145,7 +144,7 @@ class LocationManager(c: Context) {
      *
      * @return Name of the station or null if the user is not near any campus
      */
-    fun getStation(): StationResultViewEntity? {
+    fun getStation(): StationResult? {
         val campus = getCurrentCampus() ?: return null
 
         //Try to find favorite station for current campus
@@ -171,7 +170,7 @@ class LocationManager(c: Context) {
     /**
      * If the user is in university or a lecture has been recognized => Get nearest cafeteria
      */
-    fun getCafeteria(): Int {
+    fun getCafeteria(likelyNextLocation: Geo?): Int {
         val campus = getCurrentOrNextCampus()
         if (campus != null) {
             val prefs = PreferenceManager.getDefaultSharedPreferences(mContext)
@@ -181,7 +180,7 @@ class LocationManager(c: Context) {
             }
         }
 
-        val allCafeterias = getCafeterias()
+        val allCafeterias = getCafeterias(likelyNextLocation)
         return if (allCafeterias.isEmpty()) -1 else allCafeterias[0].id
     }
 
@@ -196,13 +195,12 @@ class LocationManager(c: Context) {
      *
      * @return Location of the next lecture room
      */
-    private fun getNextLocation(): Location {
-        val manager = CalendarController(mContext)
-        val geo = manager.nextCalendarItemGeo ?: return Campus.GarchingForschungszentrum.getLocation()
+    private fun getNextLocation(likelyNextLocation: Geo? = null): Location {
+        val nextLocation = likelyNextLocation ?: return Campus.GarchingForschungszentrum.getLocation()
 
         val location = Location("roomfinder")
-        location.latitude = parseDouble(geo.latitude)
-        location.longitude = parseDouble(geo.longitude)
+        location.latitude = parseDouble(nextLocation.latitude)
+        location.longitude = parseDouble(nextLocation.longitude)
         return location
     }
 
@@ -304,20 +302,20 @@ class LocationManager(c: Context) {
             }
         }
 
-        private enum class Stations(val station: StationResultViewEntity) {
-            GarchingForschungszentrum(StationResultViewEntity("Garching-Forschungszentrum", "1000460", Integer.MAX_VALUE)),
-            GarchingHochbrueck(StationResultViewEntity("Garching-Hochbrück", "1000480", Integer.MAX_VALUE)),
-            Weihenstephan(StationResultViewEntity("Weihenstephan", "1002911", Integer.MAX_VALUE)),
-            Stammgelaende(StationResultViewEntity("Theresienstraße", "1000120", Integer.MAX_VALUE)),
-            KlinikumGrosshadern(StationResultViewEntity("Klinikum Großhadern", "1001540", Integer.MAX_VALUE)),
-            KlinikumRechtsDerIsar(StationResultViewEntity("Max-Weber-Platz", "1000580", Integer.MAX_VALUE)),
-            Leopoldstrasse(StationResultViewEntity("Giselastraße", "1000080", Integer.MAX_VALUE)),
-            GeschwisterSchollplatzAdalbertstrasse(StationResultViewEntity("Universität", "1000070", Integer.MAX_VALUE)),
-            Pinakotheken(StationResultViewEntity("Pinakotheken", "1000051", Integer.MAX_VALUE)),
-            TUM(StationResultViewEntity("Technische Universität", "1000095", Integer.MAX_VALUE)),
-            Waldhueterstrasse(StationResultViewEntity("Waldhüterstraße", "1001574", Integer.MAX_VALUE)),
-            Martinsried(StationResultViewEntity("LMU Martinsried", "1002557", Integer.MAX_VALUE)),
-            GarchingTUM(StationResultViewEntity("Garching-Technische Universität", "1002070", Integer.MAX_VALUE))
+        private enum class Stations(val station: StationResult) {
+            GarchingForschungszentrum(StationResult("Garching-Forschungszentrum", "1000460", Integer.MAX_VALUE)),
+            GarchingHochbrueck(StationResult("Garching-Hochbrück", "1000480", Integer.MAX_VALUE)),
+            Weihenstephan(StationResult("Weihenstephan", "1002911", Integer.MAX_VALUE)),
+            Stammgelaende(StationResult("Theresienstraße", "1000120", Integer.MAX_VALUE)),
+            KlinikumGrosshadern(StationResult("Klinikum Großhadern", "1001540", Integer.MAX_VALUE)),
+            KlinikumRechtsDerIsar(StationResult("Max-Weber-Platz", "1000580", Integer.MAX_VALUE)),
+            Leopoldstrasse(StationResult("Giselastraße", "1000080", Integer.MAX_VALUE)),
+            GeschwisterSchollplatzAdalbertstrasse(StationResult("Universität", "1000070", Integer.MAX_VALUE)),
+            Pinakotheken(StationResult("Pinakotheken", "1000051", Integer.MAX_VALUE)),
+            TUM(StationResult("Technische Universität", "1000095", Integer.MAX_VALUE)),
+            Waldhueterstrasse(StationResult("Waldhüterstraße", "1001574", Integer.MAX_VALUE)),
+            Martinsried(StationResult("LMU Martinsried", "1002557", Integer.MAX_VALUE)),
+            GarchingTUM(StationResult("Garching-Technische Universität", "1002070", Integer.MAX_VALUE))
         }
 
 

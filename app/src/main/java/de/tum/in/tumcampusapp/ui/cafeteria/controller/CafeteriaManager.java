@@ -13,19 +13,21 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
 import de.tum.in.tumcampusapp.api.shared.CacheControl;
-import de.tum.in.tumcampusapp.notifications.ProvidesNotifications;
+import de.tum.in.tumcampusapp.core.Utils;
+import de.tum.in.tumcampusapp.database.TcaDb;
 import de.tum.in.tumcampusapp.locations.LocationManager;
+import de.tum.in.tumcampusapp.model.cafeteria.CafeteriaMenu;
+import de.tum.in.tumcampusapp.model.locations.Geo;
+import de.tum.in.tumcampusapp.notifications.ProvidesNotifications;
 import de.tum.in.tumcampusapp.ui.cafeteria.CafeteriaMenuCard;
 import de.tum.in.tumcampusapp.ui.cafeteria.details.CafeteriaViewModel;
 import de.tum.in.tumcampusapp.ui.cafeteria.repository.CafeteriaLocalRepository;
 import de.tum.in.tumcampusapp.ui.cafeteria.repository.CafeteriaRemoteRepository;
 import de.tum.in.tumcampusapp.ui.cafeteria.viewmodel.CafeteriaMenuViewEntity;
 import de.tum.in.tumcampusapp.ui.cafeteria.viewmodel.CafeteriaWithMenus;
+import de.tum.in.tumcampusapp.ui.calendar.CalendarController;
 import de.tum.in.tumcampusapp.ui.overview.card.Card;
 import de.tum.in.tumcampusapp.ui.overview.card.ProvidesCard;
-import de.tum.in.tumcampusapp.database.TcaDb;
-import de.tum.in.tumcampusapp.model.cafeteria.CafeteriaMenu;
-import de.tum.in.tumcampusapp.core.Utils;
 import io.reactivex.disposables.CompositeDisposable;
 
 /**
@@ -36,6 +38,7 @@ public class CafeteriaManager implements ProvidesCard, ProvidesNotifications {
     private Context mContext;
     private final CafeteriaViewModel cafeteriaViewModel;
     private final CompositeDisposable compositeDisposable;
+    private final CalendarController calendarController;
 
     /**
      * Constructor, open/create database, create table if necessary
@@ -44,12 +47,17 @@ public class CafeteriaManager implements ProvidesCard, ProvidesNotifications {
      */
     public CafeteriaManager(Context context) {
         mContext = context;
+
         TcaDb db = TcaDb.getInstance(context);
         compositeDisposable = new CompositeDisposable();
+        calendarController = new CalendarController(context);
+
         CafeteriaLocalRepository localRepository = CafeteriaLocalRepository.INSTANCE;
         localRepository.setDb(db);
+
         CafeteriaRemoteRepository remoteRepository = CafeteriaRemoteRepository.INSTANCE;
         remoteRepository.setTumCabeClient(TUMCabeClient.getInstance(context));
+
         cafeteriaViewModel = new CafeteriaViewModel(localRepository, remoteRepository, compositeDisposable);
     }
 
@@ -78,7 +86,8 @@ public class CafeteriaManager implements ProvidesCard, ProvidesNotifications {
     @Nullable
     private CafeteriaWithMenus getCafeteriaWithMenus() {
         // Choose which mensa should be shown
-        int cafeteriaId = new LocationManager(mContext).getCafeteria();
+        Geo likelyNextLocation = calendarController.getNextCalendarItemGeo();
+        int cafeteriaId = new LocationManager(mContext).getCafeteria(likelyNextLocation);
         if (cafeteriaId == -1) {
             return null;
         }
@@ -100,7 +109,8 @@ public class CafeteriaManager implements ProvidesCard, ProvidesNotifications {
 
     public int getBestMatchMensaId() {
         // Choose which mensa should be shown
-        int cafeteriaId = new LocationManager(mContext).getCafeteria();
+        Geo likelyNextLocation = calendarController.getNextCalendarItemGeo();
+        int cafeteriaId = new LocationManager(mContext).getCafeteria(likelyNextLocation);
         if (cafeteriaId == -1) {
             Utils.log("could not get a Cafeteria from locationManager!");
         }

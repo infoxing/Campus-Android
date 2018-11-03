@@ -10,6 +10,7 @@ import de.tum.`in`.tumcampusapp.database.daos.RecentsDao
 import de.tum.`in`.tumcampusapp.locations.TumLocationManager
 import de.tum.`in`.tumcampusapp.model.recents.Recent
 import de.tum.`in`.tumcampusapp.model.roomfinder.RoomFinderRoom
+import de.tum.`in`.tumcampusapp.ui.calendar.CalendarController
 import de.tum.`in`.tumcampusapp.ui.generic.activity.ActivityForAccessingTumCabe
 import de.tum.`in`.tumcampusapp.ui.roomfinder.RoomFinderDetailsActivity
 import de.tum.`in`.tumcampusapp.ui.roomfinder.RoomFinderListAdapter
@@ -45,7 +46,9 @@ class BarrierFreeFacilitiesActivity : ActivityForAccessingTumCabe<List<RoomFinde
     }
 
     private fun getApiCallForCurrentLocation(): Call<List<RoomFinderRoom>>? {
-        val buildingId = locationManager.getBuildingIDFromCurrentLocation() ?: return null
+        val calendarController = CalendarController(this)
+        val likelyNextLocation = calendarController.nextCalendarItemGeo
+        val buildingId = locationManager.getBuildingIDFromCurrentLocation(likelyNextLocation) ?: return null
         return apiClient.getListOfNearbyFacilities(buildingId)
     }
 

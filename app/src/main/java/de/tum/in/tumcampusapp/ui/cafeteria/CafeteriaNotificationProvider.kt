@@ -4,21 +4,23 @@ import android.app.PendingIntent
 import android.content.Context
 import androidx.core.app.NotificationCompat
 import de.tum.`in`.tumcampusapp.R
+import de.tum.`in`.tumcampusapp.core.Const
+import de.tum.`in`.tumcampusapp.core.DateTimeUtils
+import de.tum.`in`.tumcampusapp.locations.LocationManager
+import de.tum.`in`.tumcampusapp.model.activealarms.NotificationType
+import de.tum.`in`.tumcampusapp.model.cafeteria.MenuType
 import de.tum.`in`.tumcampusapp.notifications.NotificationProvider
 import de.tum.`in`.tumcampusapp.notifications.model.AppNotification
 import de.tum.`in`.tumcampusapp.notifications.model.InstantNotification
-import de.tum.`in`.tumcampusapp.model.activealarms.NotificationType
-import de.tum.`in`.tumcampusapp.locations.LocationManager
 import de.tum.`in`.tumcampusapp.ui.cafeteria.controller.CafeteriaMenuManager
-import de.tum.`in`.tumcampusapp.model.cafeteria.MenuType
 import de.tum.`in`.tumcampusapp.ui.cafeteria.repository.CafeteriaLocalRepository
-import de.tum.`in`.tumcampusapp.core.Const
-import de.tum.`in`.tumcampusapp.core.DateTimeUtils
+import de.tum.`in`.tumcampusapp.ui.calendar.CalendarController
 import org.joda.time.DateTime
 
 class CafeteriaNotificationProvider(context: Context) : NotificationProvider(context) {
 
     private val cafeteriaMenuManager = CafeteriaMenuManager(context)
+    private val calendarController = CalendarController(context)
 
     override fun getNotificationBuilder(): NotificationCompat.Builder {
         return NotificationCompat.Builder(context, Const.NOTIFICATION_CHANNEL_CAFETERIA)
@@ -31,7 +33,8 @@ class CafeteriaNotificationProvider(context: Context) : NotificationProvider(con
     }
 
     override fun buildNotification(): AppNotification? {
-        val cafeteriaId = LocationManager(context).getCafeteria()
+        val likelyNextLocation = calendarController.nextCalendarItemGeo
+        val cafeteriaId = LocationManager(context).getCafeteria(likelyNextLocation)
         if (cafeteriaId == -1) {
             return null
         }

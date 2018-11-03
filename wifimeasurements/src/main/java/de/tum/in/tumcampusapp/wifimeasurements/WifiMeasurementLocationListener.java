@@ -1,4 +1,4 @@
-package de.tum.in.tumcampusapp.wifimeasurement;
+package de.tum.in.tumcampusapp.wifimeasurements;
 
 import android.content.Context;
 import android.location.Location;

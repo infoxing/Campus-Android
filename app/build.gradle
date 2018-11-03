@@ -89,6 +89,7 @@ dependencies {
 
     implementation project(':api')
     implementation project(':database')
+    implementation project(':wifimeasurements')
 
     // Support Libraries
     implementation 'androidx.cardview:cardview:1.0.0'

@@ -1,1 +1,1 @@
-include ':app', ':model', ':core', ':api', ':database'
+include ':app', ':model', ':core', ':api', ':database', ':wifimeasurements'
