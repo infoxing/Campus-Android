@@ -14,9 +14,9 @@ import de.tum.`in`.tumcampusapp.component.ui.transportation.api.MvvClient
 import de.tum.`in`.tumcampusapp.component.ui.transportation.api.MvvDepartureList
 import de.tum.`in`.tumcampusapp.component.ui.transportation.model.TransportFavorites
 import de.tum.`in`.tumcampusapp.component.ui.transportation.model.WidgetsTransport
-import de.tum.`in`.tumcampusapp.component.ui.transportation.model.efa.Departure
-import de.tum.`in`.tumcampusapp.component.ui.transportation.model.efa.StationResult
-import de.tum.`in`.tumcampusapp.component.ui.transportation.model.efa.WidgetDepartures
+import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.StationResultViewEntity
+import de.tum.`in`.tumcampusapp.component.ui.transportation.widget.WidgetDepartures
+import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.DepartureViewEntity
 import de.tum.`in`.tumcampusapp.database.TcaDb
 import de.tum.`in`.tumcampusapp.utils.NetUtils
 import de.tum.`in`.tumcampusapp.utils.Utils
@@ -170,12 +170,12 @@ class TransportController(private val context: Context) : ProvidesCard, Provides
          * @return List of departures
          */
         @JvmStatic
-        fun getDeparturesFromExternal(context: Context, stationID: String): Observable<List<Departure>> {
+        fun getDeparturesFromExternal(context: Context, stationID: String): Observable<List<DepartureViewEntity>> {
             return MvvClient.getInstance(context)
                     .getDepartures(stationID)
                     .onErrorReturn { MvvDepartureList(emptyList()) }
                     .map { it.departures.orEmpty() }
-                    .map { it.map { mvvDeparture -> Departure.create(mvvDeparture) } }
+                    .map { it.map { mvvDeparture -> DepartureViewEntity.create(mvvDeparture) } }
                     .map { it.sortedBy { departure -> departure.countDown } }
         }
 
@@ -186,16 +186,16 @@ class TransportController(private val context: Context) : ProvidesCard, Provides
          * @return List of StationResult
          */
         @JvmStatic
-        fun getStationsFromExternal(context: Context, prefix: String): Observable<List<StationResult>> {
+        fun getStationsFromExternal(context: Context, prefix: String): Observable<List<StationResultViewEntity>> {
             return MvvClient.getInstance(context)
                     .getStations(prefix)
                     .map { it.stations.sortedBy { station -> station.quality } }
         }
 
         @JvmStatic
-        fun getRecentStations(recents: Collection<Recent>): List<StationResult> {
+        fun getRecentStations(recents: Collection<Recent>): List<StationResultViewEntity> {
             return recents.mapNotNull {
-                StationResult.fromRecent(it)
+                StationResultViewEntity.fromRecent(it)
             }
         }
     }

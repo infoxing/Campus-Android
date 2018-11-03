@@ -1,17 +1,17 @@
 package de.tum.`in`.tumcampusapp.component.ui.transportation
 
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.LinearLayout
+import androidx.appcompat.app.AlertDialog
 import com.google.gson.Gson
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.component.other.general.RecentsDao
 import de.tum.`in`.tumcampusapp.component.other.general.model.Recent
 import de.tum.`in`.tumcampusapp.component.other.generic.activity.ProgressActivity
-import de.tum.`in`.tumcampusapp.component.ui.transportation.model.efa.Departure
-import de.tum.`in`.tumcampusapp.component.ui.transportation.model.efa.StationResult
+import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.StationResultViewEntity
+import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.DepartureViewEntity
 import de.tum.`in`.tumcampusapp.database.TcaDb
 import de.tum.`in`.tumcampusapp.utils.Utils
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -77,7 +77,7 @@ class TransportationDetailsActivity : ProgressActivity<Unit>(R.layout.activity_t
 
     private fun loadDetails(location: String, locationID: String) {
         // Quality is always 100% hit
-        val stationResult = StationResult(location, locationID, Integer.MAX_VALUE)
+        val stationResult = StationResultViewEntity(location, locationID, Integer.MAX_VALUE)
         val jsonStationResult = gson.toJson(stationResult)
 
         // save clicked station into db
@@ -98,7 +98,7 @@ class TransportationDetailsActivity : ProgressActivity<Unit>(R.layout.activity_t
      *
      * @param results List of departures
      */
-    private fun displayResults(results: List<Departure>?) {
+    private fun displayResults(results: List<DepartureViewEntity>?) {
         showLoadingEnded()
         if (results == null || results.isEmpty()) {
             showError(R.string.no_departures_found)

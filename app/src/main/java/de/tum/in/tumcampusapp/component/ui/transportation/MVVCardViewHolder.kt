@@ -2,13 +2,13 @@ package de.tum.`in`.tumcampusapp.component.ui.transportation
 
 import android.view.View
 import de.tum.`in`.tumcampusapp.component.ui.overview.card.CardViewHolder
-import de.tum.`in`.tumcampusapp.component.ui.transportation.model.efa.Departure
-import de.tum.`in`.tumcampusapp.component.ui.transportation.model.efa.StationResult
+import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.StationResultViewEntity
+import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.DepartureViewEntity
 import kotlinx.android.synthetic.main.card_mvv.view.*
 
 class MVVCardViewHolder(itemView: View) : CardViewHolder(itemView) {
 
-    fun bind(station: StationResult, departures: List<Departure>) {
+    fun bind(station: StationResultViewEntity, departures: List<DepartureViewEntity>) {
         with(itemView) {
             stationNameTextView.text = station.station
 
@@ -22,7 +22,7 @@ class MVVCardViewHolder(itemView: View) : CardViewHolder(itemView) {
                             DepartureView(context).apply {
                                 val isFavorite = controller.isFavorite(departure.symbol)
                                 setSymbol(departure.symbol, isFavorite)
-                                setLine(departure.direction)
+                                setLine(departure.formattedDirection)
                                 setTime(departure.departureTime)
                             }
                         }

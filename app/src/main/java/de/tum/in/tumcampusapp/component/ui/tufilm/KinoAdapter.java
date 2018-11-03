@@ -5,7 +5,7 @@ import java.util.List;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import de.tum.in.tumcampusapp.component.ui.tufilm.model.KinoViewEntity;
+import de.tum.in.tumcampusapp.component.ui.tufilm.viewmodel.KinoViewEntity;
 
 public class KinoAdapter extends FragmentStatePagerAdapter {
 

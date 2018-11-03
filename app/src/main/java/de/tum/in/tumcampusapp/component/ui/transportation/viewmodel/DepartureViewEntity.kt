@@ -1,15 +1,15 @@
-package de.tum.`in`.tumcampusapp.component.ui.transportation.model.efa
+package de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel
 
 import de.tum.`in`.tumcampusapp.component.ui.transportation.api.MvvDeparture
 import org.joda.time.DateTime
 import org.joda.time.Minutes
 
-data class Departure(
-        val servingLine: String = "",
-        val direction: String = "",
-        val symbol: String = "",
-        val countDown: Int = -1,
-        val departureTime: DateTime = DateTime()
+data class DepartureViewEntity(
+        val servingLine: String,
+        val formattedDirection: String,
+        val symbol: String,
+        val countDown: Int,
+        val departureTime: DateTime
 ) {
 
     /**
@@ -20,17 +20,17 @@ data class Departure(
     val calculatedCountDown: Int
         get() = Minutes.minutesBetween(DateTime.now(), departureTime).minutes
 
-    val formattedDirection: String
-        get() = direction
-                .replace(",", ", ")
-                .replace("\\s+".toRegex(), " ")
-
     companion object {
 
-        fun create(mvvDeparture: MvvDeparture): Departure {
-            return Departure(
+        fun create(mvvDeparture: MvvDeparture): DepartureViewEntity {
+            val formattedDirection = mvvDeparture.servingLine
+                    .direction
+                    .replace(",", ", ")
+                    .replace("\\s+".toRegex(), " ")
+
+            return DepartureViewEntity(
                     mvvDeparture.servingLine.name,
-                    mvvDeparture.servingLine.direction,
+                    formattedDirection,
                     mvvDeparture.servingLine.symbol,
                     mvvDeparture.countdown,
                     mvvDeparture.dateTime

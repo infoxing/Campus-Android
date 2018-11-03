@@ -15,7 +15,7 @@ import de.tum.`in`.tumcampusapp.component.other.locations.model.Geo
 import de.tum.`in`.tumcampusapp.component.tumui.calendar.CalendarController
 import de.tum.`in`.tumcampusapp.component.tumui.roomfinder.model.RoomFinderCoordinate
 import de.tum.`in`.tumcampusapp.component.ui.cafeteria.model.Cafeteria
-import de.tum.`in`.tumcampusapp.component.ui.transportation.model.efa.StationResult
+import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.StationResultViewEntity
 import de.tum.`in`.tumcampusapp.database.TcaDb
 import de.tum.`in`.tumcampusapp.utils.Const
 import de.tum.`in`.tumcampusapp.utils.Utils
@@ -145,7 +145,7 @@ class LocationManager(c: Context) {
      *
      * @return Name of the station or null if the user is not near any campus
      */
-    fun getStation(): StationResult? {
+    fun getStation(): StationResultViewEntity? {
         val campus = getCurrentCampus() ?: return null
 
         //Try to find favorite station for current campus
@@ -380,20 +380,20 @@ class LocationManager(c: Context) {
             }
         }
 
-        private enum class Stations(val station: StationResult) {
-            GarchingForschungszentrum(StationResult("Garching-Forschungszentrum", "1000460", Integer.MAX_VALUE)),
-            GarchingHochbrueck(StationResult("Garching-Hochbrück", "1000480", Integer.MAX_VALUE)),
-            Weihenstephan(StationResult("Weihenstephan", "1002911", Integer.MAX_VALUE)),
-            Stammgelaende(StationResult("Theresienstraße", "1000120", Integer.MAX_VALUE)),
-            KlinikumGrosshadern(StationResult("Klinikum Großhadern", "1001540", Integer.MAX_VALUE)),
-            KlinikumRechtsDerIsar(StationResult("Max-Weber-Platz", "1000580", Integer.MAX_VALUE)),
-            Leopoldstrasse(StationResult("Giselastraße", "1000080", Integer.MAX_VALUE)),
-            GeschwisterSchollplatzAdalbertstrasse(StationResult("Universität", "1000070", Integer.MAX_VALUE)),
-            Pinakotheken(StationResult("Pinakotheken", "1000051", Integer.MAX_VALUE)),
-            TUM(StationResult("Technische Universität", "1000095", Integer.MAX_VALUE)),
-            Waldhueterstrasse(StationResult("Waldhüterstraße", "1001574", Integer.MAX_VALUE)),
-            Martinsried(StationResult("LMU Martinsried", "1002557", Integer.MAX_VALUE)),
-            GarchingTUM(StationResult("Garching-Technische Universität", "1002070", Integer.MAX_VALUE))
+        private enum class Stations(val station: StationResultViewEntity) {
+            GarchingForschungszentrum(StationResultViewEntity("Garching-Forschungszentrum", "1000460", Integer.MAX_VALUE)),
+            GarchingHochbrueck(StationResultViewEntity("Garching-Hochbrück", "1000480", Integer.MAX_VALUE)),
+            Weihenstephan(StationResultViewEntity("Weihenstephan", "1002911", Integer.MAX_VALUE)),
+            Stammgelaende(StationResultViewEntity("Theresienstraße", "1000120", Integer.MAX_VALUE)),
+            KlinikumGrosshadern(StationResultViewEntity("Klinikum Großhadern", "1001540", Integer.MAX_VALUE)),
+            KlinikumRechtsDerIsar(StationResultViewEntity("Max-Weber-Platz", "1000580", Integer.MAX_VALUE)),
+            Leopoldstrasse(StationResultViewEntity("Giselastraße", "1000080", Integer.MAX_VALUE)),
+            GeschwisterSchollplatzAdalbertstrasse(StationResultViewEntity("Universität", "1000070", Integer.MAX_VALUE)),
+            Pinakotheken(StationResultViewEntity("Pinakotheken", "1000051", Integer.MAX_VALUE)),
+            TUM(StationResultViewEntity("Technische Universität", "1000095", Integer.MAX_VALUE)),
+            Waldhueterstrasse(StationResultViewEntity("Waldhüterstraße", "1001574", Integer.MAX_VALUE)),
+            Martinsried(StationResultViewEntity("LMU Martinsried", "1002557", Integer.MAX_VALUE)),
+            GarchingTUM(StationResultViewEntity("Garching-Technische Universität", "1002070", Integer.MAX_VALUE))
         }
 
 

@@ -1,12 +1,12 @@
-package de.tum.`in`.tumcampusapp.component.ui.transportation.model.efa
+package de.tum.`in`.tumcampusapp.component.ui.transportation.widget
 
 import android.content.Context
 import de.tum.`in`.tumcampusapp.component.ui.transportation.TransportController
-import de.tum.`in`.tumcampusapp.component.ui.transportation.widget.MVVWidget
+import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.DepartureViewEntity
 import java.util.*
 
 /**
- * Create new WidgetDepartures. It contains the widget settingsPrefix and can load the according departure list
+ * Create new WidgetDepartures. It contains the widget settings and can load the according departure list
  *
  * @param station     The station name
  * @param stationId   The station name
@@ -17,7 +17,7 @@ class WidgetDepartures(station: String = "",
                        stationId: String = "",
                        var useLocation: Boolean = false,
                        var autoReload: Boolean = false,
-                       var departures: MutableList<Departure> = ArrayList()) {
+                       var departures: MutableList<DepartureViewEntity> = ArrayList()) {
 
     private var lastLoad: Long = 0
     /**
@@ -55,7 +55,7 @@ class WidgetDepartures(station: String = "",
      *
      * @return The list of departures
      */
-    fun getDepartures(context: Context, forceServerLoad: Boolean): List<Departure> {
+    fun getDepartures(context: Context, forceServerLoad: Boolean): List<DepartureViewEntity> {
         // download only id there is no data or the last loading is more than X min ago
         val shouldAutoReload = System.currentTimeMillis() - this.lastLoad > MVVWidget.DOWNLOAD_DELAY
         if (this.departures.isEmpty() || forceServerLoad || this.autoReload && shouldAutoReload) {

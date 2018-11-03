@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-import de.tum.in.tumcampusapp.component.ui.transportation.model.efa.StationResult;
+import de.tum.in.tumcampusapp.component.ui.transportation.viewmodel.StationResultViewEntity;
 
 public class MvvStationListTest {
 
@@ -33,16 +33,16 @@ public class MvvStationListTest {
     @Test
     public void testEmptyValue() {
         MvvStationList stationList = gson.fromJson(emptyResultExample, MvvStationList.class);
-        List<StationResult> departureList = stationList.getStations();
+        List<StationResultViewEntity> departureList = stationList.getStations();
         Assert.assertEquals(0, departureList.size());
     }
 
     @Test
     public void testSingletonValue() {
         MvvStationList stationList = gson.fromJson(singletonResultExample, MvvStationList.class);
-        List<StationResult> departureList = stationList.getStations();
+        List<StationResultViewEntity> departureList = stationList.getStations();
         Assert.assertEquals(1, departureList.size());
-        StationResult result = departureList.get(0);
+        StationResultViewEntity result = departureList.get(0);
         Assert.assertEquals("Garching (b München), Garching, Forschungszentrum", result.getStation());
         Assert.assertEquals("1000460", result.getId());
     }
@@ -50,7 +50,7 @@ public class MvvStationListTest {
     @Test
     public void testMultiValue() {
         MvvStationList stationList = gson.fromJson(multiValueResultExample, MvvStationList.class);
-        List<StationResult> departureList = stationList.getStations();
+        List<StationResultViewEntity> departureList = stationList.getStations();
         Assert.assertEquals(9, departureList.size());
     }
 }

@@ -3,9 +3,6 @@ package de.tum.in.tumcampusapp.component.ui.transportation;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,13 +10,16 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.other.navigation.NavigationDestination;
 import de.tum.in.tumcampusapp.component.other.navigation.SystemIntent;
 import de.tum.in.tumcampusapp.component.ui.overview.card.Card;
 import de.tum.in.tumcampusapp.component.ui.overview.card.CardViewHolder;
-import de.tum.in.tumcampusapp.component.ui.transportation.model.efa.Departure;
-import de.tum.in.tumcampusapp.component.ui.transportation.model.efa.StationResult;
+import de.tum.in.tumcampusapp.component.ui.transportation.viewmodel.StationResultViewEntity;
+import de.tum.in.tumcampusapp.component.ui.transportation.viewmodel.DepartureViewEntity;
 
 import static de.tum.in.tumcampusapp.component.ui.overview.CardManager.CARD_MVV;
 
@@ -30,8 +30,8 @@ public class MVVCard extends Card {
 
     private static final String MVV_TIME = "mvv_time";
 
-    private StationResult mStation;
-    private List<Departure> mDepartures;
+    private StationResultViewEntity mStation;
+    private List<DepartureViewEntity> mDepartures;
 
     MVVCard(Context context) {
         super(CARD_MVV, context, "card_mvv");
@@ -80,11 +80,11 @@ public class MVVCard extends Card {
         return prevDate + DateUtils.HOUR_IN_MILLIS < System.currentTimeMillis();
     }
     
-    public void setStation(StationResult station) {
+    public void setStation(StationResultViewEntity station) {
         this.mStation = station;
     }
 
-    public void setDepartures(List<Departure> departures) {
+    public void setDepartures(List<DepartureViewEntity> departures) {
         this.mDepartures = departures;
     }
 

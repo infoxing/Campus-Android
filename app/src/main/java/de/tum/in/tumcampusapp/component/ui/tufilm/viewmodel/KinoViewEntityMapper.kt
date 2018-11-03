@@ -1,5 +1,6 @@
-package de.tum.`in`.tumcampusapp.component.ui.tufilm.model
+package de.tum.`in`.tumcampusapp.component.ui.tufilm.viewmodel
 
+import de.tum.`in`.tumcampusapp.component.ui.tufilm.model.RawKino
 import io.reactivex.functions.Function
 
 class KinoViewEntityMapper : Function<List<RawKino>, List<KinoViewEntity>> {

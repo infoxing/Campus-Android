@@ -16,8 +16,7 @@ import de.tum.`in`.tumcampusapp.component.other.generic.activity.ActivityForSear
 import de.tum.`in`.tumcampusapp.component.other.generic.adapter.NoResultsAdapter
 import de.tum.`in`.tumcampusapp.component.ui.transportation.MVVStationSuggestionProvider
 import de.tum.`in`.tumcampusapp.component.ui.transportation.TransportController
-import de.tum.`in`.tumcampusapp.component.ui.transportation.model.efa.StationResult
-import de.tum.`in`.tumcampusapp.component.ui.transportation.model.efa.WidgetDepartures
+import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.StationResultViewEntity
 import de.tum.`in`.tumcampusapp.database.TcaDb
 import de.tum.`in`.tumcampusapp.utils.Utils
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -29,7 +28,7 @@ class MVVWidgetConfigureActivity : ActivityForSearching<Unit>(
 
     private var appWidgetId: Int = 0
     private lateinit var listViewResults: ListView
-    private lateinit var adapterStations: ArrayAdapter<StationResult>
+    private lateinit var adapterStations: ArrayAdapter<StationResultViewEntity>
     private lateinit var recentsDao: RecentsDao
 
     private lateinit var widgetDepartures: WidgetDepartures
@@ -67,7 +66,7 @@ class MVVWidgetConfigureActivity : ActivityForSearching<Unit>(
 
         listViewResults = findViewById(R.id.activity_transport_listview_result)
         listViewResults.setOnItemClickListener { adapterView, _, position, _ ->
-            val (station, stationId) = adapterView.adapter.getItem(position) as StationResult
+            val (station, stationId) = adapterView.adapter.getItem(position) as StationResultViewEntity
             widgetDepartures.station = station
             widgetDepartures.stationId = stationId
             saveAndReturn()
@@ -109,7 +108,7 @@ class MVVWidgetConfigureActivity : ActivityForSearching<Unit>(
                 })
     }
 
-    private fun displayStations(stations: List<StationResult>) {
+    private fun displayStations(stations: List<StationResultViewEntity>) {
         showLoadingEnded()
 
         if (stations.isEmpty()) {

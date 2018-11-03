@@ -4,18 +4,17 @@ import android.annotation.SuppressLint;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
-import androidx.annotation.Nullable;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.Nullable;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.ui.transportation.MVVSymbol;
 import de.tum.in.tumcampusapp.component.ui.transportation.TransportController;
-import de.tum.in.tumcampusapp.component.ui.transportation.model.efa.Departure;
-import de.tum.in.tumcampusapp.component.ui.transportation.model.efa.WidgetDepartures;
+import de.tum.in.tumcampusapp.component.ui.transportation.viewmodel.DepartureViewEntity;
 
 @SuppressLint("Registered")
 public class MVVWidgetService extends RemoteViewsService {
@@ -28,7 +27,7 @@ public class MVVWidgetService extends RemoteViewsService {
     private class MVVRemoteViewFactory implements RemoteViewsService.RemoteViewsFactory {
 
         private final Context applicationContext;
-        private List<Departure> departures = new ArrayList<>();
+        private List<DepartureViewEntity> departures = new ArrayList<>();
         private int appWidgetID;
         private boolean forceLoadDepartures;
 
@@ -70,7 +69,7 @@ public class MVVWidgetService extends RemoteViewsService {
             }
 
             // Get the departure for this view
-            Departure currentItem = this.departures.get(position);
+            DepartureViewEntity currentItem = this.departures.get(position);
             if (currentItem == null) {
                 return null;
             }

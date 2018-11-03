@@ -1,7 +1,7 @@
 package de.tum.`in`.tumcampusapp.component.ui.transportation.api
 
 import com.google.gson.*
-import de.tum.`in`.tumcampusapp.component.ui.transportation.model.efa.StationResult
+import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.StationResultViewEntity
 import java.lang.reflect.Type
 
 /**
@@ -23,12 +23,12 @@ class MvvStationListSerializer : JsonDeserializer<MvvStationList> {
 
         // singleton result, i.e. exact match
         if (points is JsonObject) {
-            return MvvStationList(listOf(StationResult.fromJson(points.get("point") as JsonObject)))
+            return MvvStationList(listOf(StationResultViewEntity.fromJson(points.get("point") as JsonObject)))
         }
 
         if (points is JsonArray) {
             val resultList = points.map {
-                StationResult.fromJson(it as JsonObject)
+                StationResultViewEntity.fromJson(it as JsonObject)
             }
             return MvvStationList(resultList)
         }
