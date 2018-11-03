@@ -10,14 +10,14 @@ import de.tum.`in`.tumcampusapp.api.tumonline.interceptors.CheckErrorInterceptor
 import de.tum.`in`.tumcampusapp.api.tumonline.interceptors.CheckTokenInterceptor
 import de.tum.`in`.tumcampusapp.api.tumonline.model.AccessToken
 import de.tum.`in`.tumcampusapp.api.tumonline.model.TokenConfirmation
-import de.tum.`in`.tumcampusapp.component.tumui.calendar.model.CalendarItem
-import de.tum.`in`.tumcampusapp.component.tumui.calendar.model.CreateEventResponse
-import de.tum.`in`.tumcampusapp.component.tumui.calendar.model.DeleteEventResponse
-import de.tum.`in`.tumcampusapp.component.tumui.calendar.model.EventsResponse
-import de.tum.`in`.tumcampusapp.component.tumui.grades.model.ExamList
-import de.tum.`in`.tumcampusapp.component.tumui.lectures.model.LectureAppointmentsResponse
-import de.tum.`in`.tumcampusapp.component.tumui.lectures.model.LectureDetailsResponse
-import de.tum.`in`.tumcampusapp.component.tumui.lectures.model.LecturesResponse
+import de.tum.`in`.tumcampusapp.model.calendar.CalendarItem
+import de.tum.`in`.tumcampusapp.model.calendar.CreateEventResponse
+import de.tum.`in`.tumcampusapp.model.calendar.DeleteEventResponse
+import de.tum.`in`.tumcampusapp.model.calendar.EventsResponse
+import de.tum.`in`.tumcampusapp.model.grades.ExamList
+import de.tum.`in`.tumcampusapp.model.lecture.LectureAppointmentsResponse
+import de.tum.`in`.tumcampusapp.model.lecture.LectureDetailsResponse
+import de.tum.`in`.tumcampusapp.model.lecture.LecturesResponse
 import de.tum.`in`.tumcampusapp.model.person.Employee
 import de.tum.`in`.tumcampusapp.model.person.IdentitySet
 import de.tum.`in`.tumcampusapp.model.person.PersonList
@@ -36,8 +36,8 @@ class TUMOnlineClient(private val apiService: TUMOnlineAPIService) {
     }
 
     fun createEvent(calendarItem: CalendarItem, eventId: String?): Call<CreateEventResponse> {
-        val start = DateTimeUtils.getDateTimeString(calendarItem.eventStart)
-        val end = DateTimeUtils.getDateTimeString(calendarItem.eventEnd)
+        val start = DateTimeUtils.getDateTimeString(calendarItem.dtstart)
+        val end = DateTimeUtils.getDateTimeString(calendarItem.dtend)
         return apiService.createCalendarEvent(
                 calendarItem.title, calendarItem.description, start, end, eventId)
     }

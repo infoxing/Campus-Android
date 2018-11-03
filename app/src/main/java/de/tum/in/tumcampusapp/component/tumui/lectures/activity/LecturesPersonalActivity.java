@@ -13,8 +13,8 @@ import de.tum.in.tumcampusapp.component.other.generic.activity.ActivityForSearch
 import de.tum.in.tumcampusapp.component.other.generic.adapter.NoResultsAdapter;
 import de.tum.in.tumcampusapp.component.tumui.lectures.LectureSearchSuggestionProvider;
 import de.tum.in.tumcampusapp.component.tumui.lectures.adapter.LecturesListAdapter;
-import de.tum.in.tumcampusapp.component.tumui.lectures.model.Lecture;
-import de.tum.in.tumcampusapp.component.tumui.lectures.model.LecturesResponse;
+import de.tum.in.tumcampusapp.model.lecture.Lecture;
+import de.tum.in.tumcampusapp.model.lecture.LecturesResponse;
 import retrofit2.Call;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 

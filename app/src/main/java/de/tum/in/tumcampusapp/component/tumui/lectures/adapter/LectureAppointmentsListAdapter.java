@@ -15,7 +15,7 @@ import java.util.List;
 
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.tumui.lectures.activity.LecturesAppointmentsActivity;
-import de.tum.in.tumcampusapp.component.tumui.lectures.model.LectureAppointment;
+import de.tum.in.tumcampusapp.model.lecture.LectureAppointment;
 import de.tum.in.tumcampusapp.utils.DateTimeUtils;
 import de.tum.in.tumcampusapp.utils.Utils;
 

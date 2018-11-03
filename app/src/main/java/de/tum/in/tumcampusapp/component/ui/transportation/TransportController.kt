@@ -5,19 +5,20 @@ import android.util.SparseArray
 import de.tum.`in`.tumcampusapp.api.tumonline.CacheControl
 import de.tum.`in`.tumcampusapp.component.notifications.NotificationScheduler
 import de.tum.`in`.tumcampusapp.component.notifications.ProvidesNotifications
-import de.tum.`in`.tumcampusapp.model.recents.Recent
 import de.tum.`in`.tumcampusapp.component.other.locations.LocationManager
-import de.tum.`in`.tumcampusapp.component.tumui.calendar.model.Event
+import de.tum.`in`.tumcampusapp.model.calendar.Event
+import de.tum.`in`.tumcampusapp.component.tumui.calendar.viewmodel.EventViewEntity
 import de.tum.`in`.tumcampusapp.component.ui.overview.card.Card
 import de.tum.`in`.tumcampusapp.component.ui.overview.card.ProvidesCard
 import de.tum.`in`.tumcampusapp.component.ui.transportation.api.MvvClient
 import de.tum.`in`.tumcampusapp.component.ui.transportation.api.MvvDepartureList
 import de.tum.`in`.tumcampusapp.component.ui.transportation.model.TransportFavorites
 import de.tum.`in`.tumcampusapp.component.ui.transportation.model.WidgetsTransport
+import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.DepartureViewEntity
 import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.StationResultViewEntity
 import de.tum.`in`.tumcampusapp.component.ui.transportation.widget.WidgetDepartures
-import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.DepartureViewEntity
 import de.tum.`in`.tumcampusapp.database.TcaDb
+import de.tum.`in`.tumcampusapp.model.recents.Recent
 import de.tum.`in`.tumcampusapp.utils.NetUtils
 import de.tum.`in`.tumcampusapp.utils.Utils
 import io.reactivex.Observable
@@ -156,7 +157,9 @@ class TransportController(private val context: Context) : ProvidesCard, Provides
                 }
                 .take(maxNotificationsToSchedule) // Some manufacturers cap the amount of alarms you can schedule (https://stackoverflow.com/a/29610474)
 
-        val notifications = notificationCandidates.mapNotNull { it.toNotification(context) }
+        val notifications = notificationCandidates
+                .map { EventViewEntity.create(context, it) }
+                .mapNotNull { it.futureNotification }
         NotificationScheduler(context).schedule(notifications)
     }
 

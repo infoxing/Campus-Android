@@ -11,9 +11,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.net.Uri;
 import android.provider.CalendarContract;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 
 import org.jetbrains.annotations.NotNull;
 import org.joda.time.DateTime;
@@ -21,6 +18,9 @@ import org.joda.time.DateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.api.tumonline.CacheControl;
 import de.tum.in.tumcampusapp.component.notifications.NotificationScheduler;
@@ -28,14 +28,16 @@ import de.tum.in.tumcampusapp.component.notifications.ProvidesNotifications;
 import de.tum.in.tumcampusapp.component.notifications.model.FutureNotification;
 import de.tum.in.tumcampusapp.component.other.locations.LocationManager;
 import de.tum.in.tumcampusapp.component.other.locations.RoomLocationsDao;
-import de.tum.in.tumcampusapp.component.other.locations.model.Geo;
-import de.tum.in.tumcampusapp.component.tumui.calendar.model.CalendarItem;
-import de.tum.in.tumcampusapp.component.tumui.calendar.model.Event;
-import de.tum.in.tumcampusapp.component.tumui.calendar.model.WidgetsTimetableBlacklist;
-import de.tum.in.tumcampusapp.component.tumui.lectures.model.RoomLocations;
+import de.tum.in.tumcampusapp.model.calendar.CalendarItem;
+import de.tum.in.tumcampusapp.model.calendar.Event;
+import de.tum.in.tumcampusapp.component.tumui.calendar.viewmodel.CalendarItemViewEntity;
+import de.tum.in.tumcampusapp.component.tumui.calendar.viewmodel.EventViewEntity;
 import de.tum.in.tumcampusapp.component.ui.overview.card.Card;
 import de.tum.in.tumcampusapp.component.ui.overview.card.ProvidesCard;
 import de.tum.in.tumcampusapp.database.TcaDb;
+import de.tum.in.tumcampusapp.model.calendar.WidgetsTimetableBlacklist;
+import de.tum.in.tumcampusapp.model.lecture.RoomLocations;
+import de.tum.in.tumcampusapp.model.locations.Geo;
 import de.tum.in.tumcampusapp.utils.Const;
 import de.tum.in.tumcampusapp.utils.Utils;
 import de.tum.in.tumcampusapp.utils.sync.SyncManager;
@@ -138,7 +140,8 @@ public class CalendarController implements ProvidesCard, ProvidesNotifications {
         List<IntegratedCalendarEvent> calendarEvents = new ArrayList<>();
         List<CalendarItem> calendarItems = calendarDao.getNextDays(fromDate, toDate, String.valueOf(widgetId));
         for (CalendarItem calendarItem : calendarItems) {
-            calendarEvents.add(new IntegratedCalendarEvent(calendarItem, mContext));
+            CalendarItemViewEntity viewEntity = CalendarItemViewEntity.create(mContext, calendarItem);
+            calendarEvents.add(new IntegratedCalendarEvent(viewEntity, mContext));
         }
 
         return calendarEvents;
@@ -212,8 +215,9 @@ public class CalendarController implements ProvidesCard, ProvidesNotifications {
 
         List<FutureNotification> notifications = new ArrayList<>();
         for (Event event : events) {
-            if (event.isFutureEvent()) {
-                FutureNotification notification = event.toNotification(mContext);
+            EventViewEntity viewEntity = EventViewEntity.create(mContext, event);
+            if (viewEntity.isFutureEvent()) {
+                FutureNotification notification = viewEntity.getFutureNotification();
                 if (notification != null) {
                     notifications.add(notification);
                     if (notifications.size() >= maxNotificationsToSchedule) {
@@ -294,11 +298,17 @@ public class CalendarController implements ProvidesCard, ProvidesNotifications {
     @Override
     public List<Card> getCards(@NonNull CacheControl cacheControl) {
         List<CalendarItem> nextCalendarItems = calendarDao.getNextUniqueCalendarItems();
+
+        List<CalendarItemViewEntity> viewEntities = new ArrayList<>();
+        for (CalendarItem item : nextCalendarItems) {
+            viewEntities.add(CalendarItemViewEntity.create(mContext, item));
+        }
+
         List<Card> results = new ArrayList<>();
 
         if (!nextCalendarItems.isEmpty()) {
             NextLectureCard card = new NextLectureCard(mContext);
-            card.setLectures(nextCalendarItems);
+            card.setLectures(viewEntities);
             results.add(card.getIfShowOnStart());
         }
 

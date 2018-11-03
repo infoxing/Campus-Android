@@ -9,10 +9,10 @@ import de.tum.in.tumcampusapp.api.app.model.ObfuscatedIdsUpload;
 import de.tum.in.tumcampusapp.api.app.model.TUMCabeStatus;
 import de.tum.in.tumcampusapp.api.app.model.TUMCabeVerification;
 import de.tum.in.tumcampusapp.api.app.model.UploadStatus;
-import de.tum.in.tumcampusapp.component.other.locations.model.BuildingToGps;
+import de.tum.in.tumcampusapp.model.locations.BuildingToGps;
 import de.tum.in.tumcampusapp.component.other.wifimeasurement.model.WifiMeasurement;
-import de.tum.in.tumcampusapp.component.tumui.feedback.model.Feedback;
-import de.tum.in.tumcampusapp.component.tumui.feedback.model.Success;
+import de.tum.in.tumcampusapp.model.feedback.Feedback;
+import de.tum.in.tumcampusapp.model.feedback.FeedbackSuccess;
 import de.tum.in.tumcampusapp.model.roomfinder.RoomFinderCoordinate;
 import de.tum.in.tumcampusapp.model.roomfinder.RoomFinderMap;
 import de.tum.in.tumcampusapp.model.roomfinder.RoomFinderRoom;
@@ -186,11 +186,11 @@ public interface TUMCabeAPIService {
                                                  @Path("start") String start, @Path("end") String end);
 
     @POST(API_FEEDBACK)
-    Call<Success> sendFeedback(@Body Feedback feedback);
+    Call<FeedbackSuccess> sendFeedback(@Body Feedback feedback);
 
     @Multipart
     @POST(API_FEEDBACK + "{id}/{imageUrl}/")
-    Call<Success> sendFeedbackImage(@Part MultipartBody.Part image, @Path("image") int imageNr, @Path("id") String feedbackId);
+    Call<FeedbackSuccess> sendFeedbackImage(@Part MultipartBody.Part image, @Path("image") int imageNr, @Path("id") String feedbackId);
 
     @GET(API_CAFETERIAS)
     Observable<List<Cafeteria>> getCafeterias();

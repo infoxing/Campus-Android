@@ -1,4 +1,4 @@
-package de.tum.`in`.tumcampusapp.component.tumui.grades.model
+package de.tum.`in`.tumcampusapp.model.grades
 
 import com.tickaroo.tikxml.annotation.Element
 import com.tickaroo.tikxml.annotation.Xml

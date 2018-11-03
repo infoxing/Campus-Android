@@ -1,6 +1,6 @@
-package de.tum.`in`.tumcampusapp.component.tumui.feedback.model
+package de.tum.`in`.tumcampusapp.model.feedback
 
-data class Success(
+data class FeedbackSuccess(
         var success: String = "",
         var error: String = "") {
 

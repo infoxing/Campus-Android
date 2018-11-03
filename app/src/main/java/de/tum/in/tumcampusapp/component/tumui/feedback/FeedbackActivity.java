@@ -46,8 +46,8 @@ import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
 import de.tum.in.tumcampusapp.component.other.generic.activity.BaseActivity;
 import de.tum.in.tumcampusapp.component.other.locations.LocationManager;
-import de.tum.in.tumcampusapp.component.tumui.feedback.model.Feedback;
-import de.tum.in.tumcampusapp.component.tumui.feedback.model.Success;
+import de.tum.in.tumcampusapp.model.feedback.Feedback;
+import de.tum.in.tumcampusapp.model.feedback.FeedbackSuccess;
 import de.tum.in.tumcampusapp.utils.Const;
 import de.tum.in.tumcampusapp.utils.Utils;
 import retrofit2.Call;
@@ -361,10 +361,10 @@ public class FeedbackActivity extends BaseActivity {
         showProgressBarDialog();
         TUMCabeClient client = TUMCabeClient.getInstance(this);
 
-        client.sendFeedback(getFeedback(), picturePaths.toArray(new String[picturePaths.size()]), new Callback<Success>() {
+        client.sendFeedback(getFeedback(), picturePaths.toArray(new String[picturePaths.size()]), new Callback<FeedbackSuccess>() {
             @Override
-            public void onResponse(Call<Success> call, Response<Success> response) {
-                Success success = response.body();
+            public void onResponse(Call<FeedbackSuccess> call, Response<FeedbackSuccess> response) {
+                FeedbackSuccess success = response.body();
                 if (success != null && success.wasSuccessfullySent()) {
                     sentCount++;
                     Utils.log(success.getSuccess());
@@ -381,7 +381,7 @@ public class FeedbackActivity extends BaseActivity {
             }
 
             @Override
-            public void onFailure(Call<Success> call, Throwable t) {
+            public void onFailure(Call<FeedbackSuccess> call, Throwable t) {
                 showErrorDialog();
             }
         });

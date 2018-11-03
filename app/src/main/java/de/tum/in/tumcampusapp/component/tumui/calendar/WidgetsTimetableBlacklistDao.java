@@ -6,7 +6,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import de.tum.in.tumcampusapp.component.tumui.calendar.model.WidgetsTimetableBlacklist;
+import de.tum.in.tumcampusapp.model.calendar.WidgetsTimetableBlacklist;
 
 @Dao
 public interface WidgetsTimetableBlacklistDao {

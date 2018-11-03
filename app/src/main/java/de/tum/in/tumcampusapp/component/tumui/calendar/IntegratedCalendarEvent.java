@@ -7,7 +7,7 @@ import com.alamkanak.weekview.WeekViewEvent;
 
 import org.joda.time.DateTime;
 
-import de.tum.in.tumcampusapp.component.tumui.calendar.model.CalendarItem;
+import de.tum.in.tumcampusapp.component.tumui.calendar.viewmodel.CalendarItemViewEntity;
 
 /**
  * A class to represent events for the integrated WeekView calendar
@@ -18,13 +18,13 @@ public class IntegratedCalendarEvent extends WeekViewEvent {
     private final String location;
     private boolean firstOnDay;
 
-    IntegratedCalendarEvent(CalendarItem calendarItem, Context context) {
-        this(calendarItem.getNr(),
-                calendarItem.getFormattedTitle(),
-                calendarItem.getEventStart(),
-                calendarItem.getEventEnd(),
-                calendarItem.getEventLocation(),
-                calendarItem.getEventColor(context));
+    IntegratedCalendarEvent(CalendarItemViewEntity calendarItem, Context context) {
+        this(calendarItem.getId(),
+                calendarItem.getTitle(),
+                calendarItem.getStartTime(),
+                calendarItem.getEndTime(),
+                calendarItem.getLocation(),
+                calendarItem.getEventColor());
     }
 
     public IntegratedCalendarEvent(String id, String title, DateTime startTime, DateTime endTime, String location, int color) {

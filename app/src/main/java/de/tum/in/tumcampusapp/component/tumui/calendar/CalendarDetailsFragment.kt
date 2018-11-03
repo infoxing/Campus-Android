@@ -15,8 +15,8 @@ import de.tum.`in`.tumcampusapp.api.tumonline.TUMOnlineClient
 import de.tum.`in`.tumcampusapp.api.tumonline.exception.RequestLimitReachedException
 import de.tum.`in`.tumcampusapp.component.other.navigation.NavigationManager
 import de.tum.`in`.tumcampusapp.component.other.navigation.SystemActivity
-import de.tum.`in`.tumcampusapp.component.tumui.calendar.model.CalendarItem
-import de.tum.`in`.tumcampusapp.component.tumui.calendar.model.DeleteEventResponse
+import de.tum.`in`.tumcampusapp.model.calendar.DeleteEventResponse
+import de.tum.`in`.tumcampusapp.component.tumui.calendar.viewmodel.CalendarItemViewEntity
 import de.tum.`in`.tumcampusapp.component.tumui.roomfinder.RoomFinderActivity
 import de.tum.`in`.tumcampusapp.database.TcaDb
 import de.tum.`in`.tumcampusapp.utils.Const
@@ -55,20 +55,21 @@ class CalendarDetailsFragment : RoundedBottomSheetDialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val calendarItem = dao.getCalendarItemsById(calendarItemId)
-        updateView(calendarItem)
+        val calendarItems = dao.getCalendarItemsById(calendarItemId)
+        val viewEntities = calendarItems.map { CalendarItemViewEntity.create(requireContext(), it) }
+        updateView(viewEntities)
     }
 
-    private fun updateView(calendarItemList: List<CalendarItem>) {
+    private fun updateView(calendarItemList: List<CalendarItemViewEntity>) {
         val calendarItem = calendarItemList[0]
 
-        if (calendarItemList.all { it.isCancelled() }) {
+        if (calendarItemList.all { it.isCanceled }) {
             cancelButtonsContainer.visibility = View.VISIBLE
             descriptionTextView.setTextColor(Color.RED)
         }
 
-        titleTextView.text = calendarItem.getFormattedTitle()
-        dateTextView.text = calendarItem.getEventDateString()
+        titleTextView.text = calendarItem.formattedTitle
+        dateTextView.text = calendarItem.formattedDate
 
         val locationList = calendarItemList.map { it.location }
         if (locationList.all { it.isBlank() }) {
@@ -81,7 +82,7 @@ class CalendarDetailsFragment : RoundedBottomSheetDialogFragment() {
                 }
                 val locationText: TextView = layoutInflater
                         .inflate(R.layout.calendar_location_text, locationLinearLayout, false) as TextView
-                if (item.isCancelled()) {
+                if (item.isCanceled) {
                     locationText.setTextColor(ContextCompat.getColor(requireContext(), R.color.event_canceled))
                     val textForCancelledEvent = "${item.location} (${R.string.event_canceled})"
                     locationText.text = textForCancelledEvent
@@ -108,16 +109,16 @@ class CalendarDetailsFragment : RoundedBottomSheetDialogFragment() {
             // We only provide edit and delete functionality if the user is in CalendarActivity,
             // but not if the user opens the fragment from MainActivity.
             buttonsContainer.visibility = View.VISIBLE
-            deleteButton.setOnClickListener { displayDeleteDialog(calendarItem.nr) }
+            deleteButton.setOnClickListener { displayDeleteDialog(calendarItem.id) }
             editButton.setOnClickListener { listener?.onEditEvent(calendarItem) }
         } else {
             buttonsContainer.visibility = View.GONE
         }
     }
 
-    private fun openEventInCalendarActivity(calendarItem: CalendarItem) {
+    private fun openEventInCalendarActivity(calendarItem: CalendarItemViewEntity) {
         val bundle = Bundle().apply {
-            putLong(Const.EVENT_TIME, calendarItem.eventStart.millis)
+            putLong(Const.EVENT_TIME, calendarItem.startTime.millis)
         }
         val destination = SystemActivity(CalendarActivity::class.java, bundle)
         NavigationManager.open(requireContext(), destination)
@@ -197,7 +198,7 @@ class CalendarDetailsFragment : RoundedBottomSheetDialogFragment() {
 
     interface OnEventInteractionListener {
         fun onEventDeleted(eventId: String)
-        fun onEditEvent(calendarItem: CalendarItem)
+        fun onEditEvent(calendarItem: CalendarItemViewEntity)
     }
 
 }

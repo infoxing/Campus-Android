@@ -13,15 +13,16 @@ import java.util.List;
 
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.other.generic.adapter.SimpleStickyListHeadersAdapter;
-import de.tum.in.tumcampusapp.component.tumui.grades.model.Exam;
+import de.tum.in.tumcampusapp.component.tumui.grades.viewmodel.ExamViewEntity;
 
 /**
  * Custom UI adapter for a list of exams.
  */
-public class ExamListAdapter extends SimpleStickyListHeadersAdapter<Exam> {
+public class ExamListAdapter extends SimpleStickyListHeadersAdapter<ExamViewEntity> {
+
     private static final DateTimeFormatter DF = DateTimeFormat.mediumDate();
 
-    ExamListAdapter(Context context, List<Exam> results) {
+    ExamListAdapter(Context context, List<ExamViewEntity> results) {
         super(context, results);
         Collections.sort(infoList);
     }
@@ -39,12 +40,12 @@ public class ExamListAdapter extends SimpleStickyListHeadersAdapter<Exam> {
             holder = (ViewHolder) view.getTag();
         }
 
-        Exam exam = infoList.get(position);
+        ExamViewEntity exam = infoList.get(position);
         if (exam != null) {
             holder.nameTextView.setText(exam.getCourse());
             holder.gradeTextView.setText(exam.getGrade());
 
-            int gradeColor = exam.getGradeColor(context);
+            int gradeColor = exam.getGradeColor();
             holder.gradeTextView.getBackground().setTint(gradeColor);
 
             holder.examDateTextView.setText(String.format(
@@ -59,7 +60,7 @@ public class ExamListAdapter extends SimpleStickyListHeadersAdapter<Exam> {
     }
 
     @Override
-    public String generateHeaderName(Exam item) {
+    public String generateHeaderName(ExamViewEntity item) {
         String headerText = super.generateHeaderName(item);
         int year = Integer.parseInt(headerText.substring(0, 2));
         if (headerText.charAt(2) == 'W') {

@@ -6,7 +6,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import de.tum.in.tumcampusapp.component.other.locations.model.BuildingToGps;
+import de.tum.in.tumcampusapp.model.locations.BuildingToGps;
 
 @Dao
 public interface BuildingToGpsDao {

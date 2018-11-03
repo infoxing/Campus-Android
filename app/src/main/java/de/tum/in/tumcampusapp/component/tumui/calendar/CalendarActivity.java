@@ -43,9 +43,10 @@ import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.api.tumonline.CacheControl;
 import de.tum.in.tumcampusapp.component.notifications.persistence.NotificationType;
 import de.tum.in.tumcampusapp.component.other.generic.activity.ActivityForAccessingTumOnline;
-import de.tum.in.tumcampusapp.component.tumui.calendar.model.CalendarItem;
-import de.tum.in.tumcampusapp.component.tumui.calendar.model.Event;
-import de.tum.in.tumcampusapp.component.tumui.calendar.model.EventsResponse;
+import de.tum.in.tumcampusapp.model.calendar.CalendarItem;
+import de.tum.in.tumcampusapp.model.calendar.Event;
+import de.tum.in.tumcampusapp.model.calendar.EventsResponse;
+import de.tum.in.tumcampusapp.component.tumui.calendar.viewmodel.CalendarItemViewEntity;
 import de.tum.in.tumcampusapp.component.ui.transportation.TransportController;
 import de.tum.in.tumcampusapp.database.TcaDb;
 import de.tum.in.tumcampusapp.utils.Const;
@@ -456,7 +457,9 @@ public class CalendarActivity extends ActivityForAccessingTumOnline<EventsRespon
 
             }
             calendarItem.setLocation(location.toString());
-            events.add(new IntegratedCalendarEvent(calendarItem, this));
+
+            CalendarItemViewEntity viewEntity = CalendarItemViewEntity.create(this, calendarItem);
+            events.add(new IntegratedCalendarEvent(viewEntity, this));
         }
         return events;
     }
@@ -512,15 +515,15 @@ public class CalendarActivity extends ActivityForAccessingTumOnline<EventsRespon
     }
 
     @Override
-    public void onEditEvent(@NotNull CalendarItem calendarItem) {
+    public void onEditEvent(@NotNull CalendarItemViewEntity calendarItem) {
         // TODO: CalendarItem should implement Parcelable
         Bundle bundle = new Bundle();
         bundle.putBoolean(Const.EVENT_EDIT, true);
         bundle.putString(Const.EVENT_TITLE, calendarItem.getTitle());
         bundle.putString(Const.EVENT_COMMENT, calendarItem.getDescription());
-        bundle.putSerializable(Const.EVENT_START, calendarItem.getDtstart());
-        bundle.putSerializable(Const.EVENT_END, calendarItem.getDtend());
-        bundle.putString(Const.EVENT_NR, calendarItem.getNr());
+        bundle.putSerializable(Const.EVENT_START, calendarItem.getStartTime());
+        bundle.putSerializable(Const.EVENT_END, calendarItem.getEndTime());
+        bundle.putString(Const.EVENT_NR, calendarItem.getId());
         Intent intent = new Intent(this, CreateEventActivity.class);
         intent.putExtras(bundle);
         startActivity(intent);

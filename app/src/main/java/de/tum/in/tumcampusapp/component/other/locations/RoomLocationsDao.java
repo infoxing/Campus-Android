@@ -4,7 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import de.tum.in.tumcampusapp.component.tumui.lectures.model.RoomLocations;
+import de.tum.in.tumcampusapp.model.lecture.RoomLocations;
 
 @Dao
 public interface RoomLocationsDao {

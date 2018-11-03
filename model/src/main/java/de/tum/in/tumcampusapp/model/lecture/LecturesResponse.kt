@@ -1,4 +1,4 @@
-package de.tum.`in`.tumcampusapp.component.tumui.calendar.model
+package de.tum.`in`.tumcampusapp.model.lecture
 
 import com.tickaroo.tikxml.annotation.Element
 import com.tickaroo.tikxml.annotation.Xml
@@ -7,7 +7,7 @@ import com.tickaroo.tikxml.annotation.Xml
  * This class is dealing with the deserialization of the output of TUMOnline to
  * the method "sucheLehrveranstaltungen" or "eigeneLehrveranstaltungen".
  *
- * @see LecturesSearchRow
+ * @see Lecture
  */
-@Xml(name = "events")
-data class EventsResponse(@Element val events: List<Event>? = null)
+@Xml(name = "rowset")
+data class LecturesResponse(@Element val lectures: List<Lecture> = mutableListOf())

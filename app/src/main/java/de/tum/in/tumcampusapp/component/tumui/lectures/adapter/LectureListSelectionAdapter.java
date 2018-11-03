@@ -12,7 +12,7 @@ import java.util.List;
 
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.tumui.calendar.CalendarController;
-import de.tum.in.tumcampusapp.component.tumui.calendar.model.CalendarItem;
+import de.tum.in.tumcampusapp.model.calendar.CalendarItem;
 import de.tum.in.tumcampusapp.utils.Utils;
 
 public class LectureListSelectionAdapter extends BaseAdapter implements CompoundButton.OnCheckedChangeListener {

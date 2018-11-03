@@ -17,8 +17,9 @@ import com.github.mikephil.charting.data.*
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.api.tumonline.CacheControl
 import de.tum.`in`.tumcampusapp.component.other.generic.activity.ActivityForAccessingTumOnline
-import de.tum.`in`.tumcampusapp.component.tumui.grades.model.Exam
-import de.tum.`in`.tumcampusapp.component.tumui.grades.model.ExamList
+import de.tum.`in`.tumcampusapp.model.grades.Exam
+import de.tum.`in`.tumcampusapp.model.grades.ExamList
+import de.tum.`in`.tumcampusapp.component.tumui.grades.viewmodel.ExamViewEntity
 import kotlinx.android.synthetic.main.activity_grades.*
 import java.text.NumberFormat
 import java.util.*
@@ -147,7 +148,7 @@ class GradesActivity : ActivityForAccessingTumOnline<ExamList>(R.layout.activity
      * @param exams List of [Exam] objects
      * @return Average grade
      */
-    private fun calculateAverageGrade(exams: List<Exam>): Double {
+    private fun calculateAverageGrade(exams: List<ExamViewEntity>): Double {
         val numberFormat = NumberFormat.getInstance(Locale.GERMAN)
         val grades = exams
                 .filter { it.isPassed }
@@ -225,7 +226,8 @@ class GradesActivity : ActivityForAccessingTumOnline<ExamList>(R.layout.activity
             return
         }
 
-        gradesListView.adapter = ExamListAdapter(this@GradesActivity, exams)
+        val viewEntities = exams.map { ExamViewEntity.create(this, it) }
+        gradesListView.adapter = ExamListAdapter(this@GradesActivity, viewEntities)
 
         if (!isFetched) {
             // We hide the charts container in the beginning. Then, when we load data for the first
@@ -239,7 +241,7 @@ class GradesActivity : ActivityForAccessingTumOnline<ExamList>(R.layout.activity
             displayBarChart(this)
         }
 
-        val averageGrade = calculateAverageGrade(exams)
+        val averageGrade = calculateAverageGrade(viewEntities)
         averageGradeTextView.text = String.format("%s: %.2f", getString(R.string.average_grade), averageGrade)
     }
 

@@ -3,7 +3,7 @@ package de.tum.`in`.tumcampusapp.component.ui.chat.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.RoomWarnings
-import de.tum.`in`.tumcampusapp.component.tumui.lectures.model.Lecture
+import de.tum.`in`.tumcampusapp.model.lecture.Lecture
 
 @Entity(tableName = "chat_room", primaryKeys = ["name", "_id"])
 @SuppressWarnings(RoomWarnings.DEFAULT_CONSTRUCTOR)

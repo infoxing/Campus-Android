@@ -1,4 +1,4 @@
-package de.tum.`in`.tumcampusapp.component.tumui.feedback.model
+package de.tum.`in`.tumcampusapp.model.feedback
 
 import de.tum.`in`.tumcampusapp.utils.Const
 

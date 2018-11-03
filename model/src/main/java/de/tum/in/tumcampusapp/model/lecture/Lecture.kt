@@ -1,8 +1,7 @@
-package de.tum.`in`.tumcampusapp.component.tumui.lectures.model
+package de.tum.`in`.tumcampusapp.model.lecture
 
 import com.tickaroo.tikxml.annotation.PropertyElement
 import com.tickaroo.tikxml.annotation.Xml
-import de.tum.`in`.tumcampusapp.component.other.generic.adapter.SimpleStickyListHeadersAdapter
 
 /**
  * This class is dealing with the deserialization of the output of TUMOnline to
@@ -25,13 +24,9 @@ data class Lecture(
         @PropertyElement(name = "stp_sp_sst") val stp_sp_sst: String,
         @PropertyElement(name = "stp_sp_titel") val title: String,
         @PropertyElement(name = "vortragende_mitwirkende") val lecturers: String? = null
-) : Comparable<Lecture>, SimpleStickyListHeadersAdapter.SimpleStickyListItem {
+) : Comparable<Lecture> {
 
     override fun compareTo(other: Lecture) = other.semesterId.compareTo(semesterId)
-
-    override fun getHeadName() = semesterName
-
-    override fun getHeaderId() = semesterId
 
     companion object {
         @JvmField val STP_SP_NR = "stp_sp_nr"

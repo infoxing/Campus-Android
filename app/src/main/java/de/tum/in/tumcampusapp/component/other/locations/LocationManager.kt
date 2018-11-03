@@ -10,8 +10,8 @@ import androidx.core.content.ContextCompat
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import de.tum.`in`.tumcampusapp.api.app.TUMCabeClient
-import de.tum.`in`.tumcampusapp.component.other.locations.model.BuildingToGps
-import de.tum.`in`.tumcampusapp.component.other.locations.model.Geo
+import de.tum.`in`.tumcampusapp.model.locations.BuildingToGps
+import de.tum.`in`.tumcampusapp.model.locations.Geo
 import de.tum.`in`.tumcampusapp.component.tumui.calendar.CalendarController
 import de.tum.`in`.tumcampusapp.model.roomfinder.RoomFinderCoordinate
 import de.tum.`in`.tumcampusapp.model.cafeteria.Cafeteria

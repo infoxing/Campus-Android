@@ -15,8 +15,8 @@ import org.robolectric.annotation.Config;
 import de.tum.in.tumcampusapp.TestApp;
 import de.tum.in.tumcampusapp.component.other.locations.RoomLocationsDao;
 import de.tum.in.tumcampusapp.component.tumui.calendar.CalendarDao;
-import de.tum.in.tumcampusapp.component.tumui.calendar.model.CalendarItem;
-import de.tum.in.tumcampusapp.component.tumui.lectures.model.RoomLocations;
+import de.tum.in.tumcampusapp.model.calendar.CalendarItem;
+import de.tum.in.tumcampusapp.model.lecture.RoomLocations;
 import de.tum.in.tumcampusapp.database.TcaDb;
 
 import static org.assertj.core.api.Assertions.assertThat;

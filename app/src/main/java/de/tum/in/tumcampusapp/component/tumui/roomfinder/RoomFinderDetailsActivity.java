@@ -23,7 +23,7 @@ import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
 import de.tum.in.tumcampusapp.component.other.generic.ImageViewTouchFragment;
 import de.tum.in.tumcampusapp.component.other.generic.activity.ActivityForLoadingInBackground;
 import de.tum.in.tumcampusapp.component.other.locations.LocationManager;
-import de.tum.in.tumcampusapp.component.other.locations.model.Geo;
+import de.tum.in.tumcampusapp.model.locations.Geo;
 import de.tum.in.tumcampusapp.model.roomfinder.RoomFinderCoordinate;
 import de.tum.in.tumcampusapp.model.roomfinder.RoomFinderMap;
 import de.tum.in.tumcampusapp.model.roomfinder.RoomFinderRoom;

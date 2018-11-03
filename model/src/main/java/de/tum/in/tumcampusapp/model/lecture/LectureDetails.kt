@@ -1,4 +1,4 @@
-package de.tum.`in`.tumcampusapp.component.tumui.lectures.model
+package de.tum.`in`.tumcampusapp.model.lecture
 
 import com.tickaroo.tikxml.annotation.PropertyElement
 import com.tickaroo.tikxml.annotation.Xml

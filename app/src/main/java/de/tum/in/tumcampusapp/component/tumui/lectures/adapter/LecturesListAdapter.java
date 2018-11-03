@@ -10,7 +10,7 @@ import java.util.List;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.other.generic.adapter.SimpleStickyListHeadersAdapter;
 import de.tum.in.tumcampusapp.component.tumui.lectures.activity.LecturesPersonalActivity;
-import de.tum.in.tumcampusapp.component.tumui.lectures.model.Lecture;
+import de.tum.in.tumcampusapp.component.tumui.lectures.viewmodel.LectureViewEntity;
 import de.tum.in.tumcampusapp.component.ui.chat.activity.ChatRoomsActivity;
 
 /**
@@ -21,17 +21,17 @@ import de.tum.in.tumcampusapp.component.ui.chat.activity.ChatRoomsActivity;
  * show semester info as sticky header.
  */
 
-public class LecturesListAdapter extends SimpleStickyListHeadersAdapter<Lecture> {
+public class LecturesListAdapter extends SimpleStickyListHeadersAdapter<LectureViewEntity> {
 
-    public LecturesListAdapter(Context context, List<Lecture> results) {
+    public LecturesListAdapter(Context context, List<LectureViewEntity> results) {
         super(context, results);
     }
 
     @Override
-    public String generateHeaderName(Lecture item) {
+    public String generateHeaderName(LectureViewEntity item) {
         String headerText = super.generateHeaderName(item);
-        headerText = headerText.replaceAll("Sommersemester", this.context.getString(R.string.semester_summer));
-        headerText = headerText.replaceAll("Wintersemester", this.context.getString(R.string.semester_winter));
+        headerText = headerText.replaceAll("Sommersemester", context.getString(R.string.semester_summer));
+        headerText = headerText.replaceAll("Wintersemester", context.getString(R.string.semester_winter));
         return headerText;
     }
 
@@ -53,7 +53,7 @@ public class LecturesListAdapter extends SimpleStickyListHeadersAdapter<Lecture>
             holder = (ViewHolder) convertView.getTag();
         }
 
-        Lecture lvItem = infoList.get(position);
+        LectureViewEntity lvItem = infoList.get(position);
 
         // if we have something to display - set for each lecture element
         if (lvItem != null) {

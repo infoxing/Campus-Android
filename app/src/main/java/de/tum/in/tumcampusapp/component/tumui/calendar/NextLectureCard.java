@@ -2,8 +2,6 @@ package de.tum.in.tumcampusapp.component.tumui.calendar;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +11,10 @@ import org.joda.time.DateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import de.tum.in.tumcampusapp.R;
-import de.tum.in.tumcampusapp.component.tumui.calendar.model.CalendarItem;
+import de.tum.in.tumcampusapp.component.tumui.calendar.viewmodel.CalendarItemViewEntity;
 import de.tum.in.tumcampusapp.component.ui.overview.CardManager;
 import de.tum.in.tumcampusapp.component.ui.overview.card.Card;
 import de.tum.in.tumcampusapp.component.ui.overview.card.CardViewHolder;
@@ -68,12 +68,12 @@ public class NextLectureCard extends Card {
         return 0;
     }
 
-    public void setLectures(List<CalendarItem> calendarItems) {
-        for (CalendarItem calendarItem : calendarItems) {
+    public void setLectures(List<CalendarItemViewEntity> calendarItems) {
+        for (CalendarItemViewEntity calendarItem : calendarItems) {
             CardCalendarItem item = new CardCalendarItem();
-            item.id = calendarItem.getNr();
-            item.start = calendarItem.getDtstart();
-            item.end = calendarItem.getDtend();
+            item.id = calendarItem.getId();
+            item.start = calendarItem.getStartTime();
+            item.end = calendarItem.getEndTime();
             item.title = calendarItem.getFormattedTitle();
             item.locations = calendarController.getLocationsForEvent(item.id);
             lectures.add(item);

@@ -1,16 +1,10 @@
-package de.tum.`in`.tumcampusapp.component.tumui.grades.model
+package de.tum.`in`.tumcampusapp.model.grades
 
-import android.content.Context
-import androidx.core.content.ContextCompat
 import com.tickaroo.tikxml.annotation.PropertyElement
 import com.tickaroo.tikxml.annotation.Xml
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.model.converters.DateTimeConverter
-import de.tum.`in`.tumcampusapp.component.other.generic.adapter.SimpleStickyListHeadersAdapter
-import de.tum.`in`.tumcampusapp.utils.tryOrNull
 import org.joda.time.DateTime
-import java.text.NumberFormat
-import java.util.*
 
 /**
  * Exam passed by the user.
@@ -37,11 +31,7 @@ data class Exam(
         val programID: String,
         @PropertyElement(name = "lv_semester")
         val semester: String = ""
-) : Comparable<Exam>, SimpleStickyListHeadersAdapter.SimpleStickyListItem {
-
-    override fun getHeadName() = semester
-
-    override fun getHeaderId() = semester
+) : Comparable<Exam> {
 
     override fun compareTo(other: Exam): Int {
         return compareByDescending<Exam> { it.semester }
@@ -50,24 +40,8 @@ data class Exam(
                 .compare(this, other)
     }
 
-    private val gradeValue: Double?
-        get() = tryOrNull { NumberFormat.getInstance(Locale.GERMAN).parse(grade).toDouble() }
-
-    val isPassed: Boolean
-        get() {
-            val value = gradeValue ?: 5.0
-            return value <= 4.0
-        }
-
-    fun getGradeColor(context: Context): Int {
-        // While using getOrDefault() compiles, it results in a NoSuchMethodError on devices with
-        // API levels lower than 24.
-        val resId = GRADE_COLORS[grade] ?: R.color.grade_default
-        return ContextCompat.getColor(context, resId)
-    }
-
     companion object {
-        private val GRADE_COLORS = mapOf(
+        val GRADE_COLORS = mapOf(
                 "1,0" to R.color.grade_1_0,
                 "1,3" to R.color.grade_1_3,
                 "1,4" to R.color.grade_1_3,

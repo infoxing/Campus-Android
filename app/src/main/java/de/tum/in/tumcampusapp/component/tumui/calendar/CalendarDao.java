@@ -9,7 +9,7 @@ import org.joda.time.DateTime;
 
 import java.util.List;
 
-import de.tum.in.tumcampusapp.component.tumui.calendar.model.CalendarItem;
+import de.tum.in.tumcampusapp.model.calendar.CalendarItem;
 
 @Dao
 public interface CalendarDao {
