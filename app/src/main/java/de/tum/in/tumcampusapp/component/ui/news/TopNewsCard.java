@@ -19,13 +19,13 @@ import org.jetbrains.annotations.Nullable;
 import org.joda.time.DateTime;
 
 import de.tum.in.tumcampusapp.R;
-import de.tum.in.tumcampusapp.component.other.navigation.NavigationDestination;
-import de.tum.in.tumcampusapp.component.other.navigation.SystemIntent;
+import de.tum.in.tumcampusapp.navigation.NavigationDestination;
+import de.tum.in.tumcampusapp.navigation.SystemIntent;
 import de.tum.in.tumcampusapp.component.ui.overview.CardManager;
 import de.tum.in.tumcampusapp.component.ui.overview.card.Card;
 import de.tum.in.tumcampusapp.component.ui.overview.card.CardViewHolder;
 import de.tum.in.tumcampusapp.core.Const;
-import de.tum.in.tumcampusapp.utils.DateTimeUtils;
+import de.tum.in.tumcampusapp.core.DateTimeUtils;
 import de.tum.in.tumcampusapp.core.Utils;
 
 /**

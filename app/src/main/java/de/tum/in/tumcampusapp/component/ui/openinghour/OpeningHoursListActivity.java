@@ -4,9 +4,9 @@ import android.os.Bundle;
 
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.other.generic.activity.BaseActivity;
-import de.tum.in.tumcampusapp.component.other.navigation.NavigationDestination;
-import de.tum.in.tumcampusapp.component.other.navigation.NavigationManager;
-import de.tum.in.tumcampusapp.component.other.navigation.SystemActivity;
+import de.tum.in.tumcampusapp.navigation.NavigationDestination;
+import de.tum.in.tumcampusapp.navigation.NavigationManager;
+import de.tum.in.tumcampusapp.navigation.SystemActivity;
 
 /**
  * An activity representing a list of Items. This activity has different

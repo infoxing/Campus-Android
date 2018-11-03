@@ -1,7 +1,7 @@
 package de.tum.`in`.tumcampusapp.component.notifications.model
 
 import android.content.Context
-import de.tum.`in`.tumcampusapp.component.notifications.persistence.ScheduledNotification
+import de.tum.`in`.tumcampusapp.model.activealarms.ScheduledNotification
 import de.tum.`in`.tumcampusapp.database.TcaDb
 
 class NotificationStore(context: Context) {

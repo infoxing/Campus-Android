@@ -15,7 +15,7 @@ import org.robolectric.annotation.Config;
 import java.util.List;
 
 import de.tum.in.tumcampusapp.TestApp;
-import de.tum.in.tumcampusapp.component.ui.news.NewsDao;
+import de.tum.in.tumcampusapp.database.daos.NewsDao;
 import de.tum.in.tumcampusapp.model.news.News;
 import de.tum.in.tumcampusapp.database.TcaDb;
 

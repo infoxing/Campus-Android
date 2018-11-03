@@ -6,7 +6,7 @@ import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.tum.`in`.tumcampusapp.R
-import de.tum.`in`.tumcampusapp.component.other.general.RecentsDao
+import de.tum.`in`.tumcampusapp.database.daos.RecentsDao
 import de.tum.`in`.tumcampusapp.component.other.generic.activity.ActivityForSearchingTumOnline
 import de.tum.`in`.tumcampusapp.model.person.Person
 import de.tum.`in`.tumcampusapp.model.person.PersonList

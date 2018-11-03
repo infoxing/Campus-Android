@@ -19,7 +19,7 @@ import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.tumui.calendar.CalendarController;
 import de.tum.in.tumcampusapp.component.tumui.calendar.IntegratedCalendarEvent;
 import de.tum.in.tumcampusapp.core.Const;
-import de.tum.in.tumcampusapp.utils.DateTimeUtils;
+import de.tum.in.tumcampusapp.core.DateTimeUtils;
 
 @SuppressLint("Registered")
 public class TimetableWidgetService extends RemoteViewsService {

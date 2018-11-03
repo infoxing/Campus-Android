@@ -34,7 +34,7 @@ import de.tum.in.tumcampusapp.database.TcaDb;
 import de.tum.in.tumcampusapp.model.calendar.CalendarItem;
 import de.tum.in.tumcampusapp.model.calendar.CreateEventResponse;
 import de.tum.in.tumcampusapp.model.calendar.DeleteEventResponse;
-import de.tum.in.tumcampusapp.utils.DateTimeUtils;
+import de.tum.in.tumcampusapp.core.DateTimeUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

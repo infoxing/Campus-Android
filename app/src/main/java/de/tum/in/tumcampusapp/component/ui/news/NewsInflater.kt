@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import de.tum.`in`.tumcampusapp.component.ui.news.viewmodel.NewsViewEntity
 import de.tum.`in`.tumcampusapp.database.TcaDb
+import de.tum.`in`.tumcampusapp.database.daos.NewsSourcesDao
 
 class NewsInflater(context: Context) {
 

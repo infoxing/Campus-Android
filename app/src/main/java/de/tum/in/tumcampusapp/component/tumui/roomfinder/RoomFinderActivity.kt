@@ -8,7 +8,7 @@ import android.widget.AdapterView
 import android.widget.AdapterView.OnItemClickListener
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.api.app.TUMCabeClient
-import de.tum.`in`.tumcampusapp.component.other.general.RecentsDao
+import de.tum.`in`.tumcampusapp.database.daos.RecentsDao
 import de.tum.`in`.tumcampusapp.component.other.generic.activity.ActivityForSearchingInBackground
 import de.tum.`in`.tumcampusapp.component.other.generic.adapter.NoResultsAdapter
 import de.tum.`in`.tumcampusapp.component.tumui.roomfinder.viewmodel.RoomFinderRoomViewEntity

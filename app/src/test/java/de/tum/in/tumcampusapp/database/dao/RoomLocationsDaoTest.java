@@ -13,8 +13,8 @@ import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
 import de.tum.in.tumcampusapp.TestApp;
-import de.tum.in.tumcampusapp.component.other.locations.RoomLocationsDao;
-import de.tum.in.tumcampusapp.component.tumui.calendar.CalendarDao;
+import de.tum.in.tumcampusapp.database.daos.RoomLocationsDao;
+import de.tum.in.tumcampusapp.database.daos.CalendarDao;
 import de.tum.in.tumcampusapp.model.calendar.CalendarItem;
 import de.tum.in.tumcampusapp.model.lecture.RoomLocations;
 import de.tum.in.tumcampusapp.database.TcaDb;

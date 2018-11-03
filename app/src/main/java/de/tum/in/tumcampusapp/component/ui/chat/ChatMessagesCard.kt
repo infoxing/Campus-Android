@@ -8,8 +8,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.google.gson.Gson
 import de.tum.`in`.tumcampusapp.R
-import de.tum.`in`.tumcampusapp.component.other.navigation.NavigationDestination
-import de.tum.`in`.tumcampusapp.component.other.navigation.SystemActivity
+import de.tum.`in`.tumcampusapp.navigation.NavigationDestination
+import de.tum.`in`.tumcampusapp.navigation.SystemActivity
 import de.tum.`in`.tumcampusapp.component.ui.chat.activity.ChatActivity
 import de.tum.`in`.tumcampusapp.model.chat.ChatMessage
 import de.tum.`in`.tumcampusapp.model.chat.ChatRoom
@@ -19,6 +19,7 @@ import de.tum.`in`.tumcampusapp.component.ui.overview.card.Card
 import de.tum.`in`.tumcampusapp.component.ui.overview.card.CardViewHolder
 import de.tum.`in`.tumcampusapp.database.TcaDb
 import de.tum.`in`.tumcampusapp.core.Const
+import de.tum.`in`.tumcampusapp.database.daos.ChatMessageDao
 import java.util.*
 
 /**

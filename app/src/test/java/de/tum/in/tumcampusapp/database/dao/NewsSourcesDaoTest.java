@@ -10,7 +10,7 @@ import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
 import de.tum.in.tumcampusapp.TestApp;
-import de.tum.in.tumcampusapp.component.ui.news.NewsSourcesDao;
+import de.tum.in.tumcampusapp.database.daos.NewsSourcesDao;
 import de.tum.in.tumcampusapp.model.news.NewsSources;
 import de.tum.in.tumcampusapp.database.TcaDb;
 

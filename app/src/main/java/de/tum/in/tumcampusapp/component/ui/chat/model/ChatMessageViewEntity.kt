@@ -3,7 +3,7 @@ package de.tum.`in`.tumcampusapp.component.ui.chat.model
 import android.content.Context
 import de.tum.`in`.tumcampusapp.model.chat.ChatMember
 import de.tum.`in`.tumcampusapp.model.chat.ChatMessage
-import de.tum.`in`.tumcampusapp.utils.DateTimeUtils
+import de.tum.`in`.tumcampusapp.core.DateTimeUtils
 import org.joda.time.DateTime
 
 data class ChatMessageViewEntity(

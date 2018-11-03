@@ -88,6 +88,7 @@ configurations.all {
 dependencies {
 
     implementation project(':api')
+    implementation project(':database')
 
     // Support Libraries
     implementation 'androidx.cardview:cardview:1.0.0'

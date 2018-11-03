@@ -4,6 +4,8 @@ import android.content.Context
 import de.tum.`in`.tumcampusapp.model.studyroom.StudyRoom
 import de.tum.`in`.tumcampusapp.model.studyroom.StudyRoomGroup
 import de.tum.`in`.tumcampusapp.database.TcaDb
+import de.tum.`in`.tumcampusapp.database.daos.StudyRoomDao
+import de.tum.`in`.tumcampusapp.database.daos.StudyRoomGroupDao
 import org.jetbrains.anko.doAsync
 
 /**

@@ -2,7 +2,7 @@ package de.tum.`in`.tumcampusapp.component.ui.tufilm
 
 import de.tum.`in`.tumcampusapp.model.tufilm.RawKino
 import de.tum.`in`.tumcampusapp.database.TcaDb
-import de.tum.`in`.tumcampusapp.utils.sync.model.Sync
+import de.tum.`in`.tumcampusapp.model.sync.Sync
 import io.reactivex.Flowable
 import org.joda.time.DateTime
 

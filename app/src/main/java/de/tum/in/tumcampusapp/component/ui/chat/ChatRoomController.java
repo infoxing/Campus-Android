@@ -15,6 +15,7 @@ import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
 import de.tum.in.tumcampusapp.api.app.model.TUMCabeVerification;
 import de.tum.in.tumcampusapp.api.shared.CacheControl;
 import de.tum.in.tumcampusapp.api.tumonline.TUMOnlineClient;
+import de.tum.in.tumcampusapp.database.daos.ChatRoomDao;
 import de.tum.in.tumcampusapp.model.lecture.Lecture;
 import de.tum.in.tumcampusapp.model.lecture.LecturesResponse;
 import de.tum.in.tumcampusapp.model.chat.ChatMember;

@@ -8,8 +8,8 @@ import de.tum.`in`.tumcampusapp.component.notifications.model.AppNotification
 import de.tum.`in`.tumcampusapp.component.notifications.model.FutureNotification
 import de.tum.`in`.tumcampusapp.component.notifications.model.InstantNotification
 import de.tum.`in`.tumcampusapp.component.notifications.model.NotificationStore
-import de.tum.`in`.tumcampusapp.component.notifications.persistence.ActiveAlarm
-import de.tum.`in`.tumcampusapp.component.notifications.persistence.NotificationType
+import de.tum.`in`.tumcampusapp.model.activealarms.ActiveAlarm
+import de.tum.`in`.tumcampusapp.model.activealarms.NotificationType
 import de.tum.`in`.tumcampusapp.component.notifications.receivers.NotificationAlarmReceiver
 import de.tum.`in`.tumcampusapp.component.notifications.receivers.NotificationReceiver
 import de.tum.`in`.tumcampusapp.database.TcaDb

@@ -18,7 +18,7 @@ import de.tum.in.tumcampusapp.component.tumui.lectures.activity.LecturesPersonal
 import de.tum.in.tumcampusapp.component.ui.chat.activity.ChatRoomsActivity;
 import de.tum.in.tumcampusapp.model.chat.ChatRoomAndLastMessage;
 import de.tum.in.tumcampusapp.model.chat.ChatRoomDbRow;
-import de.tum.in.tumcampusapp.utils.DateTimeUtils;
+import de.tum.in.tumcampusapp.core.DateTimeUtils;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 
 /**

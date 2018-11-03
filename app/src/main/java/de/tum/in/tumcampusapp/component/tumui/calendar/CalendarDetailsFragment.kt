@@ -13,8 +13,8 @@ import androidx.core.content.ContextCompat
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.api.tumonline.TUMOnlineClient
 import de.tum.`in`.tumcampusapp.api.tumonline.exception.RequestLimitReachedException
-import de.tum.`in`.tumcampusapp.component.other.navigation.NavigationManager
-import de.tum.`in`.tumcampusapp.component.other.navigation.SystemActivity
+import de.tum.`in`.tumcampusapp.navigation.NavigationManager
+import de.tum.`in`.tumcampusapp.navigation.SystemActivity
 import de.tum.`in`.tumcampusapp.model.calendar.DeleteEventResponse
 import de.tum.`in`.tumcampusapp.component.tumui.calendar.viewmodel.CalendarItemViewEntity
 import de.tum.`in`.tumcampusapp.component.tumui.roomfinder.RoomFinderActivity
@@ -23,6 +23,7 @@ import de.tum.`in`.tumcampusapp.core.Const
 import de.tum.`in`.tumcampusapp.core.Const.CALENDAR_ID_PARAM
 import de.tum.`in`.tumcampusapp.core.Const.CALENDAR_SHOWN_IN_CALENDAR_ACTIVITY_PARAM
 import de.tum.`in`.tumcampusapp.core.Utils
+import de.tum.`in`.tumcampusapp.database.daos.CalendarDao
 import de.tum.`in`.tumcampusapp.utils.ui.RoundedBottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_calendar_details.*
 import retrofit2.Call

@@ -1,0 +1,21 @@
+package de.tum.in.tumcampusapp.database.daos;
+
+import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.Query;
+
+import java.util.List;
+
+import de.tum.in.tumcampusapp.model.locations.BuildingToGps;
+
+@Dao
+public interface BuildingToGpsDao {
+    @Insert
+    void insert(BuildingToGps buildingToGps);
+
+    @Query("SELECT * FROM buildingtogps")
+    List<BuildingToGps> getAll();
+
+    @Query("DELETE FROM buildingtogps")
+    void removeCache();
+}

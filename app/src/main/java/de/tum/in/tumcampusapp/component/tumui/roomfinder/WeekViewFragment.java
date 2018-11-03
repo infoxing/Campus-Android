@@ -28,7 +28,7 @@ import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
 import de.tum.in.tumcampusapp.component.tumui.calendar.IntegratedCalendarEvent;
 import de.tum.in.tumcampusapp.model.roomfinder.RoomFinderSchedule;
 import de.tum.in.tumcampusapp.core.Const;
-import de.tum.in.tumcampusapp.utils.DateTimeUtils;
+import de.tum.in.tumcampusapp.core.DateTimeUtils;
 import de.tum.in.tumcampusapp.core.Utils;
 
 public class WeekViewFragment extends Fragment implements MonthLoader.MonthChangeListener {

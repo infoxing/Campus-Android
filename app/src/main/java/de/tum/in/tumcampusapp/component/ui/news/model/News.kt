@@ -9,7 +9,7 @@ import android.net.Uri
 import com.google.gson.annotations.SerializedName
 import de.tum.`in`.tumcampusapp.component.ui.tufilm.KinoActivity
 import de.tum.`in`.tumcampusapp.core.Const
-import de.tum.`in`.tumcampusapp.utils.DateTimeUtils
+import de.tum.`in`.tumcampusapp.core.DateTimeUtils
 import org.joda.time.DateTime
 
 /**

@@ -1,7 +1,7 @@
 package de.tum.`in`.tumcampusapp.component.notifications.model
 
 import android.app.Notification
-import de.tum.`in`.tumcampusapp.component.notifications.persistence.NotificationType
+import de.tum.`in`.tumcampusapp.model.activealarms.NotificationType
 import org.joda.time.DateTime
 
 /**

@@ -14,8 +14,8 @@ import org.jetbrains.annotations.Nullable;
 import org.joda.time.DateTime;
 
 import de.tum.in.tumcampusapp.R;
-import de.tum.in.tumcampusapp.component.other.navigation.NavigationDestination;
-import de.tum.in.tumcampusapp.component.other.navigation.SystemActivity;
+import de.tum.in.tumcampusapp.navigation.NavigationDestination;
+import de.tum.in.tumcampusapp.navigation.SystemActivity;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.activity.CafeteriaActivity;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaWithMenus;
 import de.tum.in.tumcampusapp.component.ui.overview.CardManager;

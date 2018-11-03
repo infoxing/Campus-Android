@@ -5,11 +5,11 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.component.notifications.model.FutureNotification
-import de.tum.`in`.tumcampusapp.component.notifications.persistence.NotificationType
+import de.tum.`in`.tumcampusapp.model.activealarms.NotificationType
 import de.tum.`in`.tumcampusapp.core.Const
 import de.tum.`in`.tumcampusapp.model.calendar.Event
 import de.tum.`in`.tumcampusapp.model.locations.Geo
-import de.tum.`in`.tumcampusapp.utils.DateTimeUtils
+import de.tum.`in`.tumcampusapp.core.DateTimeUtils
 import org.joda.time.DateTime
 
 data class EventViewEntity(

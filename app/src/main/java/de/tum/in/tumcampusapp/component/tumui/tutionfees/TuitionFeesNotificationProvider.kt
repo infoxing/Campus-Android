@@ -8,7 +8,7 @@ import de.tum.`in`.tumcampusapp.api.shared.CacheControl
 import de.tum.`in`.tumcampusapp.component.notifications.NotificationProvider
 import de.tum.`in`.tumcampusapp.component.notifications.model.AppNotification
 import de.tum.`in`.tumcampusapp.component.notifications.model.InstantNotification
-import de.tum.`in`.tumcampusapp.component.notifications.persistence.NotificationType
+import de.tum.`in`.tumcampusapp.model.activealarms.NotificationType
 import de.tum.`in`.tumcampusapp.component.tumui.tutionfees.viewmodel.TuitionViewEntity
 import de.tum.`in`.tumcampusapp.core.Const
 

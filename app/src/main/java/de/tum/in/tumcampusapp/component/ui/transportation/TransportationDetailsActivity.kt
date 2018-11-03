@@ -7,7 +7,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import com.google.gson.Gson
 import de.tum.`in`.tumcampusapp.R
-import de.tum.`in`.tumcampusapp.component.other.general.RecentsDao
+import de.tum.`in`.tumcampusapp.database.daos.RecentsDao
 import de.tum.`in`.tumcampusapp.component.other.generic.activity.ProgressActivity
 import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.DepartureViewEntity
 import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.StationResultViewEntity

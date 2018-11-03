@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="IN">in</string>
+    <string name="MINUTES">minuten</string>
+    <string name="AT">um</string>
+    <string name="just_now">Gerade eben</string>
+    <string name="yesterday">Gestern</string>
+</resources>

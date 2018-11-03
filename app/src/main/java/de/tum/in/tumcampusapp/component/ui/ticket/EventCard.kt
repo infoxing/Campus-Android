@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import de.tum.`in`.tumcampusapp.R
-import de.tum.`in`.tumcampusapp.component.other.navigation.NavigationDestination
-import de.tum.`in`.tumcampusapp.component.other.navigation.SystemActivity
+import de.tum.`in`.tumcampusapp.navigation.NavigationDestination
+import de.tum.`in`.tumcampusapp.navigation.SystemActivity
 import de.tum.`in`.tumcampusapp.component.ui.overview.CardManager
 import de.tum.`in`.tumcampusapp.component.ui.overview.card.Card
 import de.tum.`in`.tumcampusapp.component.ui.overview.card.CardViewHolder

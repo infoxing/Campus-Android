@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Core</string>
+    <string name="IN">in</string>
+    <string name="MINUTES">minutes</string>
+    <string name="AT">at</string>
+    <string name="just_now">Just now</string>
+    <string name="yesterday">Yesterday</string>
 </resources>

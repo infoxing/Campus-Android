@@ -5,7 +5,8 @@ import android.content.Context;
 import org.joda.time.DateTime;
 
 import de.tum.in.tumcampusapp.database.TcaDb;
-import de.tum.in.tumcampusapp.utils.sync.model.Sync;
+import de.tum.in.tumcampusapp.database.daos.SyncDao;
+import de.tum.in.tumcampusapp.model.sync.Sync;
 
 /**
  * Sync Manager, tracks last successful syncs and prevents api fetch spams

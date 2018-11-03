@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import de.tum.`in`.tumcampusapp.R
-import de.tum.`in`.tumcampusapp.utils.DateTimeUtils
+import de.tum.`in`.tumcampusapp.core.DateTimeUtils
 import kotlinx.android.synthetic.main.layout_card_lecture.view.*
 
 

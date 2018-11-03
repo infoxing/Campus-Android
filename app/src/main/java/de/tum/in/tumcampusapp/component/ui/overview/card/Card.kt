@@ -6,7 +6,7 @@ import android.content.SharedPreferences.Editor
 import android.preference.PreferenceManager
 import androidx.recyclerview.widget.DiffUtil
 import de.tum.`in`.tumcampusapp.R
-import de.tum.`in`.tumcampusapp.component.other.navigation.NavigationDestination
+import de.tum.`in`.tumcampusapp.navigation.NavigationDestination
 import de.tum.`in`.tumcampusapp.core.Const.CARD_POSITION_PREFERENCE_SUFFIX
 import de.tum.`in`.tumcampusapp.core.Const.DISCARD_SETTINGS_START
 import de.tum.`in`.tumcampusapp.core.Utils

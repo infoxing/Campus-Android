@@ -16,6 +16,8 @@ import de.tum.in.tumcampusapp.api.shared.CacheControl;
 import de.tum.in.tumcampusapp.component.notifications.NotificationScheduler;
 import de.tum.in.tumcampusapp.component.notifications.ProvidesNotifications;
 import de.tum.in.tumcampusapp.component.notifications.model.AppNotification;
+import de.tum.in.tumcampusapp.database.daos.NewsDao;
+import de.tum.in.tumcampusapp.database.daos.NewsSourcesDao;
 import de.tum.in.tumcampusapp.model.news.News;
 import de.tum.in.tumcampusapp.model.news.NewsSources;
 import de.tum.in.tumcampusapp.component.ui.news.viewmodel.NewsViewEntity;

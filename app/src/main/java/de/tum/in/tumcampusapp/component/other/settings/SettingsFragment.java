@@ -10,17 +10,6 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AlertDialog;
-import androidx.preference.CheckBoxPreference;
-import androidx.preference.ListPreference;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceCategory;
-import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.PreferenceManager;
-import androidx.preference.SwitchPreferenceCompat;
 import android.view.View;
 
 import com.squareup.picasso.Picasso;
@@ -28,18 +17,31 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
+import androidx.preference.CheckBoxPreference;
+import androidx.preference.ListPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
+import androidx.preference.SwitchPreferenceCompat;
 import de.tum.in.tumcampusapp.R;
+import de.tum.in.tumcampusapp.api.shared.CacheManager;
 import de.tum.in.tumcampusapp.api.tumonline.AccessTokenManager;
 import de.tum.in.tumcampusapp.component.tumui.calendar.CalendarController;
 import de.tum.in.tumcampusapp.component.ui.eduroam.SetupEduroamActivity;
 import de.tum.in.tumcampusapp.component.ui.news.NewsController;
-import de.tum.in.tumcampusapp.model.news.NewsSources;
 import de.tum.in.tumcampusapp.component.ui.onboarding.StartupActivity;
-import de.tum.in.tumcampusapp.database.TcaDb;
-import de.tum.in.tumcampusapp.service.BackgroundService;
-import de.tum.in.tumcampusapp.service.SilenceService;
 import de.tum.in.tumcampusapp.core.Const;
 import de.tum.in.tumcampusapp.core.Utils;
+import de.tum.in.tumcampusapp.database.TcaDb;
+import de.tum.in.tumcampusapp.model.news.NewsSources;
+import de.tum.in.tumcampusapp.service.BackgroundService;
+import de.tum.in.tumcampusapp.service.ServiceUtils;
+import de.tum.in.tumcampusapp.service.SilenceService;
 
 public class SettingsFragment extends PreferenceFragmentCompat
         implements SharedPreferences.OnSharedPreferenceChangeListener, Preference.OnPreferenceClickListener {
@@ -265,6 +267,10 @@ public class SettingsFragment extends PreferenceFragmentCompat
 
     private void clearData() {
         TcaDb.resetDb(mContext);
+        ServiceUtils.resetAll(mContext);
+
+        CacheManager cacheManager = new CacheManager(mContext);
+        cacheManager.clearCache();
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         sharedPrefs.edit().clear().apply();

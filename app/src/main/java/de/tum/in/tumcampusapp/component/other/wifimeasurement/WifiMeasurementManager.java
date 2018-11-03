@@ -8,6 +8,7 @@ import java.util.List;
 
 import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
 import de.tum.in.tumcampusapp.api.app.model.TUMCabeStatus;
+import de.tum.in.tumcampusapp.database.daos.WifiMeasurementDao;
 import de.tum.in.tumcampusapp.model.wifimeasurement.WifiMeasurement;
 import de.tum.in.tumcampusapp.database.TcaDb;
 import de.tum.in.tumcampusapp.core.Utils;

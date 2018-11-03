@@ -11,8 +11,8 @@ import de.tum.`in`.tumcampusapp.component.ui.overview.card.Card
 import de.tum.`in`.tumcampusapp.component.ui.overview.card.ProvidesCard
 import de.tum.`in`.tumcampusapp.component.ui.transportation.api.MvvClient
 import de.tum.`in`.tumcampusapp.component.ui.transportation.api.MvvDepartureList
-import de.tum.`in`.tumcampusapp.component.ui.transportation.model.TransportFavorites
-import de.tum.`in`.tumcampusapp.component.ui.transportation.model.WidgetsTransport
+import de.tum.`in`.tumcampusapp.model.transportation.TransportFavorites
+import de.tum.`in`.tumcampusapp.model.transportation.WidgetsTransport
 import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.DepartureViewEntity
 import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.StationResultViewEntity
 import de.tum.`in`.tumcampusapp.component.ui.transportation.widget.WidgetDepartures

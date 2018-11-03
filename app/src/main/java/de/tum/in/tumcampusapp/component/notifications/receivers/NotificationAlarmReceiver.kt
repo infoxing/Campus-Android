@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import de.tum.`in`.tumcampusapp.component.notifications.NotificationScheduler
-import de.tum.`in`.tumcampusapp.component.notifications.persistence.NotificationType
+import de.tum.`in`.tumcampusapp.model.activealarms.NotificationType
 import de.tum.`in`.tumcampusapp.component.tumui.tutionfees.TuitionFeesNotificationProvider
 import de.tum.`in`.tumcampusapp.component.ui.cafeteria.CafeteriaNotificationProvider
 import de.tum.`in`.tumcampusapp.component.ui.transportation.TransportNotificationProvider

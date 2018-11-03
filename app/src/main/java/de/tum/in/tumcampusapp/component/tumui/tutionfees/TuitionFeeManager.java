@@ -15,7 +15,7 @@ import de.tum.in.tumcampusapp.api.shared.CacheControl;
 import de.tum.in.tumcampusapp.api.tumonline.TUMOnlineClient;
 import de.tum.in.tumcampusapp.component.notifications.NotificationScheduler;
 import de.tum.in.tumcampusapp.component.notifications.ProvidesNotifications;
-import de.tum.in.tumcampusapp.component.notifications.persistence.NotificationType;
+import de.tum.in.tumcampusapp.model.activealarms.NotificationType;
 import de.tum.in.tumcampusapp.model.tuition.Tuition;
 import de.tum.in.tumcampusapp.model.tuition.TuitionList;
 import de.tum.in.tumcampusapp.component.tumui.tutionfees.viewmodel.TuitionViewEntity;
