@@ -1,0 +1,61 @@
+package de.tum.`in`.tumcampusapp.ui.alarm
+
+import android.content.Context
+import android.content.Intent
+import android.graphics.Color
+import android.os.Bundle
+import android.webkit.WebView
+import android.widget.TextView
+import de.tum.`in`.tumcampusapp.R
+import de.tum.`in`.tumcampusapp.core.DateTimeUtils
+import de.tum.`in`.tumcampusapp.core.Utils
+import de.tum.`in`.tumcampusapp.model.alarms.FcmAlert
+import de.tum.`in`.tumcampusapp.model.alarms.FcmNotification
+import de.tum.`in`.tumcampusapp.ui.generic.activity.BaseActivity
+
+/**
+ * Activity to show any alarms
+ */
+class AlarmActivity : BaseActivity(R.layout.activity_alarmdetails) {
+
+    private lateinit var mTitle: TextView
+    private lateinit var mDescription: WebView
+    private lateinit var mDate: TextView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        this.mTitle = findViewById(R.id.alarm_title)
+        this.mDescription = findViewById(R.id.alarm_description)
+        this.mDate = findViewById(R.id.alarm_date)
+
+        this.processIntent(intent)
+    }
+
+    override fun onNewIntent(intent: Intent) = this.processIntent(intent)
+
+    private fun processIntent(intent: Intent) {
+        val notification = intent.getSerializableExtra("info") as FcmNotification
+        //FcmAlert alert = (FcmAlert) intent.getSerializableExtra("alert"); //Currently only has the silent flag, don't need it atm
+
+        Utils.log(notification.toString())
+
+        this.mTitle.text = notification.title
+        this.mDescription.loadDataWithBaseURL(null, notification.description, "text/html", "utf-8", null)
+        this.mDescription.setBackgroundColor(Color.TRANSPARENT)
+        this.mDate.text = DateTimeUtils.getDateString(notification.created)
+    }
+
+    companion object {
+
+        @JvmStatic
+        fun newInstance(context: Context, info: FcmNotification, alert: FcmAlert): Intent {
+            val alarm = Intent(context, AlarmActivity::class.java)
+            alarm.putExtra("info", info)
+            alarm.putExtra("alert", alert)
+            return alarm
+        }
+
+    }
+
+}

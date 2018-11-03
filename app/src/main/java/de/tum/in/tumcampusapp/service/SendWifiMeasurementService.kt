@@ -3,7 +3,7 @@ package de.tum.`in`.tumcampusapp.service
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.JobIntentService
-import de.tum.`in`.tumcampusapp.component.other.wifimeasurement.WifiMeasurementManager
+import de.tum.`in`.tumcampusapp.wifimeasurement.WifiMeasurementManager
 import de.tum.`in`.tumcampusapp.core.Const
 
 /**

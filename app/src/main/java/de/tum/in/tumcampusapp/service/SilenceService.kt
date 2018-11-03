@@ -10,7 +10,7 @@ import android.os.Build
 import android.provider.Settings
 import androidx.annotation.RequiresApi
 import androidx.core.app.JobIntentService
-import de.tum.`in`.tumcampusapp.component.tumui.calendar.CalendarController
+import de.tum.`in`.tumcampusapp.ui.calendar.CalendarController
 import de.tum.`in`.tumcampusapp.core.Const
 import de.tum.`in`.tumcampusapp.core.Const.SILENCE_SERVICE_JOB_ID
 import de.tum.`in`.tumcampusapp.core.Utils

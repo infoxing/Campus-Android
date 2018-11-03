@@ -11,7 +11,7 @@ import de.tum.in.tumcampusapp.model.locations.BuildingToGps;
 @Dao
 public interface BuildingToGpsDao {
     @Insert
-    void insert(BuildingToGps buildingToGps);
+    void insert(BuildingToGps... buildingToGps);
 
     @Query("SELECT * FROM buildingtogps")
     List<BuildingToGps> getAll();

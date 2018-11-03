@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context="de.tum.in.tumcampusapp.component.ui.chat.AddChatMemberActivity">
+    tools:context="de.tum.in.tumcampusapp.ui.chat.AddChatMemberActivity">
 
     <include layout="@layout/toolbar" />
 

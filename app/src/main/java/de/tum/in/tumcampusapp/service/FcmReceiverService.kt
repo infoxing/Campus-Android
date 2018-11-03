@@ -16,20 +16,21 @@
 
 package de.tum.`in`.tumcampusapp.service
 
-import android.app.NotificationManager
-import android.content.Context
 import android.os.Bundle
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import de.tum.`in`.tumcampusapp.api.app.TUMCabeClient
-import de.tum.`in`.tumcampusapp.component.other.general.Update
-import de.tum.`in`.tumcampusapp.component.other.generic.GenericNotification
-import de.tum.`in`.tumcampusapp.component.ui.alarm.AlarmNotification
-import de.tum.`in`.tumcampusapp.component.ui.chat.ChatNotification
 import de.tum.`in`.tumcampusapp.core.Const
 import de.tum.`in`.tumcampusapp.core.Utils
+import de.tum.`in`.tumcampusapp.fcm.AlarmNotification
+import de.tum.`in`.tumcampusapp.fcm.GenericNotification
+import de.tum.`in`.tumcampusapp.fcm.Update
+import de.tum.`in`.tumcampusapp.ui.chat.ChatNotification
+import org.jetbrains.anko.notificationManager
 import java.io.IOException
+
+
 
 /**
  * This `IntentService` does the actual handling of the FCM message.
@@ -116,7 +117,6 @@ class FcmReceiverService : FirebaseMessagingService() {
      */
     private fun postNotification(genericNotification: GenericNotification?) {
         genericNotification?.let {
-            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             val note = it.notification
             if (note != null) {
                 notificationManager.notify(it.notificationIdentification, note)

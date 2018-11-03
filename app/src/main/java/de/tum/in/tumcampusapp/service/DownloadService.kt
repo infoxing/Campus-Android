@@ -10,22 +10,23 @@ import de.tum.`in`.tumcampusapp.api.app.TUMCabeClient
 import de.tum.`in`.tumcampusapp.api.app.model.UploadStatus
 import de.tum.`in`.tumcampusapp.api.shared.CacheManager
 import de.tum.`in`.tumcampusapp.api.tumonline.AccessTokenManager
-import de.tum.`in`.tumcampusapp.component.ui.cafeteria.controller.CafeteriaMenuManager
-import de.tum.`in`.tumcampusapp.component.ui.cafeteria.details.CafeteriaViewModel
-import de.tum.`in`.tumcampusapp.component.ui.cafeteria.repository.CafeteriaLocalRepository
-import de.tum.`in`.tumcampusapp.component.ui.cafeteria.repository.CafeteriaRemoteRepository
-import de.tum.`in`.tumcampusapp.component.ui.news.NewsController
-import de.tum.`in`.tumcampusapp.component.ui.news.TopNewsViewModel
-import de.tum.`in`.tumcampusapp.component.ui.news.repository.TopNewsRemoteRepository
-import de.tum.`in`.tumcampusapp.component.ui.ticket.EventsController
-import de.tum.`in`.tumcampusapp.component.ui.tufilm.KinoLocalRepository
-import de.tum.`in`.tumcampusapp.component.ui.tufilm.KinoRemoteRepository
-import de.tum.`in`.tumcampusapp.component.ui.tufilm.KinoViewModel
 import de.tum.`in`.tumcampusapp.core.Const
 import de.tum.`in`.tumcampusapp.core.NetUtils
 import de.tum.`in`.tumcampusapp.core.Utils
 import de.tum.`in`.tumcampusapp.database.TcaDb
+import de.tum.`in`.tumcampusapp.fcm.RealFcmUploader
 import de.tum.`in`.tumcampusapp.model.cafeteria.Location
+import de.tum.`in`.tumcampusapp.ui.cafeteria.controller.CafeteriaMenuManager
+import de.tum.`in`.tumcampusapp.ui.cafeteria.details.CafeteriaViewModel
+import de.tum.`in`.tumcampusapp.ui.cafeteria.repository.CafeteriaLocalRepository
+import de.tum.`in`.tumcampusapp.ui.cafeteria.repository.CafeteriaRemoteRepository
+import de.tum.`in`.tumcampusapp.ui.news.NewsController
+import de.tum.`in`.tumcampusapp.ui.news.TopNewsViewModel
+import de.tum.`in`.tumcampusapp.ui.news.repository.TopNewsRemoteRepository
+import de.tum.`in`.tumcampusapp.ui.ticket.EventsController
+import de.tum.`in`.tumcampusapp.ui.tufilm.KinoLocalRepository
+import de.tum.`in`.tumcampusapp.ui.tufilm.KinoRemoteRepository
+import de.tum.`in`.tumcampusapp.ui.tufilm.KinoViewModel
 import de.tum.`in`.tumcampusapp.utils.BackgroundUpdater
 import de.tum.`in`.tumcampusapp.utils.sync.SyncManager
 import io.reactivex.disposables.CompositeDisposable
@@ -122,7 +123,7 @@ class DownloadService : JobIntentService() {
         // upload FCM Token if not uploaded or invalid
         if (uploadStatus.fcmToken != UploadStatus.UPLOADED) {
             Utils.log("upload fcm token")
-            AuthenticationManager(this).tryToUploadFcmToken()
+            AuthenticationManager(this, RealFcmUploader).tryToUploadFcmToken()
         }
 
         if (lrzId.isEmpty()) {

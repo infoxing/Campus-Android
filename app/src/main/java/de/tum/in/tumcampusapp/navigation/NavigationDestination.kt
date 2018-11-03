@@ -2,7 +2,7 @@ package de.tum.`in`.tumcampusapp.navigation
 
 import android.content.Intent
 import android.os.Bundle
-import de.tum.`in`.tumcampusapp.component.other.generic.activity.BaseActivity
+import de.tum.`in`.tumcampusapp.ui.generic.activity.BaseActivity
 
 sealed class NavigationDestination
 

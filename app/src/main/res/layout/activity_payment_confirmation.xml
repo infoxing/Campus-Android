@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:padding="@dimen/material_default_padding"
-        tools:context="de.tum.in.tumcampusapp.component.ui.ticket.activity.PaymentConfirmationActivity">
+        tools:context="de.tum.in.tumcampusapp.ui.ticket.activity.PaymentConfirmationActivity">
 
         <ImageView
             android:id="@+id/imageView"

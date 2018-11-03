@@ -3,8 +3,8 @@ package de.tum.`in`.tumcampusapp.utils
 import android.content.Context
 import de.tum.`in`.tumcampusapp.api.shared.CacheControl
 import de.tum.`in`.tumcampusapp.api.tumonline.TUMOnlineClient
-import de.tum.`in`.tumcampusapp.component.tumui.calendar.CalendarController
-import de.tum.`in`.tumcampusapp.component.ui.chat.ChatRoomController
+import de.tum.`in`.tumcampusapp.ui.calendar.CalendarController
+import de.tum.`in`.tumcampusapp.ui.chat.ChatRoomController
 import de.tum.`in`.tumcampusapp.core.Utils
 import de.tum.`in`.tumcampusapp.model.calendar.EventsResponse
 import de.tum.`in`.tumcampusapp.model.lecture.LecturesResponse

@@ -16,7 +16,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Callback
 import com.squareup.picasso.RequestCreator
-import de.tum.`in`.tumcampusapp.component.other.generic.drawer.SideNavigationItem
+import de.tum.`in`.tumcampusapp.ui.generic.drawer.SideNavigationItem
 
 /**
  * Executes the block and return null in case of an [Exception].

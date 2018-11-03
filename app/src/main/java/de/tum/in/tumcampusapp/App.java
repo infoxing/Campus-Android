@@ -8,7 +8,7 @@ import com.squareup.picasso.Picasso;
 
 import net.danlew.android.joda.JodaTimeAndroid;
 
-import de.tum.in.tumcampusapp.component.notifications.NotificationUtils;
+import de.tum.in.tumcampusapp.notifications.NotificationUtils;
 
 public class App extends Application {
 

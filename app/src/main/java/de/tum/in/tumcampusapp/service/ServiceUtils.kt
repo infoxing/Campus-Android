@@ -2,7 +2,7 @@ package de.tum.`in`.tumcampusapp.service
 
 import android.content.Context
 import android.content.Intent
-import de.tum.`in`.tumcampusapp.component.tumui.calendar.CalendarController
+import de.tum.`in`.tumcampusapp.ui.calendar.CalendarController
 
 object ServiceUtils {
 

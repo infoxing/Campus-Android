@@ -9,7 +9,7 @@
         <intent
             android:action="android.intent.action.VIEW"
             android:targetPackage="de.tum.in.tumcampus"
-            android:targetClass="de.tum.in.tumcampusapp.component.ui.cafeteria.activity.CafeteriaActivity"/>
+            android:targetClass="de.tum.in.tumcampusapp.ui.cafeteria.activity.CafeteriaActivity"/>
     </shortcut>
     <shortcut
         android:shortcutId="studyrooms"
@@ -20,7 +20,7 @@
         <intent
             android:action="android.intent.action.VIEW"
             android:targetPackage="de.tum.in.tumcampus"
-            android:targetClass="de.tum.in.tumcampusapp.component.ui.studyroom.StudyRoomsActivity"/>
+            android:targetClass="de.tum.in.tumcampusapp.ui.studyroom.StudyRoomsActivity"/>
     </shortcut>
     <shortcut
         android:shortcutId="calendar"
@@ -31,6 +31,6 @@
         <intent
             android:action="android.intent.action.VIEW"
             android:targetPackage="de.tum.in.tumcampus"
-            android:targetClass="de.tum.in.tumcampusapp.component.tumui.calendar.CalendarActivity"/>
+            android:targetClass="de.tum.in.tumcampusapp.ui.calendar.CalendarActivity"/>
     </shortcut>
 </shortcuts>

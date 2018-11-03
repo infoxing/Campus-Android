@@ -9,7 +9,7 @@ import org.robolectric.annotation.Config;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.tum.in.tumcampusapp.component.ui.chat.ChatMessageValidator;
+import de.tum.in.tumcampusapp.ui.chat.ChatMessageValidator;
 import de.tum.in.tumcampusapp.model.chat.ChatMessage;
 import de.tum.in.tumcampusapp.model.chat.ChatPublicKey;
 

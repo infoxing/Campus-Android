@@ -2,7 +2,7 @@ package de.tum.`in`.tumcampusapp.service
 
 import android.content.Intent
 import android.widget.RemoteViewsService
-import de.tum.`in`.tumcampusapp.component.ui.cafeteria.widget.MensaRemoteViewFactory
+import de.tum.`in`.tumcampusapp.ui.cafeteria.widget.MensaRemoteViewFactory
 
 class MensaWidgetService : RemoteViewsService() {
 
