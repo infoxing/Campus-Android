@@ -1,16 +1,14 @@
 package de.tum.in.tumcampusapp.component.ui.tufilm;
 
 import android.os.Bundle;
-import androidx.viewpager.widget.ViewPager;
 
 import java.util.List;
 
+import androidx.viewpager.widget.ViewPager;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.other.generic.activity.ProgressActivity;
-import de.tum.in.tumcampusapp.component.ui.news.KinoViewModel;
-import de.tum.in.tumcampusapp.component.ui.news.repository.KinoLocalRepository;
-import de.tum.in.tumcampusapp.component.ui.news.repository.KinoRemoteRepository;
-import de.tum.in.tumcampusapp.component.ui.tufilm.model.Kino;
+import de.tum.in.tumcampusapp.component.ui.tufilm.model.KinoViewEntity;
+import de.tum.in.tumcampusapp.component.ui.tufilm.model.KinoViewEntityMapper;
 import de.tum.in.tumcampusapp.database.TcaDb;
 import de.tum.in.tumcampusapp.utils.Const;
 import de.tum.in.tumcampusapp.utils.Utils;
@@ -49,8 +47,11 @@ public class KinoActivity extends ProgressActivity<Void> {
         int margin = getResources().getDimensionPixelSize(R.dimen.material_default_padding);
         mPager.setPageMargin(margin);
 
+        KinoViewEntityMapper mapper = new KinoViewEntityMapper();
+
         Disposable disposable = kinoViewModel
                 .getAllKinos()
+                .map(mapper::apply)
                 .subscribe(this::showKinosOrPlaceholder, throwable -> {
                     Utils.log(throwable);
                     showError(R.string.error_something_wrong);
@@ -59,7 +60,7 @@ public class KinoActivity extends ProgressActivity<Void> {
         disposables.add(disposable);
     }
 
-    private void showKinosOrPlaceholder(List<Kino> kinos) {
+    private void showKinosOrPlaceholder(List<KinoViewEntity> kinos) {
         if (kinos.isEmpty()) {
             showEmptyResponseLayout(R.string.no_movies, R.drawable.no_movies);
             return;

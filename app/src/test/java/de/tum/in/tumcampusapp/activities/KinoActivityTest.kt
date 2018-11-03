@@ -4,13 +4,13 @@ import android.view.View
 import androidx.viewpager.widget.ViewPager
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.TestApp
-import de.tum.`in`.tumcampusapp.component.ui.news.KinoViewModel
-import de.tum.`in`.tumcampusapp.component.ui.news.repository.KinoLocalRepository
-import de.tum.`in`.tumcampusapp.component.ui.news.repository.KinoRemoteRepository
+import de.tum.`in`.tumcampusapp.component.ui.tufilm.KinoViewModel
+import de.tum.`in`.tumcampusapp.component.ui.tufilm.KinoLocalRepository
+import de.tum.`in`.tumcampusapp.component.ui.tufilm.KinoRemoteRepository
 import de.tum.`in`.tumcampusapp.component.ui.tufilm.KinoActivity
 import de.tum.`in`.tumcampusapp.component.ui.tufilm.KinoAdapter
 import de.tum.`in`.tumcampusapp.component.ui.tufilm.KinoDao
-import de.tum.`in`.tumcampusapp.component.ui.tufilm.model.Kino
+import de.tum.`in`.tumcampusapp.component.ui.tufilm.model.RawKino
 import de.tum.`in`.tumcampusapp.database.TcaDb
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.disposables.CompositeDisposable
@@ -63,7 +63,7 @@ class KinoActivityTest {
      */
     @Test
     fun mainComponentDisplayedTest() {
-        dao.insert(Kino())
+        dao.insert(RawKino())
         kinoActivity = Robolectric.buildActivity(KinoActivity::class.java).create().start().get()
         waitForUI()
         assertThat(kinoActivity!!.findViewById<View>(R.id.drawer_layout).visibility).isEqualTo(View.VISIBLE)
@@ -88,7 +88,7 @@ class KinoActivityTest {
      */
     @Test
     fun kinoAdapterUsedTest() {
-        dao.insert(Kino())
+        dao.insert(RawKino())
         kinoActivity = Robolectric.buildActivity(KinoActivity::class.java).create().start().get()
         waitForUI()
         Thread.sleep(100)

@@ -57,7 +57,7 @@ import de.tum.in.tumcampusapp.component.ui.transportation.TransportDao;
 import de.tum.in.tumcampusapp.component.ui.transportation.model.TransportFavorites;
 import de.tum.in.tumcampusapp.component.ui.transportation.model.WidgetsTransport;
 import de.tum.in.tumcampusapp.component.ui.tufilm.KinoDao;
-import de.tum.in.tumcampusapp.component.ui.tufilm.model.Kino;
+import de.tum.in.tumcampusapp.component.ui.tufilm.model.RawKino;
 import de.tum.in.tumcampusapp.database.migrations.Migration1to2;
 import de.tum.in.tumcampusapp.service.BackgroundService;
 import de.tum.in.tumcampusapp.service.DownloadService;
@@ -74,7 +74,7 @@ import de.tum.in.tumcampusapp.utils.sync.model.Sync;
         FavoriteDish.class,
         Sync.class,
         BuildingToGps.class,
-        Kino.class,
+        RawKino.class,
         Event.class,
         Ticket.class,
         TicketType.class,

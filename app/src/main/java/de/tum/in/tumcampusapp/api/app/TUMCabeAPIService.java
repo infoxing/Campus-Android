@@ -34,7 +34,7 @@ import de.tum.in.tumcampusapp.component.ui.ticket.model.Ticket;
 import de.tum.in.tumcampusapp.component.ui.ticket.model.TicketType;
 import de.tum.in.tumcampusapp.component.ui.ticket.payload.TicketReservationResponse;
 import de.tum.in.tumcampusapp.component.ui.ticket.payload.TicketStatus;
-import de.tum.in.tumcampusapp.component.ui.tufilm.model.Kino;
+import de.tum.in.tumcampusapp.component.ui.tufilm.model.RawKino;
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
@@ -196,7 +196,7 @@ public interface TUMCabeAPIService {
     Observable<List<Cafeteria>> getCafeterias();
 
     @GET(API_KINOS + "{lastId}")
-    Flowable<List<Kino>> getKinos(@Path("lastId") String lastId);
+    Flowable<List<RawKino>> getKinos(@Path("lastId") String lastId);
 
     @GET(API_NEWS + "{lastNewsId}")
     Call<List<News>> getNews(@Path("lastNewsId") String lastNewsId);

@@ -1,9 +1,7 @@
-package de.tum.`in`.tumcampusapp.component.ui.news
+package de.tum.`in`.tumcampusapp.component.ui.tufilm
 
 import androidx.lifecycle.ViewModel
-import de.tum.`in`.tumcampusapp.component.ui.news.repository.KinoLocalRepository
-import de.tum.`in`.tumcampusapp.component.ui.news.repository.KinoRemoteRepository
-import de.tum.`in`.tumcampusapp.component.ui.tufilm.model.Kino
+import de.tum.`in`.tumcampusapp.component.ui.tufilm.model.RawKino
 import de.tum.`in`.tumcampusapp.utils.Utils
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -20,7 +18,7 @@ class KinoViewModel(private val localRepository: KinoLocalRepository,
     /**
      * Get all kinos from database
      */
-    fun getAllKinos(): Flowable<List<Kino>> =
+    fun getAllKinos(): Flowable<List<RawKino>> =
             KinoLocalRepository.getAllKinos()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -29,7 +27,7 @@ class KinoViewModel(private val localRepository: KinoLocalRepository,
     /**
      * Get a kino by its position (id)
      */
-    fun getKinoByPosition(position: Int): Flowable<Kino> =
+    fun getKinoByPosition(position: Int): Flowable<RawKino> =
             KinoLocalRepository.getKinoByPosition(position)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -43,20 +41,18 @@ class KinoViewModel(private val localRepository: KinoLocalRepository,
      * Lastly updates last sync
      *
      */
-    fun getKinosFromService(force: Boolean): Boolean {
+    fun getKinosFromService(force: Boolean) {
         val latestId = KinoLocalRepository.getLatestId() ?: "0"
-        return compositeDisposable.add(
-                remoteRepository
-                        .getAllKinos(latestId)
-                        .filter { localRepository.getLastSync() == null || force }
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .doOnNext { localRepository.clear() }
-                        .doAfterNext { localRepository.updateLastSync() }
-                        .flatMapIterable { it }
-                        .filter { it.isFutureMovie() }
-                        .subscribe({ localRepository.addKino(it) }, { Utils.log(it) })
-        )
+        val disposable = remoteRepository
+                .getAllKinos(latestId)
+                .filter { localRepository.getLastSync() == null || force }
+                .doOnNext { localRepository.clear() }
+                .doAfterNext { localRepository.updateLastSync() }
+                .flatMapIterable { it }
+                .filter { it.date.isAfterNow }
+                .subscribeOn(Schedulers.io())
+                .subscribe({ localRepository.addKino(it) }, { Utils.log(it) })
+        compositeDisposable.add(disposable)
     }
 
     fun getPosition(date: String) = localRepository.getPosition(date)

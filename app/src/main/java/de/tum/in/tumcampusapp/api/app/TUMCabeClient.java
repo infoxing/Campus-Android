@@ -48,7 +48,7 @@ import de.tum.in.tumcampusapp.component.ui.ticket.payload.EphimeralKey;
 import de.tum.in.tumcampusapp.component.ui.ticket.payload.TicketPurchaseStripe;
 import de.tum.in.tumcampusapp.component.ui.ticket.payload.TicketReservationResponse;
 import de.tum.in.tumcampusapp.component.ui.ticket.payload.TicketStatus;
-import de.tum.in.tumcampusapp.component.ui.tufilm.model.Kino;
+import de.tum.in.tumcampusapp.component.ui.tufilm.model.RawKino;
 import de.tum.in.tumcampusapp.utils.Const;
 import de.tum.in.tumcampusapp.utils.Utils;
 import io.reactivex.Flowable;
@@ -334,7 +334,7 @@ public final class TUMCabeClient {
         return service.getCafeterias();
     }
 
-    public Flowable<List<Kino>> getKinos(String lastId) {
+    public Flowable<List<RawKino>> getKinos(String lastId) {
         return service.getKinos(lastId);
     }
 
