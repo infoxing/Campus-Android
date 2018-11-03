@@ -13,7 +13,7 @@ import java.util.List;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.other.generic.adapter.SimpleStickyListHeadersAdapter;
 import de.tum.in.tumcampusapp.component.tumui.person.PersonDetailsActivity;
-import de.tum.in.tumcampusapp.component.tumui.person.model.Person;
+import de.tum.in.tumcampusapp.model.person.Person;
 import de.tum.in.tumcampusapp.component.ui.barrierfree.viewmodel.BarrierfreeContactViewEntity;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 

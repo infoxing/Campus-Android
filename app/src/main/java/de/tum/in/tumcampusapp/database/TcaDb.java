@@ -14,7 +14,7 @@ import de.tum.in.tumcampusapp.component.notifications.persistence.ScheduledNotif
 import de.tum.in.tumcampusapp.component.notifications.persistence.ScheduledNotificationsDao;
 import de.tum.in.tumcampusapp.component.other.general.NotificationDao;
 import de.tum.in.tumcampusapp.component.other.general.RecentsDao;
-import de.tum.in.tumcampusapp.component.other.general.model.Recent;
+import de.tum.in.tumcampusapp.model.recents.Recent;
 import de.tum.in.tumcampusapp.component.other.locations.BuildingToGpsDao;
 import de.tum.in.tumcampusapp.component.other.locations.RoomLocationsDao;
 import de.tum.in.tumcampusapp.component.other.locations.model.BuildingToGps;

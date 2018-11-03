@@ -7,18 +7,16 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.appcompat.app.AlertDialog;
-
 import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.api.app.ApiHelper;
 import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
@@ -26,9 +24,10 @@ import de.tum.in.tumcampusapp.component.other.generic.ImageViewTouchFragment;
 import de.tum.in.tumcampusapp.component.other.generic.activity.ActivityForLoadingInBackground;
 import de.tum.in.tumcampusapp.component.other.locations.LocationManager;
 import de.tum.in.tumcampusapp.component.other.locations.model.Geo;
-import de.tum.in.tumcampusapp.component.tumui.roomfinder.model.RoomFinderCoordinate;
-import de.tum.in.tumcampusapp.component.tumui.roomfinder.model.RoomFinderMap;
-import de.tum.in.tumcampusapp.component.tumui.roomfinder.model.RoomFinderRoom;
+import de.tum.in.tumcampusapp.model.roomfinder.RoomFinderCoordinate;
+import de.tum.in.tumcampusapp.model.roomfinder.RoomFinderMap;
+import de.tum.in.tumcampusapp.model.roomfinder.RoomFinderRoom;
+import de.tum.in.tumcampusapp.component.tumui.roomfinder.viewmodel.RoomFinderRoomViewEntity;
 import de.tum.in.tumcampusapp.utils.Const;
 import de.tum.in.tumcampusapp.utils.NetUtils;
 import de.tum.in.tumcampusapp.utils.Utils;
@@ -49,7 +48,7 @@ public class RoomFinderDetailsActivity
 
     private boolean mapsLoaded;
 
-    private RoomFinderRoom room;
+    private RoomFinderRoomViewEntity room;
     private String mapId = "";
     private List<RoomFinderMap> mapsList;
     private boolean infoLoaded;
@@ -72,12 +71,14 @@ public class RoomFinderDetailsActivity
                                    .add(R.id.fragment_container, mImageFragment)
                                    .commit();
 
-        room = (RoomFinderRoom) getIntent().getSerializableExtra(EXTRA_ROOM_INFO);
-        if (room == null) {
+        RoomFinderRoom rawRoom = (RoomFinderRoom) getIntent().getSerializableExtra(EXTRA_ROOM_INFO);
+        if (rawRoom == null) {
             Utils.showToast(this, "No room information passed");
             finish();
             return;
         }
+
+        room = RoomFinderRoomViewEntity.create(rawRoom);
 
         mImageFragment = ImageViewTouchFragment.newInstance();
         getSupportFragmentManager().beginTransaction()
@@ -140,7 +141,7 @@ public class RoomFinderDetailsActivity
             return;
         }
 
-        String roomApiCode = room.getRoom_id();
+        String roomApiCode = room.getRoomId();
         fragment = WeekViewFragment.newInstance(roomApiCode);
         ft.replace(R.id.fragment_container, fragment);
         ft.commit();
@@ -172,7 +173,7 @@ public class RoomFinderDetailsActivity
 
     @Override
     protected String onLoadInBackground(Void... arg) {
-        String archId = room.getArch_id();
+        String archId = room.getArchId();
         String url;
         if (mapId == null || mapId.isEmpty()) {
             url = Const.URL_DEFAULT_MAP_IMAGE + ApiHelper.encodeUrl(archId);
@@ -198,7 +199,7 @@ public class RoomFinderDetailsActivity
     private void loadMapList() {
         showLoadingStart();
 
-        mRoomFinderMapsCall = TUMCabeClient.getInstance(this).fetchAvailableMaps(room.getArch_id());
+        mRoomFinderMapsCall = TUMCabeClient.getInstance(this).fetchAvailableMaps(room.getArchId());
         mRoomFinderMapsCall.enqueue(new Callback<List<RoomFinderMap>>() {
             @Override
             public void onResponse(@NonNull Call<List<RoomFinderMap>> call,
@@ -252,7 +253,7 @@ public class RoomFinderDetailsActivity
     private void loadGeo() {
         showLoadingStart();
         mRoomFinderCoordinateCall = TUMCabeClient.getInstance(this)
-                .fetchRoomFinderCoordinates(room.getArch_id());
+                .fetchRoomFinderCoordinates(room.getArchId());
         mRoomFinderCoordinateCall.enqueue(new Callback<RoomFinderCoordinate>() {
             @Override
             public void onResponse(@NonNull Call<RoomFinderCoordinate> call,

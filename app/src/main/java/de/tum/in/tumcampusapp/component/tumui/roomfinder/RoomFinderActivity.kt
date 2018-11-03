@@ -9,10 +9,10 @@ import android.widget.AdapterView.OnItemClickListener
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.api.app.TUMCabeClient
 import de.tum.`in`.tumcampusapp.component.other.general.RecentsDao
-import de.tum.`in`.tumcampusapp.component.other.general.model.Recent
+import de.tum.`in`.tumcampusapp.model.recents.Recent
 import de.tum.`in`.tumcampusapp.component.other.generic.activity.ActivityForSearchingInBackground
 import de.tum.`in`.tumcampusapp.component.other.generic.adapter.NoResultsAdapter
-import de.tum.`in`.tumcampusapp.component.tumui.roomfinder.model.RoomFinderRoom
+import de.tum.`in`.tumcampusapp.model.roomfinder.RoomFinderRoom
 import de.tum.`in`.tumcampusapp.database.TcaDb
 import de.tum.`in`.tumcampusapp.utils.NetUtils
 import de.tum.`in`.tumcampusapp.utils.Utils

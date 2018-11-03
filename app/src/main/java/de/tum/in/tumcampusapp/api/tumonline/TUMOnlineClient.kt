@@ -18,9 +18,9 @@ import de.tum.`in`.tumcampusapp.component.tumui.grades.model.ExamList
 import de.tum.`in`.tumcampusapp.component.tumui.lectures.model.LectureAppointmentsResponse
 import de.tum.`in`.tumcampusapp.component.tumui.lectures.model.LectureDetailsResponse
 import de.tum.`in`.tumcampusapp.component.tumui.lectures.model.LecturesResponse
-import de.tum.`in`.tumcampusapp.component.tumui.person.model.Employee
-import de.tum.`in`.tumcampusapp.component.tumui.person.model.IdentitySet
-import de.tum.`in`.tumcampusapp.component.tumui.person.model.PersonList
+import de.tum.`in`.tumcampusapp.model.person.Employee
+import de.tum.`in`.tumcampusapp.model.person.IdentitySet
+import de.tum.`in`.tumcampusapp.model.person.PersonList
 import de.tum.`in`.tumcampusapp.model.tuition.TuitionList
 import de.tum.`in`.tumcampusapp.utils.CacheManager
 import de.tum.`in`.tumcampusapp.utils.Const

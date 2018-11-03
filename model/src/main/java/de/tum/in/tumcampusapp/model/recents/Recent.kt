@@ -1,4 +1,4 @@
-package de.tum.`in`.tumcampusapp.component.other.general.model
+package de.tum.`in`.tumcampusapp.model.recents
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

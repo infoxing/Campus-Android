@@ -4,19 +4,21 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.appcompat.app.AlertDialog
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.api.tumonline.CacheControl
 import de.tum.`in`.tumcampusapp.component.other.generic.activity.ActivityForAccessingTumOnline
 import de.tum.`in`.tumcampusapp.component.tumui.person.adapteritems.*
-import de.tum.`in`.tumcampusapp.component.tumui.person.model.Employee
-import de.tum.`in`.tumcampusapp.component.tumui.person.model.Person
+import de.tum.`in`.tumcampusapp.model.person.Employee
+import de.tum.`in`.tumcampusapp.component.tumui.person.viewmodel.EmployeeViewEntity
+import de.tum.`in`.tumcampusapp.component.tumui.person.viewmodel.PersonViewEntity
+import de.tum.`in`.tumcampusapp.model.person.Person
 import de.tum.`in`.tumcampusapp.utils.Const
 import de.tum.`in`.tumcampusapp.utils.ContactsHelper
 import kotlinx.android.synthetic.main.activity_person_details.*
@@ -27,7 +29,7 @@ import kotlinx.android.synthetic.main.activity_person_details.*
 class PersonDetailsActivity : ActivityForAccessingTumOnline<Employee>(R.layout.activity_person_details) {
 
     private lateinit var personId: String
-    private var employee: Employee? = null
+    private var employee: EmployeeViewEntity? = null
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,10 +40,12 @@ class PersonDetailsActivity : ActivityForAccessingTumOnline<Employee>(R.layout.a
             return
         }
 
-        personId = person.id
-        title = person.getFullName()
+        val viewEntity = PersonViewEntity.create(person)
 
-        loadPersonDetails(person.id, CacheControl.USE_CACHE)
+        personId = viewEntity.id
+        title = viewEntity.fullName
+
+        loadPersonDetails(viewEntity.id, CacheControl.USE_CACHE)
     }
 
     override fun onRefresh() {
@@ -54,9 +58,11 @@ class PersonDetailsActivity : ActivityForAccessingTumOnline<Employee>(R.layout.a
     }
 
     override fun onDownloadSuccessful(response: Employee) {
-        this.employee = response
-        displayResult(response)
-        invalidateOptionsMenu()
+        employee = EmployeeViewEntity.create(this, response)
+        employee?.let {
+            displayResult(it)
+            invalidateOptionsMenu()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -77,14 +83,14 @@ class PersonDetailsActivity : ActivityForAccessingTumOnline<Employee>(R.layout.a
         }
     }
 
-    private fun displayAddContactDialog(employee: Employee?) {
+    private fun displayAddContactDialog(employee: EmployeeViewEntity?) {
         if (employee == null) {
             return
         }
 
         AlertDialog.Builder(this)
                 .setMessage(R.string.dialog_add_to_contacts)
-                .setPositiveButton(R.string.add) { _, _ -> addContact(employee) }
+                .setPositiveButton(R.string.add) { _, _ -> addContact(employee.raw) }
                 .setNegativeButton(R.string.cancel) { dialog, _ -> dialog.dismiss() }
                 .show()
     }
@@ -95,14 +101,14 @@ class PersonDetailsActivity : ActivityForAccessingTumOnline<Employee>(R.layout.a
      *
      * @param employee The employee whose information should be displayed.
      */
-    private fun displayResult(employee: Employee) {
+    private fun displayResult(employee: EmployeeViewEntity) {
         scrollView.visibility = View.VISIBLE
 
         val image = employee.image ?: BitmapFactory.decodeResource(
                 resources, R.drawable.photo_not_available)
 
         pictureImageView.setImageBitmap(image)
-        nameTextView.text = employee.getNameWithTitle(this)
+        nameTextView.text = employee.nameWithTitle
 
         // Set up employee groups
         val groups = employee.groups
@@ -214,7 +220,9 @@ class PersonDetailsActivity : ActivityForAccessingTumOnline<Employee>(R.layout.a
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         if (grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
             // Rerun the interrupted action
-            addContact(employee)
+            employee?.let {
+                addContact(it.raw)
+            }
         }
     }
 

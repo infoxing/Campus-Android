@@ -13,7 +13,7 @@ import de.tum.`in`.tumcampusapp.api.app.TUMCabeClient
 import de.tum.`in`.tumcampusapp.component.other.locations.model.BuildingToGps
 import de.tum.`in`.tumcampusapp.component.other.locations.model.Geo
 import de.tum.`in`.tumcampusapp.component.tumui.calendar.CalendarController
-import de.tum.`in`.tumcampusapp.component.tumui.roomfinder.model.RoomFinderCoordinate
+import de.tum.`in`.tumcampusapp.model.roomfinder.RoomFinderCoordinate
 import de.tum.`in`.tumcampusapp.model.cafeteria.Cafeteria
 import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.StationResultViewEntity
 import de.tum.`in`.tumcampusapp.database.TcaDb

@@ -9,19 +9,19 @@ import java.util.List;
 
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.other.generic.adapter.SimpleStickyListHeadersAdapter;
-import de.tum.in.tumcampusapp.component.tumui.roomfinder.model.RoomFinderRoom;
+import de.tum.in.tumcampusapp.component.tumui.roomfinder.viewmodel.RoomFinderRoomViewEntity;
 
 /**
  * Custom UI adapter for a list of employees.
  */
-public class RoomFinderListAdapter extends SimpleStickyListHeadersAdapter<RoomFinderRoom> {
+public class RoomFinderListAdapter extends SimpleStickyListHeadersAdapter<RoomFinderRoomViewEntity> {
 
     static class ViewHolder {
         TextView tvRoomTitle;
         TextView tvBuildingTitle;
     }
 
-    public RoomFinderListAdapter(Activity activity, List<RoomFinderRoom> d) {
+    public RoomFinderListAdapter(Activity activity, List<RoomFinderRoomViewEntity> d) {
         super(activity, d);
     }
 
@@ -40,7 +40,7 @@ public class RoomFinderListAdapter extends SimpleStickyListHeadersAdapter<RoomFi
             holder = (ViewHolder) convertView.getTag();
         }
 
-        RoomFinderRoom room = infoList.get(position);
+        RoomFinderRoomViewEntity room = infoList.get(position);
 
         // Setting all values in listView
         holder.tvRoomTitle.setText(room.getInfo());

@@ -5,7 +5,7 @@ import android.util.SparseArray
 import de.tum.`in`.tumcampusapp.api.tumonline.CacheControl
 import de.tum.`in`.tumcampusapp.component.notifications.NotificationScheduler
 import de.tum.`in`.tumcampusapp.component.notifications.ProvidesNotifications
-import de.tum.`in`.tumcampusapp.component.other.general.model.Recent
+import de.tum.`in`.tumcampusapp.model.recents.Recent
 import de.tum.`in`.tumcampusapp.component.other.locations.LocationManager
 import de.tum.`in`.tumcampusapp.component.tumui.calendar.model.Event
 import de.tum.`in`.tumcampusapp.component.ui.overview.card.Card

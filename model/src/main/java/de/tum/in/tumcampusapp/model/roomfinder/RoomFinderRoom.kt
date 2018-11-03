@@ -1,7 +1,6 @@
-package de.tum.`in`.tumcampusapp.component.tumui.roomfinder.model
+package de.tum.`in`.tumcampusapp.model.roomfinder
 
-import de.tum.`in`.tumcampusapp.component.other.general.model.Recent
-import de.tum.`in`.tumcampusapp.component.other.generic.adapter.SimpleStickyListHeadersAdapter
+import de.tum.`in`.tumcampusapp.model.recents.Recent
 import java.io.Serializable
 
 /**
@@ -14,27 +13,11 @@ data class RoomFinderRoom(
         var info: String = "",
         var arch_id: String = "",
         var room_id: String = "",
-        private val name: String = ""
-) : SimpleStickyListHeadersAdapter.SimpleStickyListItem, Serializable {
-
-    private val formattedName: String
-        get() {
-            return if (name == "null")
-                ""
-            else
-                name
-        }
-
-    val formattedAddress: String
-        get() = address.trim()
-                .replace("(", " (")
-                .replace("\\s+".toRegex(), " ")
-
-    override fun getHeadName() = formattedName
-
-    override fun getHeaderId() = headName
+        val name: String = ""
+) : Serializable {
 
     companion object {
+
         private const val serialVersionUID = 6631656320611471476L
 
         fun fromRecent(r: Recent): RoomFinderRoom {
@@ -44,5 +27,7 @@ data class RoomFinderRoom(
             }
             return RoomFinderRoom(values[0], values[1], values[2], values[3], values[4], values[5])
         }
+
     }
+
 }

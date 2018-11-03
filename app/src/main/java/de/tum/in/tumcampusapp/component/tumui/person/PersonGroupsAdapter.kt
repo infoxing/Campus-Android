@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import de.tum.`in`.tumcampusapp.R
-import de.tum.`in`.tumcampusapp.component.tumui.person.model.Group
+import de.tum.`in`.tumcampusapp.model.person.Group
 import kotlinx.android.synthetic.main.person_group_item.view.*
 
 class PersonGroupsAdapter(private val items: List<Group>) : RecyclerView.Adapter<PersonGroupsAdapter.ViewHolder>() {

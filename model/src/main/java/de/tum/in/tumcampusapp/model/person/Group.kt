@@ -1,4 +1,4 @@
-package de.tum.`in`.tumcampusapp.component.tumui.person.model
+package de.tum.`in`.tumcampusapp.model.person
 
 import com.tickaroo.tikxml.annotation.PropertyElement
 import com.tickaroo.tikxml.annotation.Xml

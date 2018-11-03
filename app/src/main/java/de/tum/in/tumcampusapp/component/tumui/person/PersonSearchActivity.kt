@@ -2,16 +2,17 @@ package de.tum.`in`.tumcampusapp.component.tumui.person
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import android.view.View
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.component.other.general.RecentsDao
-import de.tum.`in`.tumcampusapp.component.other.general.model.Recent
 import de.tum.`in`.tumcampusapp.component.other.generic.activity.ActivityForSearchingTumOnline
-import de.tum.`in`.tumcampusapp.component.tumui.person.model.Person
-import de.tum.`in`.tumcampusapp.component.tumui.person.model.PersonList
+import de.tum.`in`.tumcampusapp.model.person.Person
+import de.tum.`in`.tumcampusapp.model.person.PersonList
+import de.tum.`in`.tumcampusapp.component.tumui.person.viewmodel.PersonViewEntity
 import de.tum.`in`.tumcampusapp.database.TcaDb
+import de.tum.`in`.tumcampusapp.model.recents.Recent
 import kotlinx.android.synthetic.main.activity_person_search.*
 
 /**
@@ -24,10 +25,12 @@ class PersonSearchActivity : ActivityForSearchingTumOnline<PersonList>(
 
     private lateinit var recentsDao: RecentsDao
 
-    private val recents: List<Person>
+    private val recents: List<PersonViewEntity>
         get() {
             val recents = recentsDao.getAll(RecentsDao.PERSONS) ?: return emptyList()
-            return recents.map { recent -> Person.fromRecent(recent) }
+            return recents
+                    .map { recent -> Person.fromRecent(recent) }
+                    .map { PersonViewEntity.create(it) }
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,10 +55,10 @@ class PersonSearchActivity : ActivityForSearchingTumOnline<PersonList>(
         personsRecyclerView.addItemDecoration(itemDecoration)
     }
 
-    override fun onItemSelected(person: Person) {
-        val lastSearch = person.id + "$" + person.getFullName().trim { it <= ' ' }
+    override fun onItemSelected(person: PersonViewEntity) {
+        val lastSearch = person.id + "$" + person.fullName.trim { it <= ' ' }
         recentsDao.insert(Recent(lastSearch, RecentsDao.PERSONS))
-        showPersonDetails(person)
+        showPersonDetails(person.raw)
     }
 
     override fun onStartSearch() {
@@ -80,7 +83,8 @@ class PersonSearchActivity : ActivityForSearchingTumOnline<PersonList>(
             showPersonDetails(response.persons.first())
         } else {
             val adapter = personsRecyclerView.adapter as? PersonSearchResultsAdapter
-            adapter?.update(response.persons)
+            val persons = response.persons.map { PersonViewEntity.create(it) }
+            adapter?.update(persons)
         }
     }
 

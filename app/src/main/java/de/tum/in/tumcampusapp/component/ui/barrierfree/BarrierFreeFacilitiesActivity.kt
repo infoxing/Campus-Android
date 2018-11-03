@@ -6,12 +6,12 @@ import android.view.View
 import android.widget.AdapterView
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.component.other.general.RecentsDao
-import de.tum.`in`.tumcampusapp.component.other.general.model.Recent
+import de.tum.`in`.tumcampusapp.model.recents.Recent
 import de.tum.`in`.tumcampusapp.component.other.generic.activity.ActivityForAccessingTumCabe
 import de.tum.`in`.tumcampusapp.component.other.locations.LocationManager
 import de.tum.`in`.tumcampusapp.component.tumui.roomfinder.RoomFinderDetailsActivity
 import de.tum.`in`.tumcampusapp.component.tumui.roomfinder.RoomFinderListAdapter
-import de.tum.`in`.tumcampusapp.component.tumui.roomfinder.model.RoomFinderRoom
+import de.tum.`in`.tumcampusapp.model.roomfinder.RoomFinderRoom
 import de.tum.`in`.tumcampusapp.database.TcaDb
 import kotlinx.android.synthetic.main.activity_barrier_free_facilities.*
 import retrofit2.Call

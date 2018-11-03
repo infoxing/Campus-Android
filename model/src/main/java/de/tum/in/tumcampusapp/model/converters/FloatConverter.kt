@@ -5,7 +5,7 @@ import java.text.NumberFormat
 import java.text.ParseException
 import java.util.*
 
-class sFloatConverter : TypeConverter<Float> {
+class FloatConverter : TypeConverter<Float> {
 
     override fun read(value: String?): Float {
         return try {

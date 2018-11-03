@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import com.google.gson.Gson
 import com.google.gson.JsonObject
-import de.tum.`in`.tumcampusapp.component.other.general.model.Recent
+import de.tum.`in`.tumcampusapp.model.recents.Recent
 import de.tum.`in`.tumcampusapp.component.ui.transportation.TransportationDetailsActivity
 
 data class StationResultViewEntity(

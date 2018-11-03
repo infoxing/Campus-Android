@@ -1,15 +1,15 @@
 package de.tum.`in`.tumcampusapp.component.tumui.person
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import de.tum.`in`.tumcampusapp.R
-import de.tum.`in`.tumcampusapp.component.tumui.person.model.Person
+import de.tum.`in`.tumcampusapp.component.tumui.person.viewmodel.PersonViewEntity
 import kotlinx.android.synthetic.main.person_search_result_item.view.*
 
 class PersonSearchResultsAdapter(
-        private var items: List<Person>,
+        private var items: List<PersonViewEntity>,
         private val listener: PersonSearchResultsItemListener
 ) : RecyclerView.Adapter<PersonSearchResultsAdapter.ViewHolder>() {
 
@@ -25,15 +25,15 @@ class PersonSearchResultsAdapter(
 
     override fun getItemCount() = items.size
 
-    fun update(items: List<Person>) {
+    fun update(items: List<PersonViewEntity>) {
         this.items = items
         notifyDataSetChanged()
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(person: Person, listener: PersonSearchResultsItemListener) = with(itemView) {
-            textView.text = person.getFullName()
+        fun bind(person: PersonViewEntity, listener: PersonSearchResultsItemListener) = with(itemView) {
+            textView.text = person.fullName
             setOnClickListener { listener.onItemSelected(person) }
         }
 

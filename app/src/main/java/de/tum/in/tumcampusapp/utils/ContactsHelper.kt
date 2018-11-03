@@ -4,11 +4,13 @@ import android.content.ContentProviderOperation
 import android.content.Context
 import android.content.OperationApplicationException
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.RemoteException
 import android.provider.ContactsContract
+import android.util.Base64
 import de.tum.`in`.tumcampusapp.R
-import de.tum.`in`.tumcampusapp.component.tumui.person.model.Contact
-import de.tum.`in`.tumcampusapp.component.tumui.person.model.Employee
+import de.tum.`in`.tumcampusapp.model.person.Employee
+import de.tum.`in`.tumcampusapp.model.person.Contact
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.util.*
@@ -46,7 +48,7 @@ class ContactsHelper {
                     .withValue(ContactsContract.CommonDataKinds.Email.TYPE, ContactsContract.CommonDataKinds.Email.TYPE_WORK)
                     .build())
 
-            val substations = employee.telSubstations
+            val substations = employee.telSubstationList?.substations
             if (substations != null) {
                 for ((number) in substations) {
                     ops.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
@@ -65,7 +67,7 @@ class ContactsHelper {
             addContact(ops, rawContactID, employee.privateContact, false)
 
             // Add organisations
-            employee.groups?.let { groups ->
+            employee.groupList?.groups?.let { groups ->
                 groups.forEach { group ->
                     ops.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
                             .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, rawContactID)
@@ -86,7 +88,7 @@ class ContactsHelper {
                     .append(employee.consultationHours)
 
             // saveToContacts all rooms
-            val rooms = employee.rooms
+            val rooms = employee.roomList?.rooms
             if (rooms != null && !rooms.isEmpty()) {
                 if (!notes.toString()
                                 .isEmpty()) {
@@ -113,7 +115,8 @@ class ContactsHelper {
             }
 
             // Add imageUrl
-            val bitmap = employee.image
+            val imageAsBytes = Base64.decode(employee.imageData.toByteArray(Charsets.UTF_8), Base64.DEFAULT)
+            val bitmap = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.size)
             if (bitmap != null) {    // If an imageUrl is selected successfully
                 val stream = ByteArrayOutputStream()
                 bitmap.compress(Bitmap.CompressFormat.PNG, 75, stream)

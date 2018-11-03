@@ -2,7 +2,7 @@ package de.tum.`in`.tumcampusapp.models.tumo
 
 import com.tickaroo.tikxml.TikXml
 import de.tum.`in`.tumcampusapp.TestApp
-import de.tum.`in`.tumcampusapp.component.tumui.person.model.IdentitySet
+import de.tum.`in`.tumcampusapp.model.person.IdentitySet
 import okio.Okio
 import org.junit.Test
 import org.junit.runner.RunWith
