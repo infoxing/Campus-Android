@@ -4,7 +4,7 @@ import android.content.Context
 import com.tickaroo.tikxml.TikXml
 import de.tum.`in`.tumcampusapp.api.tumonline.exception.InvalidTokenException
 import de.tum.`in`.tumcampusapp.api.tumonline.model.Error
-import de.tum.`in`.tumcampusapp.utils.Const
+import de.tum.`in`.tumcampusapp.model.Const
 import de.tum.`in`.tumcampusapp.utils.Utils
 import de.tum.`in`.tumcampusapp.utils.tryOrNull
 import okhttp3.Interceptor

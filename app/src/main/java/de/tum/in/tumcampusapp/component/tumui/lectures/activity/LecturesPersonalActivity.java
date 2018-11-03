@@ -2,17 +2,19 @@ package de.tum.in.tumcampusapp.component.tumui.lectures.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.api.tumonline.CacheControl;
 import de.tum.in.tumcampusapp.component.other.generic.activity.ActivityForSearchingTumOnline;
 import de.tum.in.tumcampusapp.component.other.generic.adapter.NoResultsAdapter;
 import de.tum.in.tumcampusapp.component.tumui.lectures.LectureSearchSuggestionProvider;
 import de.tum.in.tumcampusapp.component.tumui.lectures.adapter.LecturesListAdapter;
+import de.tum.in.tumcampusapp.component.tumui.lectures.viewmodel.LectureViewEntity;
 import de.tum.in.tumcampusapp.model.lecture.Lecture;
 import de.tum.in.tumcampusapp.model.lecture.LecturesResponse;
 import retrofit2.Call;
@@ -81,12 +83,18 @@ public class LecturesPersonalActivity extends ActivityForSearchingTumOnline<Lect
 
     @Override
     public void onDownloadSuccessful(@NonNull LecturesResponse response) {
-        if (response.getLectures().isEmpty()) {
+        List<Lecture> lectures = response.getLectures();
+        List<LectureViewEntity> viewEntities = new ArrayList<>();
+
+        for (Lecture lecture : lectures) {
+            viewEntities.add(LectureViewEntity.create(lecture));
+        }
+
+        if (viewEntities.isEmpty()) {
             lvMyLecturesList.setAdapter(new NoResultsAdapter(this));
         } else {
-            List<Lecture> lectures = response.getLectures();
-            Collections.sort(lectures);
-            lvMyLecturesList.setAdapter(new LecturesListAdapter(this, lectures));
+            Collections.sort(viewEntities);
+            lvMyLecturesList.setAdapter(new LecturesListAdapter(this, viewEntities));
         }
     }
 

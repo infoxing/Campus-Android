@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.component.other.generic.activity.BaseActivity
-import de.tum.`in`.tumcampusapp.utils.Const
+import de.tum.`in`.tumcampusapp.model.Const
 import kotlinx.android.synthetic.main.activity_payment_confirmation.*
 import java.util.*
 import kotlin.concurrent.schedule

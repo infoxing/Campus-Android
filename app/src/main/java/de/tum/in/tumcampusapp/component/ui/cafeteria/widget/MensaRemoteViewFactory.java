@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.controller.CafeteriaManager;
-import de.tum.in.tumcampusapp.model.cafeteria.CafeteriaMenu;
+import de.tum.in.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaMenuViewEntity;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaPrices;
 
 public class MensaRemoteViewFactory implements RemoteViewsService.RemoteViewsFactory {
@@ -18,7 +18,7 @@ public class MensaRemoteViewFactory implements RemoteViewsService.RemoteViewsFac
     private static final Pattern COMPILE = Pattern.compile("\\([^\\)]+\\)");
 
     private final Context mApplicationContext;
-    private List<CafeteriaMenu> mMenus = new ArrayList<>();
+    private List<CafeteriaMenuViewEntity> mMenus = new ArrayList<>();
 
     public MensaRemoteViewFactory(Context context) {
         this.mApplicationContext = context;
@@ -47,7 +47,7 @@ public class MensaRemoteViewFactory implements RemoteViewsService.RemoteViewsFac
 
     @Override
     public RemoteViews getViewAt(int position) {
-        CafeteriaMenu currentItem = mMenus.get(position);
+        CafeteriaMenuViewEntity currentItem = mMenus.get(position);
 
         RemoteViews rv = new RemoteViews(mApplicationContext.getPackageName(), R.layout.mensa_widget_item);
 

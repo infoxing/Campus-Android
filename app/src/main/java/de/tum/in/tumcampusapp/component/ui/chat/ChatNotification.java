@@ -32,7 +32,7 @@ import de.tum.in.tumcampusapp.component.ui.chat.repository.ChatMessageRemoteRepo
 import de.tum.in.tumcampusapp.component.ui.overview.CardManager;
 import de.tum.in.tumcampusapp.component.ui.overview.MainActivity;
 import de.tum.in.tumcampusapp.database.TcaDb;
-import de.tum.in.tumcampusapp.utils.Const;
+import de.tum.in.tumcampusapp.model.Const;
 import de.tum.in.tumcampusapp.utils.Utils;
 
 /**

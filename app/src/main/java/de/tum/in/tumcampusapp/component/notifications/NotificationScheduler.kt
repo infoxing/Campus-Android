@@ -13,11 +13,10 @@ import de.tum.`in`.tumcampusapp.component.notifications.persistence.Notification
 import de.tum.`in`.tumcampusapp.component.notifications.receivers.NotificationAlarmReceiver
 import de.tum.`in`.tumcampusapp.component.notifications.receivers.NotificationReceiver
 import de.tum.`in`.tumcampusapp.database.TcaDb
-import de.tum.`in`.tumcampusapp.utils.Const
+import de.tum.`in`.tumcampusapp.model.Const
 import org.jetbrains.anko.alarmManager
 import org.jetbrains.anko.notificationManager
 import org.joda.time.DateTime
-import kotlin.math.max
 
 /**
  * This class is responsible for scheduling notifications. This can either be a concrete notification

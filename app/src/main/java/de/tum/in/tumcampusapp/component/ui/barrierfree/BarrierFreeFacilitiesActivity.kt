@@ -6,13 +6,14 @@ import android.view.View
 import android.widget.AdapterView
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.component.other.general.RecentsDao
-import de.tum.`in`.tumcampusapp.model.recents.Recent
 import de.tum.`in`.tumcampusapp.component.other.generic.activity.ActivityForAccessingTumCabe
 import de.tum.`in`.tumcampusapp.component.other.locations.LocationManager
 import de.tum.`in`.tumcampusapp.component.tumui.roomfinder.RoomFinderDetailsActivity
 import de.tum.`in`.tumcampusapp.component.tumui.roomfinder.RoomFinderListAdapter
-import de.tum.`in`.tumcampusapp.model.roomfinder.RoomFinderRoom
+import de.tum.`in`.tumcampusapp.component.tumui.roomfinder.viewmodel.RoomFinderRoomViewEntity
 import de.tum.`in`.tumcampusapp.database.TcaDb
+import de.tum.`in`.tumcampusapp.model.recents.Recent
+import de.tum.`in`.tumcampusapp.model.roomfinder.RoomFinderRoom
 import kotlinx.android.synthetic.main.activity_barrier_free_facilities.*
 import retrofit2.Call
 
@@ -49,7 +50,8 @@ class BarrierFreeFacilitiesActivity : ActivityForAccessingTumCabe<List<RoomFinde
     }
 
     override fun onDownloadSuccessful(response: List<RoomFinderRoom>) {
-        barrierFreeFacilitiesListView.adapter = RoomFinderListAdapter(this, response)
+        val rooms = response.map { RoomFinderRoomViewEntity.create(it) }
+        barrierFreeFacilitiesListView.adapter = RoomFinderListAdapter(this, rooms)
         barrierFreeFacilitiesListView.setOnItemClickListener { _, _, index, _ ->
             val facility = response[index]
             recents.insert(Recent(facility.toString(), RecentsDao.ROOMS))

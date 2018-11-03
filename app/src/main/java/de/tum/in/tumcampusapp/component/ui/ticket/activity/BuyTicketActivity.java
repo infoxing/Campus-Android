@@ -26,7 +26,7 @@ import de.tum.in.tumcampusapp.model.ticket.TicketType;
 import de.tum.in.tumcampusapp.component.ui.ticket.payload.TicketReservation;
 import de.tum.in.tumcampusapp.component.ui.ticket.payload.TicketReservationResponse;
 import de.tum.in.tumcampusapp.component.ui.ticket.viewmodel.EventViewEntity;
-import de.tum.in.tumcampusapp.utils.Const;
+import de.tum.in.tumcampusapp.model.Const;
 import de.tum.in.tumcampusapp.utils.Utils;
 import retrofit2.Call;
 import retrofit2.Callback;

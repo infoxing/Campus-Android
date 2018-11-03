@@ -6,7 +6,6 @@ import de.tum.`in`.tumcampusapp.api.tumonline.CacheControl
 import de.tum.`in`.tumcampusapp.component.notifications.NotificationScheduler
 import de.tum.`in`.tumcampusapp.component.notifications.ProvidesNotifications
 import de.tum.`in`.tumcampusapp.component.other.locations.LocationManager
-import de.tum.`in`.tumcampusapp.model.calendar.Event
 import de.tum.`in`.tumcampusapp.component.tumui.calendar.viewmodel.EventViewEntity
 import de.tum.`in`.tumcampusapp.component.ui.overview.card.Card
 import de.tum.`in`.tumcampusapp.component.ui.overview.card.ProvidesCard
@@ -18,6 +17,7 @@ import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.DepartureV
 import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.StationResultViewEntity
 import de.tum.`in`.tumcampusapp.component.ui.transportation.widget.WidgetDepartures
 import de.tum.`in`.tumcampusapp.database.TcaDb
+import de.tum.`in`.tumcampusapp.model.calendar.Event
 import de.tum.`in`.tumcampusapp.model.recents.Recent
 import de.tum.`in`.tumcampusapp.utils.NetUtils
 import de.tum.`in`.tumcampusapp.utils.Utils
@@ -149,11 +149,9 @@ class TransportController(private val context: Context) : ProvidesCard, Provides
                 .dropLast(1)
                 .filterIndexed { index, current ->
                     val next = events[index + 1]
-                    if (current.startTime == null || next.startTime == null) {
-                        false
-                    } else {
-                        current.startTime.dayOfYear != next.startTime.dayOfYear
-                    }
+                    val currentStartTime = current.startTime ?: return@filterIndexed false
+                    val nextStartTime = next.startTime ?: return@filterIndexed false
+                    currentStartTime.dayOfYear != nextStartTime.dayOfYear
                 }
                 .take(maxNotificationsToSchedule) // Some manufacturers cap the amount of alarms you can schedule (https://stackoverflow.com/a/29610474)
 

@@ -21,7 +21,7 @@ import de.tum.in.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaWithMenu
 import de.tum.in.tumcampusapp.component.ui.overview.CardManager;
 import de.tum.in.tumcampusapp.component.ui.overview.card.Card;
 import de.tum.in.tumcampusapp.component.ui.overview.card.CardViewHolder;
-import de.tum.in.tumcampusapp.utils.Const;
+import de.tum.in.tumcampusapp.model.Const;
 
 /**
  * Card that shows the cafeteria menu

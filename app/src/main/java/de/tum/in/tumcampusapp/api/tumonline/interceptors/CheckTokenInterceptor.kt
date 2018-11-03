@@ -2,7 +2,7 @@ package de.tum.`in`.tumcampusapp.api.tumonline.interceptors
 
 import android.content.Context
 import de.tum.`in`.tumcampusapp.api.tumonline.exception.InvalidTokenException
-import de.tum.`in`.tumcampusapp.utils.Const
+import de.tum.`in`.tumcampusapp.model.Const
 import de.tum.`in`.tumcampusapp.utils.Utils
 import okhttp3.Interceptor
 import okhttp3.Response

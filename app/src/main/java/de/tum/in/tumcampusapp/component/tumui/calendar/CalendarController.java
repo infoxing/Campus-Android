@@ -38,7 +38,7 @@ import de.tum.in.tumcampusapp.database.TcaDb;
 import de.tum.in.tumcampusapp.model.calendar.WidgetsTimetableBlacklist;
 import de.tum.in.tumcampusapp.model.lecture.RoomLocations;
 import de.tum.in.tumcampusapp.model.locations.Geo;
-import de.tum.in.tumcampusapp.utils.Const;
+import de.tum.in.tumcampusapp.model.Const;
 import de.tum.in.tumcampusapp.utils.Utils;
 import de.tum.in.tumcampusapp.utils.sync.SyncManager;
 

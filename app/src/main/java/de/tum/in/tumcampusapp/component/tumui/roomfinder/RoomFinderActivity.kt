@@ -9,11 +9,12 @@ import android.widget.AdapterView.OnItemClickListener
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.api.app.TUMCabeClient
 import de.tum.`in`.tumcampusapp.component.other.general.RecentsDao
-import de.tum.`in`.tumcampusapp.model.recents.Recent
 import de.tum.`in`.tumcampusapp.component.other.generic.activity.ActivityForSearchingInBackground
 import de.tum.`in`.tumcampusapp.component.other.generic.adapter.NoResultsAdapter
-import de.tum.`in`.tumcampusapp.model.roomfinder.RoomFinderRoom
+import de.tum.`in`.tumcampusapp.component.tumui.roomfinder.viewmodel.RoomFinderRoomViewEntity
 import de.tum.`in`.tumcampusapp.database.TcaDb
+import de.tum.`in`.tumcampusapp.model.recents.Recent
+import de.tum.`in`.tumcampusapp.model.roomfinder.RoomFinderRoom
 import de.tum.`in`.tumcampusapp.utils.NetUtils
 import de.tum.`in`.tumcampusapp.utils.Utils
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView
@@ -24,22 +25,23 @@ import java.util.regex.Pattern
 /**
  * Activity to show a convenience interface for using the MyTUM room finder.
  */
-class RoomFinderActivity : ActivityForSearchingInBackground<List<RoomFinderRoom>>(
+class RoomFinderActivity : ActivityForSearchingInBackground<List<RoomFinderRoomViewEntity>>(
         R.layout.activity_roomfinder, RoomFinderSuggestionProvider.AUTHORITY, 3
 ), OnItemClickListener {
 
     private val recentsDao by lazy { TcaDb.getInstance(this).recentsDao() }
-    private val listView by lazy { findViewById<StickyListHeadersListView>(R.id.list) as StickyListHeadersListView }
+    private val listView by lazy { findViewById(R.id.list) as StickyListHeadersListView }
     private lateinit var adapter: RoomFinderListAdapter
 
     /**
      * Reconstruct recents from String
      */
-    private val recents: List<RoomFinderRoom>
+    private val recents: List<RoomFinderRoomViewEntity>
         get() {
             return recentsDao.getAll(RecentsDao.ROOMS)?.mapNotNull {
                 try {
-                    RoomFinderRoom.fromRecent(it)
+                    val room = RoomFinderRoom.fromRecent(it)
+                    RoomFinderRoomViewEntity.create(room)
                 } catch (ignore: IllegalArgumentException) {
                     null
                 }
@@ -66,16 +68,18 @@ class RoomFinderActivity : ActivityForSearchingInBackground<List<RoomFinderRoom>
 
     override fun onSearchInBackground() = recents
 
-    override fun onSearchInBackground(query: String): List<RoomFinderRoom>? {
+    override fun onSearchInBackground(query: String): List<RoomFinderRoomViewEntity>? {
         return try {
-            TUMCabeClient.getInstance(this).fetchRooms(userRoomSearchMatching(query))
+            TUMCabeClient.getInstance(this)
+                    .fetchRooms(userRoomSearchMatching(query))
+                    .map { RoomFinderRoomViewEntity.create(it) }
         } catch (e: IOException) {
             Utils.log(e)
             null
         }
     }
 
-    override fun onSearchFinished(searchResult: List<RoomFinderRoom>?) {
+    override fun onSearchFinished(searchResult: List<RoomFinderRoomViewEntity>?) {
         if (searchResult == null) {
             if (NetUtils.isConnected(this)) {
                 showErrorLayout()

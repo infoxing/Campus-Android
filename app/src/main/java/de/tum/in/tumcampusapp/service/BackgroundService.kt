@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Looper
 import androidx.core.app.JobIntentService
-import de.tum.`in`.tumcampusapp.utils.Const
+import de.tum.`in`.tumcampusapp.model.Const
 import de.tum.`in`.tumcampusapp.utils.Utils
 
 /**

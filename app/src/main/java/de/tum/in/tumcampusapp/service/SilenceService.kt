@@ -11,8 +11,8 @@ import android.provider.Settings
 import androidx.annotation.RequiresApi
 import androidx.core.app.JobIntentService
 import de.tum.`in`.tumcampusapp.component.tumui.calendar.CalendarController
-import de.tum.`in`.tumcampusapp.utils.Const
-import de.tum.`in`.tumcampusapp.utils.Const.SILENCE_SERVICE_JOB_ID
+import de.tum.`in`.tumcampusapp.model.Const
+import de.tum.`in`.tumcampusapp.model.Const.SILENCE_SERVICE_JOB_ID
 import de.tum.`in`.tumcampusapp.utils.Utils
 import org.joda.time.DateTime
 

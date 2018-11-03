@@ -1,12 +1,12 @@
 package de.tum.`in`.tumcampusapp.component.ui.cafeteria.details
 
-import androidx.lifecycle.ViewModel
 import android.location.Location
-import de.tum.`in`.tumcampusapp.model.cafeteria.Cafeteria
-import de.tum.`in`.tumcampusapp.model.cafeteria.CafeteriaMenu
-import de.tum.`in`.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaWithMenus
+import androidx.lifecycle.ViewModel
 import de.tum.`in`.tumcampusapp.component.ui.cafeteria.repository.CafeteriaLocalRepository
 import de.tum.`in`.tumcampusapp.component.ui.cafeteria.repository.CafeteriaRemoteRepository
+import de.tum.`in`.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaMenuViewEntity
+import de.tum.`in`.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaWithMenus
+import de.tum.`in`.tumcampusapp.model.cafeteria.Cafeteria
 import de.tum.`in`.tumcampusapp.utils.Utils
 import io.reactivex.Flowable
 import io.reactivex.Observable
@@ -36,7 +36,7 @@ class CafeteriaViewModel(private val localRepository: CafeteriaLocalRepository,
         return localRepository.getCafeteriaWithMenus(cafeteriaId)
     }
 
-    fun getCafeteriaMenus(id: Int, date: DateTime): Flowable<List<CafeteriaMenu>> {
+    fun getCafeteriaMenus(id: Int, date: DateTime): Flowable<List<CafeteriaMenuViewEntity>> {
         return Flowable
                 .fromCallable { localRepository.getCafeteriaMenus(id, date) }
                 .subscribeOn(Schedulers.io())

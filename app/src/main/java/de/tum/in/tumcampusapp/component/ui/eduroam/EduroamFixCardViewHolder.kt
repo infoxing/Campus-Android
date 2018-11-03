@@ -6,7 +6,7 @@ import android.net.wifi.WifiConfiguration
 import android.view.View
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.component.ui.overview.card.CardViewHolder
-import de.tum.`in`.tumcampusapp.utils.Const
+import de.tum.`in`.tumcampusapp.model.Const
 import kotlinx.android.synthetic.main.card_eduroam_fix.view.*
 import org.jetbrains.anko.wifiManager
 

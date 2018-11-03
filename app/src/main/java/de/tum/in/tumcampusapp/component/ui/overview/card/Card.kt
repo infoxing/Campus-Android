@@ -5,11 +5,10 @@ import android.content.SharedPreferences
 import android.content.SharedPreferences.Editor
 import android.preference.PreferenceManager
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.component.other.navigation.NavigationDestination
-import de.tum.`in`.tumcampusapp.utils.Const.CARD_POSITION_PREFERENCE_SUFFIX
-import de.tum.`in`.tumcampusapp.utils.Const.DISCARD_SETTINGS_START
+import de.tum.`in`.tumcampusapp.model.Const.CARD_POSITION_PREFERENCE_SUFFIX
+import de.tum.`in`.tumcampusapp.model.Const.DISCARD_SETTINGS_START
 import de.tum.`in`.tumcampusapp.utils.Utils
 
 /**

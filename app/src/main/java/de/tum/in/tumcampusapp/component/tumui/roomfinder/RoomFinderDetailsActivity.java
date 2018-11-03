@@ -28,7 +28,7 @@ import de.tum.in.tumcampusapp.model.roomfinder.RoomFinderCoordinate;
 import de.tum.in.tumcampusapp.model.roomfinder.RoomFinderMap;
 import de.tum.in.tumcampusapp.model.roomfinder.RoomFinderRoom;
 import de.tum.in.tumcampusapp.component.tumui.roomfinder.viewmodel.RoomFinderRoomViewEntity;
-import de.tum.in.tumcampusapp.utils.Const;
+import de.tum.in.tumcampusapp.model.Const;
 import de.tum.in.tumcampusapp.utils.NetUtils;
 import de.tum.in.tumcampusapp.utils.Utils;
 import retrofit2.Call;

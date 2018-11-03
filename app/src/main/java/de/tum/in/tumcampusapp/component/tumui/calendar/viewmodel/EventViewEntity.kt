@@ -6,9 +6,9 @@ import androidx.core.content.ContextCompat
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.component.notifications.model.FutureNotification
 import de.tum.`in`.tumcampusapp.component.notifications.persistence.NotificationType
+import de.tum.`in`.tumcampusapp.model.Const
 import de.tum.`in`.tumcampusapp.model.calendar.Event
 import de.tum.`in`.tumcampusapp.model.locations.Geo
-import de.tum.`in`.tumcampusapp.utils.Const
 import de.tum.`in`.tumcampusapp.utils.DateTimeUtils
 import org.joda.time.DateTime
 
@@ -40,12 +40,12 @@ data class EventViewEntity(
         }
 
         private fun createFutureNotification(context: Context, event: Event): FutureNotification? {
-            if (event.id == null || event.startTime == null || event.endTime == null) {
-                return null
-            }
+            val id = event.id ?: return null
+            val startTime = event.startTime ?: return null
+            val endTime = event.endTime ?: return null
 
-            val timestamp = DateTimeUtils.formatFutureTime(event.startTime, context)
-            val duration = event.endTime.millis - event.startTime.millis
+            val timestamp = DateTimeUtils.formatFutureTime(startTime, context)
+            val duration = endTime.millis - startTime.millis
 
             val notification = NotificationCompat.Builder(context, Const.NOTIFICATION_CHANNEL_DEFAULT)
                     .setContentTitle(event.title)
@@ -57,8 +57,8 @@ data class EventViewEntity(
                     .setTimeoutAfter(duration)
                     .build()
 
-            val notificationTime = event.startTime.minusMinutes(15)
-            return FutureNotification(NotificationType.CALENDAR, event.id.toInt(), notification, notificationTime)
+            val notificationTime = startTime.minusMinutes(15)
+            return FutureNotification(NotificationType.CALENDAR, id.toInt(), notification, notificationTime)
         }
 
     }

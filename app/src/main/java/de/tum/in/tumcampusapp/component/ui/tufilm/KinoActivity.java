@@ -10,7 +10,7 @@ import de.tum.in.tumcampusapp.component.other.generic.activity.ProgressActivity;
 import de.tum.in.tumcampusapp.component.ui.tufilm.viewmodel.KinoViewEntity;
 import de.tum.in.tumcampusapp.component.ui.tufilm.viewmodel.KinoViewEntityMapper;
 import de.tum.in.tumcampusapp.database.TcaDb;
-import de.tum.in.tumcampusapp.utils.Const;
+import de.tum.in.tumcampusapp.model.Const;
 import de.tum.in.tumcampusapp.utils.Utils;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;

@@ -3,8 +3,8 @@ package de.tum.`in`.tumcampusapp.service
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import de.tum.`in`.tumcampusapp.utils.Const.DISTANCE_IN_METER
-import de.tum.`in`.tumcampusapp.utils.Const.MUNICH_GEOFENCE
+import de.tum.`in`.tumcampusapp.model.Const.DISTANCE_IN_METER
+import de.tum.`in`.tumcampusapp.model.Const.MUNICH_GEOFENCE
 import de.tum.`in`.tumcampusapp.utils.Utils
 
 

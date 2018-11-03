@@ -25,9 +25,8 @@ import de.tum.in.tumcampusapp.component.ui.cafeteria.CafeteriaMenuInflater;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.repository.CafeteriaLocalRepository;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.repository.CafeteriaRemoteRepository;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaMenuViewEntity;
-import de.tum.in.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaMenuViewEntityMapper;
 import de.tum.in.tumcampusapp.database.TcaDb;
-import de.tum.in.tumcampusapp.utils.Const;
+import de.tum.in.tumcampusapp.model.Const;
 import de.tum.in.tumcampusapp.utils.DateTimeUtils;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -125,11 +124,8 @@ public class CafeteriaDetailsSectionFragment extends Fragment {
         int cafeteriaId = getArguments().getInt(Const.CAFETERIA_ID);
         DateTime date = DateTimeUtils.INSTANCE.getDate(dateString);
 
-        CafeteriaMenuViewEntityMapper mapper = new CafeteriaMenuViewEntityMapper();
-
         Disposable disposable = cafeteriaViewModel
                 .getCafeteriaMenus(cafeteriaId, date)
-                .map(mapper)
                 .subscribe(menu -> showMenu(root, cafeteriaId, date, true, menu));
 
         mDisposable.add(disposable);

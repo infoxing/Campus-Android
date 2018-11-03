@@ -23,7 +23,7 @@ import de.tum.`in`.tumcampusapp.component.ui.tufilm.KinoRemoteRepository
 import de.tum.`in`.tumcampusapp.component.ui.tufilm.KinoViewModel
 import de.tum.`in`.tumcampusapp.database.TcaDb
 import de.tum.`in`.tumcampusapp.utils.CacheManager
-import de.tum.`in`.tumcampusapp.utils.Const
+import de.tum.`in`.tumcampusapp.model.Const
 import de.tum.`in`.tumcampusapp.utils.NetUtils
 import de.tum.`in`.tumcampusapp.utils.Utils
 import de.tum.`in`.tumcampusapp.utils.sync.SyncManager

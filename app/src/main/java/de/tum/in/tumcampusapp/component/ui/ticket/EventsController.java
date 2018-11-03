@@ -21,7 +21,7 @@ import de.tum.in.tumcampusapp.model.ticket.RawTicket;
 import de.tum.in.tumcampusapp.model.ticket.TicketType;
 import de.tum.in.tumcampusapp.component.ui.ticket.viewmodel.EventViewEntity;
 import de.tum.in.tumcampusapp.database.TcaDb;
-import de.tum.in.tumcampusapp.utils.Const;
+import de.tum.in.tumcampusapp.model.Const;
 import de.tum.in.tumcampusapp.utils.Utils;
 import retrofit2.Call;
 import retrofit2.Callback;

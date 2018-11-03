@@ -19,7 +19,7 @@ import de.tum.`in`.tumcampusapp.model.person.Employee
 import de.tum.`in`.tumcampusapp.component.tumui.person.viewmodel.EmployeeViewEntity
 import de.tum.`in`.tumcampusapp.component.tumui.person.viewmodel.PersonViewEntity
 import de.tum.`in`.tumcampusapp.model.person.Person
-import de.tum.`in`.tumcampusapp.utils.Const
+import de.tum.`in`.tumcampusapp.model.Const
 import de.tum.`in`.tumcampusapp.utils.ContactsHelper
 import kotlinx.android.synthetic.main.activity_person_details.*
 

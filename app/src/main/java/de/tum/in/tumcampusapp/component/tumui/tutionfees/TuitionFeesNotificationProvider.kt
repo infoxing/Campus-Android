@@ -10,7 +10,7 @@ import de.tum.`in`.tumcampusapp.component.notifications.model.AppNotification
 import de.tum.`in`.tumcampusapp.component.notifications.model.InstantNotification
 import de.tum.`in`.tumcampusapp.component.notifications.persistence.NotificationType
 import de.tum.`in`.tumcampusapp.component.tumui.tutionfees.viewmodel.TuitionViewEntity
-import de.tum.`in`.tumcampusapp.utils.Const
+import de.tum.`in`.tumcampusapp.model.Const
 
 class TuitionFeesNotificationProvider(context: Context) : NotificationProvider(context) {
 

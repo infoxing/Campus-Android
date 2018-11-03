@@ -23,7 +23,7 @@ import de.tum.`in`.tumcampusapp.model.person.IdentitySet
 import de.tum.`in`.tumcampusapp.model.person.PersonList
 import de.tum.`in`.tumcampusapp.model.tuition.TuitionList
 import de.tum.`in`.tumcampusapp.utils.CacheManager
-import de.tum.`in`.tumcampusapp.utils.Const
+import de.tum.`in`.tumcampusapp.model.Const
 import de.tum.`in`.tumcampusapp.utils.DateTimeUtils
 import retrofit2.Call
 import retrofit2.Retrofit

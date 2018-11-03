@@ -11,7 +11,7 @@ import android.net.wifi.WifiManager;
 
 import java.util.List;
 
-import de.tum.in.tumcampusapp.utils.Const;
+import de.tum.in.tumcampusapp.model.Const;
 import de.tum.in.tumcampusapp.utils.Utils;
 
 /**

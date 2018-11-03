@@ -41,7 +41,7 @@ data class ExamViewEntity(
             val gradeValue = tryOrNull { NumberFormat.getInstance(GERMAN).parse(exam.grade).toDouble() } ?: 5.0
             val isPassed = gradeValue <= 4.0
 
-            val resId = Exam.GRADE_COLORS[exam.grade] ?: R.color.grade_default
+            val resId = GRADE_COLORS[exam.grade] ?: R.color.grade_default
             val gradeColor = ContextCompat.getColor(context, resId)
 
             return ExamViewEntity(
@@ -49,6 +49,26 @@ data class ExamViewEntity(
                     exam.programID, exam.semester, isPassed, gradeColor
             )
         }
+
+        val GRADE_COLORS = mapOf(
+                "1,0" to R.color.grade_1_0,
+                "1,3" to R.color.grade_1_3,
+                "1,4" to R.color.grade_1_3,
+                "1,7" to R.color.grade_1_7,
+                "2,0" to R.color.grade_2_0,
+                "2,3" to R.color.grade_2_3,
+                "2,4" to R.color.grade_2_3,
+                "2,7" to R.color.grade_2_7,
+                "3,0" to R.color.grade_3_0,
+                "3,3" to R.color.grade_3_3,
+                "3,4" to R.color.grade_3_3,
+                "3,7" to R.color.grade_3_7,
+                "4,0" to R.color.grade_4_0,
+                "4,3" to R.color.grade_4_3,
+                "4,4" to R.color.grade_4_3,
+                "4,7" to R.color.grade_4_7,
+                "5,0" to R.color.grade_5_0
+        )
 
     }
 

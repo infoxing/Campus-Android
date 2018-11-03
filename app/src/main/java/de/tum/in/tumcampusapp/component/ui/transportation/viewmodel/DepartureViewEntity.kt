@@ -6,6 +6,7 @@ import org.joda.time.Minutes
 
 data class DepartureViewEntity(
         val servingLine: String,
+        val direction: String,
         val formattedDirection: String,
         val symbol: String,
         val countDown: Int,
@@ -30,6 +31,7 @@ data class DepartureViewEntity(
 
             return DepartureViewEntity(
                     mvvDeparture.servingLine.name,
+                    mvvDeparture.servingLine.direction,
                     formattedDirection,
                     mvvDeparture.servingLine.symbol,
                     mvvDeparture.countdown,

@@ -19,7 +19,7 @@ import de.tum.`in`.tumcampusapp.component.other.wifimeasurement.WifiMeasurementL
 import de.tum.`in`.tumcampusapp.component.other.wifimeasurement.model.WifiMeasurement
 import de.tum.`in`.tumcampusapp.component.ui.eduroam.EduroamController
 import de.tum.`in`.tumcampusapp.component.ui.eduroam.SetupEduroamActivity
-import de.tum.`in`.tumcampusapp.utils.Const
+import de.tum.`in`.tumcampusapp.model.Const
 import de.tum.`in`.tumcampusapp.utils.NetUtils
 import de.tum.`in`.tumcampusapp.utils.Utils
 

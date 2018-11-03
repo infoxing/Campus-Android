@@ -13,7 +13,7 @@ import de.tum.in.tumcampusapp.component.other.generic.activity.ActivityForAccess
 import de.tum.in.tumcampusapp.component.tumui.lectures.adapter.LectureAppointmentsListAdapter;
 import de.tum.in.tumcampusapp.model.lecture.LectureAppointment;
 import de.tum.in.tumcampusapp.model.lecture.LectureAppointmentsResponse;
-import de.tum.in.tumcampusapp.utils.Const;
+import de.tum.in.tumcampusapp.model.Const;
 import retrofit2.Call;
 
 /**

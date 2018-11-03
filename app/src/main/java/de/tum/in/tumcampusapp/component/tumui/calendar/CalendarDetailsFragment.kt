@@ -19,9 +19,9 @@ import de.tum.`in`.tumcampusapp.model.calendar.DeleteEventResponse
 import de.tum.`in`.tumcampusapp.component.tumui.calendar.viewmodel.CalendarItemViewEntity
 import de.tum.`in`.tumcampusapp.component.tumui.roomfinder.RoomFinderActivity
 import de.tum.`in`.tumcampusapp.database.TcaDb
-import de.tum.`in`.tumcampusapp.utils.Const
-import de.tum.`in`.tumcampusapp.utils.Const.CALENDAR_ID_PARAM
-import de.tum.`in`.tumcampusapp.utils.Const.CALENDAR_SHOWN_IN_CALENDAR_ACTIVITY_PARAM
+import de.tum.`in`.tumcampusapp.model.Const
+import de.tum.`in`.tumcampusapp.model.Const.CALENDAR_ID_PARAM
+import de.tum.`in`.tumcampusapp.model.Const.CALENDAR_SHOWN_IN_CALENDAR_ACTIVITY_PARAM
 import de.tum.`in`.tumcampusapp.utils.Utils
 import de.tum.`in`.tumcampusapp.utils.ui.RoundedBottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_calendar_details.*

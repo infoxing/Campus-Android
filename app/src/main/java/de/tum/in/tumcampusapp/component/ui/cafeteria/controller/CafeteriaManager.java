@@ -1,7 +1,6 @@
 package de.tum.in.tumcampusapp.component.ui.cafeteria.controller;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -11,19 +10,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
 import de.tum.in.tumcampusapp.api.tumonline.CacheControl;
 import de.tum.in.tumcampusapp.component.notifications.ProvidesNotifications;
 import de.tum.in.tumcampusapp.component.other.locations.LocationManager;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.CafeteriaMenuCard;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.details.CafeteriaViewModel;
-import de.tum.in.tumcampusapp.model.cafeteria.CafeteriaMenu;
-import de.tum.in.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaWithMenus;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.repository.CafeteriaLocalRepository;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.repository.CafeteriaRemoteRepository;
+import de.tum.in.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaMenuViewEntity;
+import de.tum.in.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaWithMenus;
 import de.tum.in.tumcampusapp.component.ui.overview.card.Card;
 import de.tum.in.tumcampusapp.component.ui.overview.card.ProvidesCard;
 import de.tum.in.tumcampusapp.database.TcaDb;
+import de.tum.in.tumcampusapp.model.cafeteria.CafeteriaMenu;
 import de.tum.in.tumcampusapp.utils.Utils;
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -88,7 +89,7 @@ public class CafeteriaManager implements ProvidesCard, ProvidesNotifications {
      * Returns a list of {@link CafeteriaMenu}s of the best-matching cafeteria. If there's no
      * best-matching cafeteria, it returns an empty list.
      */
-    public List<CafeteriaMenu> getBestMatchCafeteriaMenus() {
+    public List<CafeteriaMenuViewEntity> getBestMatchCafeteriaMenus() {
         int cafeteriaId = getBestMatchMensaId();
         if (cafeteriaId == -1) {
             return Collections.emptyList();
@@ -106,14 +107,14 @@ public class CafeteriaManager implements ProvidesCard, ProvidesNotifications {
         return cafeteriaId;
     }
 
-    private List<CafeteriaMenu> getCafeteriaMenusByCafeteriaId(int cafeteriaId) {
+    private List<CafeteriaMenuViewEntity> getCafeteriaMenusByCafeteriaId(int cafeteriaId) {
         CafeteriaWithMenus cafeteria = new CafeteriaWithMenus(cafeteriaId);
 
         List<DateTime> menuDates = CafeteriaLocalRepository.INSTANCE.getAllMenuDates();
         cafeteria.setMenuDates(menuDates);
 
         DateTime nextMenuDate = cafeteria.getNextMenuDate();
-        List<CafeteriaMenu> menus =
+        List<CafeteriaMenuViewEntity> menus =
                 CafeteriaLocalRepository.INSTANCE.getCafeteriaMenus(cafeteriaId, nextMenuDate);
         cafeteria.setMenus(menus);
 

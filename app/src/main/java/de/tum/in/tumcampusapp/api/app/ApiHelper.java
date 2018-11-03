@@ -21,16 +21,15 @@ import java.util.concurrent.TimeUnit;
 
 import de.tum.in.tumcampusapp.BuildConfig;
 import de.tum.in.tumcampusapp.utils.Utils;
-import kotlin.text.Charsets;
 import okhttp3.CertificatePinner;
 import okhttp3.CookieJar;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
-import static de.tum.in.tumcampusapp.utils.Const.API_HOSTNAME;
-import static de.tum.in.tumcampusapp.utils.Const.API_HOSTNAME_NEW;
-import static de.tum.in.tumcampusapp.utils.Const.STUDY_ROOMS_HOSTNAME;
+import static de.tum.in.tumcampusapp.model.Const.API_HOSTNAME;
+import static de.tum.in.tumcampusapp.model.Const.API_HOSTNAME_NEW;
+import static de.tum.in.tumcampusapp.model.Const.STUDY_ROOMS_HOSTNAME;
 
 public final class ApiHelper {
 

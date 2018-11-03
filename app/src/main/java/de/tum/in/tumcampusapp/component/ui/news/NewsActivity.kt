@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.component.other.generic.activity.ActivityForDownloadingExternal
 import de.tum.`in`.tumcampusapp.component.other.generic.adapter.EqualSpacingItemDecoration
-import de.tum.`in`.tumcampusapp.utils.Const
+import de.tum.`in`.tumcampusapp.component.ui.news.viewmodel.NewsViewEntity
+import de.tum.`in`.tumcampusapp.model.Const
 import de.tum.`in`.tumcampusapp.utils.NetUtils
 import de.tum.`in`.tumcampusapp.utils.Utils
 
@@ -41,7 +42,7 @@ class NewsActivity : ActivityForDownloadingExternal(Const.NEWS, R.layout.activit
         super.onStart()
 
         // Gets all news from database
-        val news = newsController.getAllFromDb(this)
+        val news = newsController.getAllFromDb(this).map { NewsViewEntity.create(it) }
         if (news.isEmpty()) {
             if (NetUtils.isConnected(this)) {
                 showErrorLayout()

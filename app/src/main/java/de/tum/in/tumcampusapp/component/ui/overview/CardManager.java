@@ -9,8 +9,8 @@ import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.database.TcaDb;
 import de.tum.in.tumcampusapp.utils.Utils;
 
-import static de.tum.in.tumcampusapp.utils.Const.CARD_POSITION_PREFERENCE_SUFFIX;
-import static de.tum.in.tumcampusapp.utils.Const.DISCARD_SETTINGS_START;
+import static de.tum.in.tumcampusapp.model.Const.CARD_POSITION_PREFERENCE_SUFFIX;
+import static de.tum.in.tumcampusapp.model.Const.DISCARD_SETTINGS_START;
 
 /**
  * Card manager, manages inserting, dismissing, updating and displaying of cards

@@ -1,4 +1,4 @@
-package de.tum.`in`.tumcampusapp.utils
+package de.tum.`in`.tumcampusapp.model
 
 /**
  * Contains different constants used by several classes. Allows a unified access.

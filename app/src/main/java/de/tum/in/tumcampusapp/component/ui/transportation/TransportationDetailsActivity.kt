@@ -8,11 +8,11 @@ import androidx.appcompat.app.AlertDialog
 import com.google.gson.Gson
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.component.other.general.RecentsDao
-import de.tum.`in`.tumcampusapp.model.recents.Recent
 import de.tum.`in`.tumcampusapp.component.other.generic.activity.ProgressActivity
-import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.StationResultViewEntity
 import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.DepartureViewEntity
+import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.StationResultViewEntity
 import de.tum.`in`.tumcampusapp.database.TcaDb
+import de.tum.`in`.tumcampusapp.model.recents.Recent
 import de.tum.`in`.tumcampusapp.utils.Utils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -105,7 +105,8 @@ class TransportationDetailsActivity : ProgressActivity<Unit>(R.layout.activity_t
             return
         }
         mViewResults.removeAllViews()
-        for ((_, direction, lineSymbol, _, departureTime) in results) {
+
+        results.forEach { departure ->
             val view = DepartureView(this, true)
 
             view.setOnClickListener { v ->
@@ -128,14 +129,14 @@ class TransportationDetailsActivity : ProgressActivity<Unit>(R.layout.activity_t
                 }
             }
 
-            if (transportManager.isFavorite(lineSymbol)) {
-                view.setSymbol(lineSymbol, true)
+            if (transportManager.isFavorite(departure.symbol)) {
+                view.setSymbol(departure.symbol, true)
             } else {
-                view.setSymbol(lineSymbol, false)
+                view.setSymbol(departure.symbol, false)
             }
 
-            view.setLine(direction)
-            view.setTime(departureTime)
+            view.setLine(departure.direction)
+            view.setTime(departure.departureTime)
             mViewResults.addView(view)
         }
     }

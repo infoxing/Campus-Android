@@ -19,9 +19,9 @@ data class LectureViewEntity(
         val stp_sp_sst: String,
         val title: String,
         val lecturers: String?
-) : Comparable<Lecture>, SimpleStickyListHeadersAdapter.SimpleStickyListItem {
+) : Comparable<LectureViewEntity>, SimpleStickyListHeadersAdapter.SimpleStickyListItem {
 
-    override fun compareTo(other: Lecture) = other.semesterId.compareTo(semesterId)
+    override fun compareTo(other: LectureViewEntity) = other.semesterId.compareTo(semesterId)
 
     override fun getHeadName() = semesterName
 

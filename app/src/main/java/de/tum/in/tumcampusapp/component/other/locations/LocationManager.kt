@@ -17,7 +17,7 @@ import de.tum.`in`.tumcampusapp.model.roomfinder.RoomFinderCoordinate
 import de.tum.`in`.tumcampusapp.model.cafeteria.Cafeteria
 import de.tum.`in`.tumcampusapp.component.ui.transportation.viewmodel.StationResultViewEntity
 import de.tum.`in`.tumcampusapp.database.TcaDb
-import de.tum.`in`.tumcampusapp.utils.Const
+import de.tum.`in`.tumcampusapp.model.Const
 import de.tum.`in`.tumcampusapp.utils.Utils
 import java.io.IOException
 import java.lang.Double.parseDouble

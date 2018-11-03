@@ -2,7 +2,7 @@ package de.tum.`in`.tumcampusapp.model.converters
 
 import com.google.gson.JsonParseException
 import com.tickaroo.tikxml.TypeConverter
-import de.tum.`in`.tumcampusapp.utils.tryOrNull
+import de.tum.`in`.tumcampusapp.model.tryOrNull
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 

@@ -27,7 +27,7 @@ import de.tum.`in`.tumcampusapp.component.other.general.Update
 import de.tum.`in`.tumcampusapp.component.other.generic.GenericNotification
 import de.tum.`in`.tumcampusapp.component.ui.alarm.AlarmNotification
 import de.tum.`in`.tumcampusapp.component.ui.chat.ChatNotification
-import de.tum.`in`.tumcampusapp.utils.Const
+import de.tum.`in`.tumcampusapp.model.Const
 import de.tum.`in`.tumcampusapp.utils.Utils
 import java.io.IOException
 

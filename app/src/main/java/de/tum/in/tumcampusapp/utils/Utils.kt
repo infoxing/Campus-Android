@@ -19,6 +19,7 @@ import android.util.Log
 import android.widget.Toast
 import com.google.gson.Gson
 import de.tum.`in`.tumcampusapp.BuildConfig
+import de.tum.`in`.tumcampusapp.model.Const
 import org.jetbrains.anko.defaultSharedPreferences
 import java.io.IOException
 import java.io.InputStream
