@@ -1,4 +1,4 @@
-package de.tum.`in`.tumcampusapp.utils
+package de.tum.`in`.tumcampusapp.model
 
 import android.os.Parcel
 import org.joda.time.DateTime

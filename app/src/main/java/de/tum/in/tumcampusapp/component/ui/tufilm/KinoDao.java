@@ -7,7 +7,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import de.tum.in.tumcampusapp.component.ui.tufilm.model.RawKino;
+import de.tum.in.tumcampusapp.model.tufilm.RawKino;
 import io.reactivex.Flowable;
 
 @Dao

@@ -2,7 +2,7 @@ package de.tum.`in`.tumcampusapp.component.ui.tufilm.viewmodel
 
 import android.os.Parcel
 import android.os.Parcelable
-import de.tum.`in`.tumcampusapp.component.ui.tufilm.model.RawKino
+import de.tum.`in`.tumcampusapp.model.tufilm.RawKino
 import org.joda.time.format.DateTimeFormat
 import java.util.*
 

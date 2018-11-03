@@ -4,9 +4,9 @@ import android.content.Context
 import android.os.Parcel
 import android.os.Parcelable
 import android.text.format.DateFormat
-import de.tum.`in`.tumcampusapp.component.ui.ticket.model.RawEvent
-import de.tum.`in`.tumcampusapp.utils.readDateTime
-import de.tum.`in`.tumcampusapp.utils.writeDateTime
+import de.tum.`in`.tumcampusapp.model.ticket.RawEvent
+import de.tum.`in`.tumcampusapp.model.readDateTime
+import de.tum.`in`.tumcampusapp.model.writeDateTime
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 

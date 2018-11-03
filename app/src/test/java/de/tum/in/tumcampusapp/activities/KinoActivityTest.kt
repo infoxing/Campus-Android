@@ -10,7 +10,7 @@ import de.tum.`in`.tumcampusapp.component.ui.tufilm.KinoRemoteRepository
 import de.tum.`in`.tumcampusapp.component.ui.tufilm.KinoActivity
 import de.tum.`in`.tumcampusapp.component.ui.tufilm.KinoAdapter
 import de.tum.`in`.tumcampusapp.component.ui.tufilm.KinoDao
-import de.tum.`in`.tumcampusapp.component.ui.tufilm.model.RawKino
+import de.tum.`in`.tumcampusapp.model.tufilm.RawKino
 import de.tum.`in`.tumcampusapp.database.TcaDb
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.disposables.CompositeDisposable

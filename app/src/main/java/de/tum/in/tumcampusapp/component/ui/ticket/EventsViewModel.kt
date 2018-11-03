@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import de.tum.`in`.tumcampusapp.component.ui.ticket.model.RawEvent
+import de.tum.`in`.tumcampusapp.model.ticket.RawEvent
 import de.tum.`in`.tumcampusapp.component.ui.ticket.viewmodel.EventType
 import de.tum.`in`.tumcampusapp.component.ui.ticket.viewmodel.EventViewEntitiesMapper
 

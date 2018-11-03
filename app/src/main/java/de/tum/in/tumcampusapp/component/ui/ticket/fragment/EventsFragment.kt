@@ -14,9 +14,9 @@ import de.tum.`in`.tumcampusapp.component.other.generic.adapter.EqualSpacingItem
 import de.tum.`in`.tumcampusapp.component.ui.ticket.EventsController
 import de.tum.`in`.tumcampusapp.component.ui.ticket.EventsViewModel
 import de.tum.`in`.tumcampusapp.component.ui.ticket.adapter.EventsAdapter
-import de.tum.`in`.tumcampusapp.component.ui.ticket.model.RawEvent
+import de.tum.`in`.tumcampusapp.model.ticket.RawEvent
 import de.tum.`in`.tumcampusapp.component.ui.ticket.viewmodel.EventType
-import de.tum.`in`.tumcampusapp.component.ui.ticket.model.RawTicket
+import de.tum.`in`.tumcampusapp.model.ticket.RawTicket
 import de.tum.`in`.tumcampusapp.component.ui.ticket.viewmodel.EventViewEntitiesMapper
 import de.tum.`in`.tumcampusapp.component.ui.ticket.viewmodel.EventViewEntity
 import de.tum.`in`.tumcampusapp.utils.Utils

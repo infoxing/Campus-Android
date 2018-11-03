@@ -8,7 +8,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import de.tum.in.tumcampusapp.component.ui.ticket.model.RawTicket;
+import de.tum.in.tumcampusapp.model.ticket.RawTicket;
 
 @Dao
 public interface TicketDao {

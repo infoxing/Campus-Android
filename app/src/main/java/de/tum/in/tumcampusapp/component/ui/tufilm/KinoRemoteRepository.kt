@@ -1,7 +1,7 @@
 package de.tum.`in`.tumcampusapp.component.ui.tufilm
 
 import de.tum.`in`.tumcampusapp.api.app.TUMCabeClient
-import de.tum.`in`.tumcampusapp.component.ui.tufilm.model.RawKino
+import de.tum.`in`.tumcampusapp.model.tufilm.RawKino
 import io.reactivex.Flowable
 
 object KinoRemoteRepository {

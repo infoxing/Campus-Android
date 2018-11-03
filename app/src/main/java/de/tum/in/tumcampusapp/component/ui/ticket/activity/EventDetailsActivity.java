@@ -5,7 +5,7 @@ import android.os.Bundle;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.other.generic.activity.BaseActivity;
 import de.tum.in.tumcampusapp.component.ui.ticket.fragment.EventDetailsFragment;
-import de.tum.in.tumcampusapp.component.ui.ticket.model.RawEvent;
+import de.tum.in.tumcampusapp.model.ticket.RawEvent;
 import de.tum.in.tumcampusapp.utils.Const;
 
 

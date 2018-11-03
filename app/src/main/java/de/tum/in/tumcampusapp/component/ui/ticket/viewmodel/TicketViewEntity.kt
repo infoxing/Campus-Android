@@ -2,7 +2,7 @@ package de.tum.`in`.tumcampusapp.component.ui.ticket.viewmodel
 
 import android.content.Context
 import android.text.format.DateFormat
-import de.tum.`in`.tumcampusapp.component.ui.ticket.model.RawTicket
+import de.tum.`in`.tumcampusapp.model.ticket.RawTicket
 import org.joda.time.format.DateTimeFormat
 
 data class TicketViewEntity(
