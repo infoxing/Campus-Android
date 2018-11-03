@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.Utils;
 
 public abstract class GenericNotification {
 

@@ -13,8 +13,8 @@ import java.util.regex.Pattern;
 
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.other.generic.activity.BaseActivity;
-import de.tum.in.tumcampusapp.model.Const;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.Const;
+import de.tum.in.tumcampusapp.core.Utils;
 
 /**
  * Activity that allows the user to easily setup eduroam.

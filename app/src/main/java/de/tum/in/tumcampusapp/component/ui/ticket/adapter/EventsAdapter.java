@@ -29,8 +29,8 @@ import de.tum.in.tumcampusapp.component.ui.ticket.EventDiffUtil;
 import de.tum.in.tumcampusapp.component.ui.ticket.EventsController;
 import de.tum.in.tumcampusapp.component.ui.ticket.activity.ShowTicketActivity;
 import de.tum.in.tumcampusapp.component.ui.ticket.viewmodel.EventViewEntity;
-import de.tum.in.tumcampusapp.model.Const;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.Const;
+import de.tum.in.tumcampusapp.core.Utils;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;

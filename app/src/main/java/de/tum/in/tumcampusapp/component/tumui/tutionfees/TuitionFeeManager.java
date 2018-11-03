@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import de.tum.in.tumcampusapp.api.tumonline.CacheControl;
+import de.tum.in.tumcampusapp.api.shared.CacheControl;
 import de.tum.in.tumcampusapp.api.tumonline.TUMOnlineClient;
 import de.tum.in.tumcampusapp.component.notifications.NotificationScheduler;
 import de.tum.in.tumcampusapp.component.notifications.ProvidesNotifications;
@@ -21,7 +21,7 @@ import de.tum.in.tumcampusapp.model.tuition.TuitionList;
 import de.tum.in.tumcampusapp.component.tumui.tutionfees.viewmodel.TuitionViewEntity;
 import de.tum.in.tumcampusapp.component.ui.overview.card.Card;
 import de.tum.in.tumcampusapp.component.ui.overview.card.ProvidesCard;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.Utils;
 import retrofit2.Response;
 
 /**

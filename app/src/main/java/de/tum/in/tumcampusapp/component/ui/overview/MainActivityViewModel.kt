@@ -3,7 +3,7 @@ package de.tum.`in`.tumcampusapp.component.ui.overview
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import de.tum.`in`.tumcampusapp.api.tumonline.CacheControl
+import de.tum.`in`.tumcampusapp.api.shared.CacheControl
 import de.tum.`in`.tumcampusapp.component.ui.overview.card.Card
 
 class MainActivityViewModel(application: Application) : AndroidViewModel(application) {

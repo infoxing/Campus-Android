@@ -19,7 +19,7 @@ import de.tum.`in`.tumcampusapp.component.ui.ticket.viewmodel.EventType
 import de.tum.`in`.tumcampusapp.model.ticket.RawTicket
 import de.tum.`in`.tumcampusapp.component.ui.ticket.viewmodel.EventViewEntitiesMapper
 import de.tum.`in`.tumcampusapp.component.ui.ticket.viewmodel.EventViewEntity
-import de.tum.`in`.tumcampusapp.utils.Utils
+import de.tum.`in`.tumcampusapp.core.Utils
 import de.tum.`in`.tumcampusapp.utils.observeNonNull
 import kotlinx.android.synthetic.main.fragment_events.*
 import retrofit2.Call

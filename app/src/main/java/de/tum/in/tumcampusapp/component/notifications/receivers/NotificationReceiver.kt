@@ -6,7 +6,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationManagerCompat
 import de.tum.`in`.tumcampusapp.component.notifications.NotificationScheduler
-import de.tum.`in`.tumcampusapp.model.Const
+import de.tum.`in`.tumcampusapp.core.Const
 
 class NotificationReceiver : BroadcastReceiver() {
 

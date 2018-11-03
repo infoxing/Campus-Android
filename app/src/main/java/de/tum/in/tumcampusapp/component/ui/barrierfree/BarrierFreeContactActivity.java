@@ -11,7 +11,7 @@ import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
 import de.tum.in.tumcampusapp.component.other.generic.activity.ActivityForLoadingInBackground;
 import de.tum.in.tumcampusapp.model.barrierfree.BarrierfreeContact;
 import de.tum.in.tumcampusapp.component.ui.barrierfree.viewmodel.BarrierfreeContactViewEntity;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.Utils;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 public class BarrierFreeContactActivity extends ActivityForLoadingInBackground<Void, List<BarrierfreeContact>> {

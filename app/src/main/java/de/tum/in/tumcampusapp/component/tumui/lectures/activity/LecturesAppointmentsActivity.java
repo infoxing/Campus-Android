@@ -8,12 +8,12 @@ import android.widget.TextView;
 import java.util.List;
 
 import de.tum.in.tumcampusapp.R;
-import de.tum.in.tumcampusapp.api.tumonline.CacheControl;
+import de.tum.in.tumcampusapp.api.shared.CacheControl;
 import de.tum.in.tumcampusapp.component.other.generic.activity.ActivityForAccessingTumOnline;
 import de.tum.in.tumcampusapp.component.tumui.lectures.adapter.LectureAppointmentsListAdapter;
 import de.tum.in.tumcampusapp.model.lecture.LectureAppointment;
 import de.tum.in.tumcampusapp.model.lecture.LectureAppointmentsResponse;
-import de.tum.in.tumcampusapp.model.Const;
+import de.tum.in.tumcampusapp.core.Const;
 import retrofit2.Call;
 
 /**

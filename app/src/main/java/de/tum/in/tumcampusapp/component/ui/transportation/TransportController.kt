@@ -2,7 +2,7 @@ package de.tum.`in`.tumcampusapp.component.ui.transportation
 
 import android.content.Context
 import android.util.SparseArray
-import de.tum.`in`.tumcampusapp.api.tumonline.CacheControl
+import de.tum.`in`.tumcampusapp.api.shared.CacheControl
 import de.tum.`in`.tumcampusapp.component.notifications.NotificationScheduler
 import de.tum.`in`.tumcampusapp.component.notifications.ProvidesNotifications
 import de.tum.`in`.tumcampusapp.component.other.locations.LocationManager
@@ -19,8 +19,8 @@ import de.tum.`in`.tumcampusapp.component.ui.transportation.widget.WidgetDepartu
 import de.tum.`in`.tumcampusapp.database.TcaDb
 import de.tum.`in`.tumcampusapp.model.calendar.Event
 import de.tum.`in`.tumcampusapp.model.recents.Recent
-import de.tum.`in`.tumcampusapp.utils.NetUtils
-import de.tum.`in`.tumcampusapp.utils.Utils
+import de.tum.`in`.tumcampusapp.core.NetUtils
+import de.tum.`in`.tumcampusapp.core.Utils
 import io.reactivex.Observable
 import java.util.*
 

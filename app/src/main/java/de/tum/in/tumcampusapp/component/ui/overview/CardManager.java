@@ -7,10 +7,10 @@ import android.preference.PreferenceManager;
 
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.database.TcaDb;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.Utils;
 
-import static de.tum.in.tumcampusapp.model.Const.CARD_POSITION_PREFERENCE_SUFFIX;
-import static de.tum.in.tumcampusapp.model.Const.DISCARD_SETTINGS_START;
+import static de.tum.in.tumcampusapp.core.Const.CARD_POSITION_PREFERENCE_SUFFIX;
+import static de.tum.in.tumcampusapp.core.Const.DISCARD_SETTINGS_START;
 
 /**
  * Card manager, manages inserting, dismissing, updating and displaying of cards

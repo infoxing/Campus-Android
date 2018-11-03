@@ -15,7 +15,7 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import com.github.mikephil.charting.data.*
 import de.tum.`in`.tumcampusapp.R
-import de.tum.`in`.tumcampusapp.api.tumonline.CacheControl
+import de.tum.`in`.tumcampusapp.api.shared.CacheControl
 import de.tum.`in`.tumcampusapp.component.other.generic.activity.ActivityForAccessingTumOnline
 import de.tum.`in`.tumcampusapp.model.grades.Exam
 import de.tum.`in`.tumcampusapp.model.grades.ExamList

@@ -10,9 +10,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.service.DownloadService;
-import de.tum.in.tumcampusapp.model.Const;
-import de.tum.in.tumcampusapp.utils.NetUtils;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.Const;
+import de.tum.in.tumcampusapp.core.NetUtils;
+import de.tum.in.tumcampusapp.core.Utils;
 
 /**
  * Generic class which handles all basic tasks to download JSON or files from an

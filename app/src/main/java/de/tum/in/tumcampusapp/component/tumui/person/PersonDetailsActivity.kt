@@ -12,14 +12,14 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.tum.`in`.tumcampusapp.R
-import de.tum.`in`.tumcampusapp.api.tumonline.CacheControl
+import de.tum.`in`.tumcampusapp.api.shared.CacheControl
 import de.tum.`in`.tumcampusapp.component.other.generic.activity.ActivityForAccessingTumOnline
 import de.tum.`in`.tumcampusapp.component.tumui.person.adapteritems.*
 import de.tum.`in`.tumcampusapp.model.person.Employee
 import de.tum.`in`.tumcampusapp.component.tumui.person.viewmodel.EmployeeViewEntity
 import de.tum.`in`.tumcampusapp.component.tumui.person.viewmodel.PersonViewEntity
 import de.tum.`in`.tumcampusapp.model.person.Person
-import de.tum.`in`.tumcampusapp.model.Const
+import de.tum.`in`.tumcampusapp.core.Const
 import de.tum.`in`.tumcampusapp.utils.ContactsHelper
 import kotlinx.android.synthetic.main.activity_person_details.*
 

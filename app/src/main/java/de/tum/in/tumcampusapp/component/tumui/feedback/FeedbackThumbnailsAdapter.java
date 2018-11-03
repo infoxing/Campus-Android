@@ -15,7 +15,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import de.tum.in.tumcampusapp.R;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.Utils;
 
 public class FeedbackThumbnailsAdapter extends RecyclerView.Adapter<FeedbackThumbnailsAdapter.ViewHolder> {
     private ArrayList<String> paths;

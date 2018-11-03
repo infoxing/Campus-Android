@@ -29,8 +29,8 @@ import de.tum.in.tumcampusapp.api.tumonline.exception.TokenLimitReachedException
 import de.tum.in.tumcampusapp.api.tumonline.exception.UnknownErrorException;
 import de.tum.in.tumcampusapp.api.tumonline.model.AccessToken;
 import de.tum.in.tumcampusapp.component.other.generic.activity.ProgressActivity;
-import de.tum.in.tumcampusapp.model.Const;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.Const;
+import de.tum.in.tumcampusapp.core.Utils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

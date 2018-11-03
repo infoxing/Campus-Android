@@ -3,7 +3,7 @@ package de.tum.in.tumcampusapp.component.other.generic.activity;
 import androidx.annotation.Nullable;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import de.tum.in.tumcampusapp.R;
-import de.tum.in.tumcampusapp.utils.NetUtils;
+import de.tum.in.tumcampusapp.core.NetUtils;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;

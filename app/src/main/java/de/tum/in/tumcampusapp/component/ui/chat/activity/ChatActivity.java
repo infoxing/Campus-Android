@@ -44,11 +44,11 @@ import de.tum.in.tumcampusapp.component.ui.chat.repository.ChatMessageLocalRepos
 import de.tum.in.tumcampusapp.component.ui.chat.repository.ChatMessageRemoteRepository;
 import de.tum.in.tumcampusapp.component.ui.overview.CardManager;
 import de.tum.in.tumcampusapp.database.TcaDb;
-import de.tum.in.tumcampusapp.model.Const;
+import de.tum.in.tumcampusapp.core.Const;
 import de.tum.in.tumcampusapp.model.chat.ChatMember;
 import de.tum.in.tumcampusapp.model.chat.ChatRoom;
 import de.tum.in.tumcampusapp.service.SendMessageService;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.Utils;
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 import retrofit2.Call;

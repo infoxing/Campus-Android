@@ -17,8 +17,8 @@ import java.util.List;
 
 import de.tum.in.tumcampusapp.api.app.AuthenticationManager;
 import de.tum.in.tumcampusapp.model.chat.ChatMessage;
-import de.tum.in.tumcampusapp.utils.RSASigner;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.RSASigner;
+import de.tum.in.tumcampusapp.core.Utils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -8,10 +8,10 @@ import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.api.app.AuthenticationManager
 import de.tum.`in`.tumcampusapp.api.app.TUMCabeClient
 import de.tum.`in`.tumcampusapp.api.app.model.UploadStatus
+import de.tum.`in`.tumcampusapp.api.shared.CacheManager
 import de.tum.`in`.tumcampusapp.api.tumonline.AccessTokenManager
 import de.tum.`in`.tumcampusapp.component.ui.cafeteria.controller.CafeteriaMenuManager
 import de.tum.`in`.tumcampusapp.component.ui.cafeteria.details.CafeteriaViewModel
-import de.tum.`in`.tumcampusapp.model.cafeteria.Location
 import de.tum.`in`.tumcampusapp.component.ui.cafeteria.repository.CafeteriaLocalRepository
 import de.tum.`in`.tumcampusapp.component.ui.cafeteria.repository.CafeteriaRemoteRepository
 import de.tum.`in`.tumcampusapp.component.ui.news.NewsController
@@ -21,11 +21,12 @@ import de.tum.`in`.tumcampusapp.component.ui.ticket.EventsController
 import de.tum.`in`.tumcampusapp.component.ui.tufilm.KinoLocalRepository
 import de.tum.`in`.tumcampusapp.component.ui.tufilm.KinoRemoteRepository
 import de.tum.`in`.tumcampusapp.component.ui.tufilm.KinoViewModel
+import de.tum.`in`.tumcampusapp.core.Const
+import de.tum.`in`.tumcampusapp.core.NetUtils
+import de.tum.`in`.tumcampusapp.core.Utils
 import de.tum.`in`.tumcampusapp.database.TcaDb
-import de.tum.`in`.tumcampusapp.utils.CacheManager
-import de.tum.`in`.tumcampusapp.model.Const
-import de.tum.`in`.tumcampusapp.utils.NetUtils
-import de.tum.`in`.tumcampusapp.utils.Utils
+import de.tum.`in`.tumcampusapp.model.cafeteria.Location
+import de.tum.`in`.tumcampusapp.utils.BackgroundUpdater
 import de.tum.`in`.tumcampusapp.utils.sync.SyncManager
 import io.reactivex.disposables.CompositeDisposable
 import java.io.IOException
@@ -231,7 +232,8 @@ class DownloadService : JobIntentService() {
 
                         if (AccessTokenManager.hasValidAccessToken(service)) {
                             val cacheManager = CacheManager(service)
-                            cacheManager.fillCache()
+                            val backgroundUpdater = BackgroundUpdater(service)
+                            backgroundUpdater.update()
                         }
                     }
                 }

@@ -22,8 +22,8 @@ import de.tum.`in`.tumcampusapp.component.ui.overview.InformationActivity
 import de.tum.`in`.tumcampusapp.component.ui.overview.MainActivity
 import de.tum.`in`.tumcampusapp.component.ui.studyroom.StudyRoomsActivity
 import de.tum.`in`.tumcampusapp.component.ui.ticket.activity.EventsActivity
-import de.tum.`in`.tumcampusapp.model.Const
-import de.tum.`in`.tumcampusapp.utils.Utils
+import de.tum.`in`.tumcampusapp.core.Const
+import de.tum.`in`.tumcampusapp.core.Utils
 import de.tum.`in`.tumcampusapp.utils.add
 import de.tum.`in`.tumcampusapp.utils.allItems
 

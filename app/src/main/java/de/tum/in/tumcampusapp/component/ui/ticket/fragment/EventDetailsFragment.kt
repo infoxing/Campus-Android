@@ -21,10 +21,10 @@ import de.tum.`in`.tumcampusapp.component.ui.ticket.activity.ShowTicketActivity
 import de.tum.`in`.tumcampusapp.model.ticket.RawEvent
 import de.tum.`in`.tumcampusapp.model.ticket.payload.TicketStatus
 import de.tum.`in`.tumcampusapp.component.ui.ticket.viewmodel.EventViewEntity
-import de.tum.`in`.tumcampusapp.model.Const
-import de.tum.`in`.tumcampusapp.model.Const.KEY_EVENT_ID
+import de.tum.`in`.tumcampusapp.core.Const
+import de.tum.`in`.tumcampusapp.core.Const.KEY_EVENT_ID
 import de.tum.`in`.tumcampusapp.utils.DateTimeUtils
-import de.tum.`in`.tumcampusapp.utils.Utils
+import de.tum.`in`.tumcampusapp.core.Utils
 import de.tum.`in`.tumcampusapp.utils.into
 import kotlinx.android.synthetic.main.fragment_event_details.*
 import kotlinx.android.synthetic.main.fragment_event_details.view.*

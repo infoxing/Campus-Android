@@ -1,8 +1,8 @@
 package de.tum.`in`.tumcampusapp.component.ui.cafeteria.viewmodel
 
 import android.content.Context
-import de.tum.`in`.tumcampusapp.model.Const
-import de.tum.`in`.tumcampusapp.utils.Utils
+import de.tum.`in`.tumcampusapp.core.Const
+import de.tum.`in`.tumcampusapp.core.Utils
 
 /**
  * Hardcoded cafeteria prices

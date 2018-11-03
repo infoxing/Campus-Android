@@ -3,8 +3,6 @@ package de.tum.in.tumcampusapp.component.ui.chat;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.inputmethod.EditorInfo;
@@ -16,16 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import de.tum.in.tumcampusapp.R;
-import de.tum.in.tumcampusapp.api.app.ApiHelper;
 import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
 import de.tum.in.tumcampusapp.api.app.model.TUMCabeVerification;
 import de.tum.in.tumcampusapp.component.other.generic.activity.BaseActivity;
+import de.tum.in.tumcampusapp.core.Const;
+import de.tum.in.tumcampusapp.core.Utils;
+import de.tum.in.tumcampusapp.database.TcaDb;
 import de.tum.in.tumcampusapp.model.chat.ChatMember;
 import de.tum.in.tumcampusapp.model.chat.ChatRoom;
-import de.tum.in.tumcampusapp.database.TcaDb;
-import de.tum.in.tumcampusapp.model.Const;
-import de.tum.in.tumcampusapp.utils.Utils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -150,7 +149,7 @@ public class AddChatMemberActivity extends BaseActivity {
         });
 
         ImageView qrCode = findViewById(R.id.join_chat_qr_code);
-        qrCode.setImageBitmap(ApiHelper.createQRCode(room.getName()));
+        qrCode.setImageBitmap(Utils.createQRCode(room.getName()));
     }
 
     private void getSuggestions() {

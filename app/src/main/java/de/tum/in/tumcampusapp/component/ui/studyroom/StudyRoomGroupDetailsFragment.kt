@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.component.other.generic.adapter.GridEqualSpacingDecoration
-import de.tum.`in`.tumcampusapp.model.Const
+import de.tum.`in`.tumcampusapp.core.Const
 
 /**
  * Fragment for each study room group. Shows study room details in a list.

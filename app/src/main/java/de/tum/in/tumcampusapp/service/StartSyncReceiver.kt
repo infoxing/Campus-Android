@@ -6,8 +6,8 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import de.tum.`in`.tumcampusapp.model.Const
-import de.tum.`in`.tumcampusapp.utils.Utils
+import de.tum.`in`.tumcampusapp.core.Const
+import de.tum.`in`.tumcampusapp.core.Utils
 
 /**
  * Receives on boot completed broadcast, sets alarm for next sync-try

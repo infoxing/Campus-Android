@@ -3,6 +3,7 @@ package de.tum.`in`.tumcampusapp.utils
 import android.content.Context
 import android.text.format.DateUtils.*
 import de.tum.`in`.tumcampusapp.R
+import de.tum.`in`.tumcampusapp.core.Utils
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 import org.joda.time.format.DateTimeFormatter

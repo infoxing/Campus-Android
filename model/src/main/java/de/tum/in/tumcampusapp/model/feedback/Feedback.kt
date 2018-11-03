@@ -1,6 +1,6 @@
 package de.tum.`in`.tumcampusapp.model.feedback
 
-import de.tum.`in`.tumcampusapp.model.Const
+import de.tum.`in`.tumcampusapp.core.Const
 
 /**
  * @param id to associate the pictures with the message

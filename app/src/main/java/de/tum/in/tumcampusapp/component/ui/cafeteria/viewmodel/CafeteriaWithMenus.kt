@@ -3,7 +3,7 @@ package de.tum.`in`.tumcampusapp.component.ui.cafeteria.viewmodel
 import android.content.Context
 import android.content.Intent
 import de.tum.`in`.tumcampusapp.component.ui.cafeteria.activity.CafeteriaActivity
-import de.tum.`in`.tumcampusapp.model.Const
+import de.tum.`in`.tumcampusapp.core.Const
 import org.joda.time.DateTime
 import org.joda.time.LocalDate
 import org.joda.time.Period

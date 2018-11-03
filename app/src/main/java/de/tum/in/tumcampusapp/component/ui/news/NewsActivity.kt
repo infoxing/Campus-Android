@@ -11,9 +11,9 @@ import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.component.other.generic.activity.ActivityForDownloadingExternal
 import de.tum.`in`.tumcampusapp.component.other.generic.adapter.EqualSpacingItemDecoration
 import de.tum.`in`.tumcampusapp.component.ui.news.viewmodel.NewsViewEntity
-import de.tum.`in`.tumcampusapp.model.Const
-import de.tum.`in`.tumcampusapp.utils.NetUtils
-import de.tum.`in`.tumcampusapp.utils.Utils
+import de.tum.`in`.tumcampusapp.core.Const
+import de.tum.`in`.tumcampusapp.core.NetUtils
+import de.tum.`in`.tumcampusapp.core.Utils
 
 /**
  * Activity to show News (message, imageUrl, date)

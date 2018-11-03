@@ -4,8 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Looper
 import androidx.core.app.JobIntentService
-import de.tum.`in`.tumcampusapp.model.Const
-import de.tum.`in`.tumcampusapp.utils.Utils
+import de.tum.`in`.tumcampusapp.core.Const
+import de.tum.`in`.tumcampusapp.core.Utils
 
 /**
  * Service used to sync data in background

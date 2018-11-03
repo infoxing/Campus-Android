@@ -7,7 +7,7 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import de.tum.`in`.tumcampusapp.R
-import de.tum.`in`.tumcampusapp.model.Const
+import de.tum.`in`.tumcampusapp.core.Const
 import org.jetbrains.anko.notificationManager
 
 object NotificationUtils {

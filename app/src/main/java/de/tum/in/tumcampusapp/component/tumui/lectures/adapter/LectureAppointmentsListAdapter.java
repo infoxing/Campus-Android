@@ -17,7 +17,7 @@ import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.tumui.lectures.activity.LecturesAppointmentsActivity;
 import de.tum.in.tumcampusapp.model.lecture.LectureAppointment;
 import de.tum.in.tumcampusapp.utils.DateTimeUtils;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.Utils;
 
 /**
  * Generates the output of the ListView on the {@link LecturesAppointmentsActivity} activity.

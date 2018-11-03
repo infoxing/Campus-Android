@@ -10,7 +10,7 @@ import com.google.zxing.Result;
 import java.util.Collections;
 import java.util.List;
 
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.Utils;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class JoinRoomScanActivity extends Activity implements ZXingScannerView.ResultHandler {

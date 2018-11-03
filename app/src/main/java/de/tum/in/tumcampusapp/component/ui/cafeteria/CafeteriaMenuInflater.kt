@@ -12,7 +12,7 @@ import de.tum.`in`.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaPrices
 import de.tum.`in`.tumcampusapp.model.cafeteria.FavoriteDish
 import de.tum.`in`.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaMenuViewEntity
 import de.tum.`in`.tumcampusapp.database.TcaDb
-import de.tum.`in`.tumcampusapp.utils.Utils
+import de.tum.`in`.tumcampusapp.core.Utils
 import kotlinx.android.synthetic.main.card_list_header.view.*
 import kotlinx.android.synthetic.main.card_price_line.view.*
 import org.joda.time.DateTime

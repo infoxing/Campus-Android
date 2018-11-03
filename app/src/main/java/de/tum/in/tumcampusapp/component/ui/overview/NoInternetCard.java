@@ -17,7 +17,7 @@ import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.ui.overview.card.CardViewHolder;
 import de.tum.in.tumcampusapp.component.ui.overview.card.StickyCard;
 import de.tum.in.tumcampusapp.service.DownloadService;
-import de.tum.in.tumcampusapp.utils.NetUtils;
+import de.tum.in.tumcampusapp.core.NetUtils;
 
 /**
  * Card that informs that no internet connection is available

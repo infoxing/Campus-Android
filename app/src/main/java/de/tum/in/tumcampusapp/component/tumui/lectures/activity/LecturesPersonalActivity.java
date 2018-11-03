@@ -9,7 +9,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import de.tum.in.tumcampusapp.R;
-import de.tum.in.tumcampusapp.api.tumonline.CacheControl;
+import de.tum.in.tumcampusapp.api.shared.CacheControl;
 import de.tum.in.tumcampusapp.component.other.generic.activity.ActivityForSearchingTumOnline;
 import de.tum.in.tumcampusapp.component.other.generic.adapter.NoResultsAdapter;
 import de.tum.in.tumcampusapp.component.tumui.lectures.LectureSearchSuggestionProvider;

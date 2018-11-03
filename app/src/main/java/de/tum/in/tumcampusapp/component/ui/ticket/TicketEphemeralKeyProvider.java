@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
 import de.tum.in.tumcampusapp.api.app.exception.NoPrivateKey;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.Utils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

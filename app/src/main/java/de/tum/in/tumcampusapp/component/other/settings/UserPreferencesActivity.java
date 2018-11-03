@@ -9,7 +9,7 @@ import androidx.preference.PreferenceScreen;
 
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.other.generic.activity.BaseActivity;
-import de.tum.in.tumcampusapp.model.Const;
+import de.tum.in.tumcampusapp.core.Const;
 
 /**
  * Provides the preferences, encapsulated into an own activity.

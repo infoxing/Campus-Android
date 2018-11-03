@@ -17,8 +17,8 @@ import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.other.generic.activity.ActivityForDownloadingExternal;
 import de.tum.in.tumcampusapp.component.ui.ticket.fragment.EventsFragment;
 import de.tum.in.tumcampusapp.component.ui.ticket.viewmodel.EventType;
-import de.tum.in.tumcampusapp.model.Const;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.Const;
+import de.tum.in.tumcampusapp.core.Utils;
 
 public class EventsActivity extends ActivityForDownloadingExternal {
 

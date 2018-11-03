@@ -17,8 +17,8 @@ import com.google.android.material.snackbar.Snackbar
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.api.tumonline.exception.*
 import de.tum.`in`.tumcampusapp.component.other.generic.viewstates.*
-import de.tum.`in`.tumcampusapp.utils.NetUtils.internetCapability
-import de.tum.`in`.tumcampusapp.utils.Utils
+import de.tum.`in`.tumcampusapp.core.NetUtils.internetCapability
+import de.tum.`in`.tumcampusapp.core.Utils
 import de.tum.`in`.tumcampusapp.utils.setImageResourceOrHide
 import de.tum.`in`.tumcampusapp.utils.setTextOrHide
 import org.jetbrains.anko.connectivityManager

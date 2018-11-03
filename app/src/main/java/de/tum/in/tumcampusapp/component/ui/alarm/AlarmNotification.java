@@ -26,9 +26,9 @@ import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
 import de.tum.in.tumcampusapp.component.other.generic.GenericNotification;
 import de.tum.in.tumcampusapp.model.alarms.FcmAlert;
 import de.tum.in.tumcampusapp.model.alarms.FcmNotification;
-import de.tum.in.tumcampusapp.model.Const;
-import de.tum.in.tumcampusapp.utils.RSASigner;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.Const;
+import de.tum.in.tumcampusapp.core.RSASigner;
+import de.tum.in.tumcampusapp.core.Utils;
 import kotlin.text.Charsets;
 
 /**

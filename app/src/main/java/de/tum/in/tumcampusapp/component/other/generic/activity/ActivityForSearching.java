@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import androidx.appcompat.widget.SearchView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import de.tum.in.tumcampusapp.R;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.Utils;
 
 /**
  * Generic class for searching. Provides basic functions for a {@link SearchView}

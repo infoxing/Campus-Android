@@ -33,9 +33,9 @@ import de.tum.in.tumcampusapp.model.cafeteria.Cafeteria;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.repository.CafeteriaLocalRepository;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.repository.CafeteriaRemoteRepository;
 import de.tum.in.tumcampusapp.database.TcaDb;
-import de.tum.in.tumcampusapp.model.Const;
-import de.tum.in.tumcampusapp.utils.NetUtils;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.Const;
+import de.tum.in.tumcampusapp.core.NetUtils;
+import de.tum.in.tumcampusapp.core.Utils;
 import io.reactivex.Flowable;
 import io.reactivex.disposables.CompositeDisposable;
 

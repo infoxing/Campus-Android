@@ -18,7 +18,7 @@ import java.util.Locale;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.tumui.calendar.CalendarController;
 import de.tum.in.tumcampusapp.component.tumui.calendar.IntegratedCalendarEvent;
-import de.tum.in.tumcampusapp.model.Const;
+import de.tum.in.tumcampusapp.core.Const;
 import de.tum.in.tumcampusapp.utils.DateTimeUtils;
 
 @SuppressLint("Registered")

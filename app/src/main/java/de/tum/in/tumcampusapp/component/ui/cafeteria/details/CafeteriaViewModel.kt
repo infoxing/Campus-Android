@@ -7,7 +7,7 @@ import de.tum.`in`.tumcampusapp.component.ui.cafeteria.repository.CafeteriaRemot
 import de.tum.`in`.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaMenuViewEntity
 import de.tum.`in`.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaWithMenus
 import de.tum.`in`.tumcampusapp.model.cafeteria.Cafeteria
-import de.tum.`in`.tumcampusapp.utils.Utils
+import de.tum.`in`.tumcampusapp.core.Utils
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

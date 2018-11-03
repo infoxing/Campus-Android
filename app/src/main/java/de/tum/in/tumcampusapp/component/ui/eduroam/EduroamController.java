@@ -11,8 +11,8 @@ import android.net.wifi.WifiManager;
 
 import java.util.List;
 
-import de.tum.in.tumcampusapp.model.Const;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.Const;
+import de.tum.in.tumcampusapp.core.Utils;
 
 /**
  * Eduroam manager, manages connecting to eduroam wifi network

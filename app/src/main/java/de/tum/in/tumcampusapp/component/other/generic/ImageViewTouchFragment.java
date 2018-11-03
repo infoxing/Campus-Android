@@ -15,7 +15,7 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import de.tum.in.tumcampusapp.R;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.Utils;
 
 public class ImageViewTouchFragment extends Fragment {
 

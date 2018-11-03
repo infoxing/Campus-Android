@@ -19,9 +19,9 @@ import de.tum.`in`.tumcampusapp.component.other.wifimeasurement.WifiMeasurementL
 import de.tum.`in`.tumcampusapp.model.wifimeasurement.WifiMeasurement
 import de.tum.`in`.tumcampusapp.component.ui.eduroam.EduroamController
 import de.tum.`in`.tumcampusapp.component.ui.eduroam.SetupEduroamActivity
-import de.tum.`in`.tumcampusapp.model.Const
-import de.tum.`in`.tumcampusapp.utils.NetUtils
-import de.tum.`in`.tumcampusapp.utils.Utils
+import de.tum.`in`.tumcampusapp.core.Const
+import de.tum.`in`.tumcampusapp.core.NetUtils
+import de.tum.`in`.tumcampusapp.core.Utils
 
 /**
  * Listens for android's ScanResultsAvailable broadcast and checks if eduroam is nearby.

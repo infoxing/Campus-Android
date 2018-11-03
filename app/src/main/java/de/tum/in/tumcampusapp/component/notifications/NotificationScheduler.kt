@@ -13,7 +13,7 @@ import de.tum.`in`.tumcampusapp.component.notifications.persistence.Notification
 import de.tum.`in`.tumcampusapp.component.notifications.receivers.NotificationAlarmReceiver
 import de.tum.`in`.tumcampusapp.component.notifications.receivers.NotificationReceiver
 import de.tum.`in`.tumcampusapp.database.TcaDb
-import de.tum.`in`.tumcampusapp.model.Const
+import de.tum.`in`.tumcampusapp.core.Const
 import org.jetbrains.anko.alarmManager
 import org.jetbrains.anko.notificationManager
 import org.joda.time.DateTime

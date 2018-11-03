@@ -26,7 +26,7 @@ import de.tum.in.tumcampusapp.component.ui.cafeteria.repository.CafeteriaLocalRe
 import de.tum.in.tumcampusapp.component.ui.cafeteria.repository.CafeteriaRemoteRepository;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.viewmodel.CafeteriaMenuViewEntity;
 import de.tum.in.tumcampusapp.database.TcaDb;
-import de.tum.in.tumcampusapp.model.Const;
+import de.tum.in.tumcampusapp.core.Const;
 import de.tum.in.tumcampusapp.utils.DateTimeUtils;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;

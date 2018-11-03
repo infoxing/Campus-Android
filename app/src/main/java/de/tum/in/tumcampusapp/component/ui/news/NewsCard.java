@@ -18,7 +18,7 @@ import de.tum.in.tumcampusapp.component.ui.news.viewmodel.NewsViewEntity;
 import de.tum.in.tumcampusapp.component.ui.overview.CardManager;
 import de.tum.in.tumcampusapp.component.ui.overview.card.Card;
 import de.tum.in.tumcampusapp.component.ui.overview.card.CardViewHolder;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.Utils;
 
 /**
  * Card that shows selected news

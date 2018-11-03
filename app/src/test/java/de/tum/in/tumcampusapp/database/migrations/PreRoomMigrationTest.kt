@@ -6,7 +6,7 @@ import android.os.Build
 import androidx.room.util.TableInfo
 import de.tum.`in`.tumcampusapp.TestApp
 import de.tum.`in`.tumcampusapp.database.TcaDb
-import de.tum.`in`.tumcampusapp.model.Const
+import de.tum.`in`.tumcampusapp.core.Const
 import org.junit.After
 import org.junit.Before
 import org.junit.Ignore

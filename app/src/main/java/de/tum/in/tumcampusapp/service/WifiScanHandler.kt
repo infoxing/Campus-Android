@@ -3,7 +3,7 @@ package de.tum.`in`.tumcampusapp.service
 import android.content.Context
 import android.net.wifi.WifiManager
 import android.os.Handler
-import de.tum.`in`.tumcampusapp.utils.Utils
+import de.tum.`in`.tumcampusapp.core.Utils
 import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
 

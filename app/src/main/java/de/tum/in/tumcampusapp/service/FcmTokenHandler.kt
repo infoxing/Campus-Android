@@ -6,11 +6,11 @@ import com.google.firebase.iid.FirebaseInstanceId
 import de.tum.`in`.tumcampusapp.api.app.TUMCabeClient
 import de.tum.`in`.tumcampusapp.api.app.model.DeviceUploadFcmToken
 import de.tum.`in`.tumcampusapp.api.app.model.TUMCabeStatus
-import de.tum.`in`.tumcampusapp.model.Const.FCM_INSTANCE_ID
-import de.tum.`in`.tumcampusapp.model.Const.FCM_REG_ID_LAST_TRANSMISSION
-import de.tum.`in`.tumcampusapp.model.Const.FCM_REG_ID_SENT_TO_SERVER
-import de.tum.`in`.tumcampusapp.model.Const.FCM_TOKEN_ID
-import de.tum.`in`.tumcampusapp.utils.Utils
+import de.tum.`in`.tumcampusapp.core.Const.FCM_INSTANCE_ID
+import de.tum.`in`.tumcampusapp.core.Const.FCM_REG_ID_LAST_TRANSMISSION
+import de.tum.`in`.tumcampusapp.core.Const.FCM_REG_ID_SENT_TO_SERVER
+import de.tum.`in`.tumcampusapp.core.Const.FCM_TOKEN_ID
+import de.tum.`in`.tumcampusapp.core.Utils
 import de.tum.`in`.tumcampusapp.utils.tryOrNull
 import retrofit2.Call
 import retrofit2.Callback

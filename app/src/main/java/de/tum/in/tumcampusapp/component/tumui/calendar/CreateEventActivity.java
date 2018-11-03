@@ -5,16 +5,14 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import com.google.android.material.button.MaterialButton;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.button.MaterialButton;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
@@ -24,15 +22,19 @@ import org.joda.time.format.DateTimeFormatter;
 import java.net.UnknownHostException;
 import java.util.Locale;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.api.tumonline.exception.RequestLimitReachedException;
 import de.tum.in.tumcampusapp.component.other.generic.activity.ActivityForAccessingTumOnline;
+import de.tum.in.tumcampusapp.core.Const;
+import de.tum.in.tumcampusapp.core.Utils;
+import de.tum.in.tumcampusapp.database.TcaDb;
 import de.tum.in.tumcampusapp.model.calendar.CalendarItem;
 import de.tum.in.tumcampusapp.model.calendar.CreateEventResponse;
 import de.tum.in.tumcampusapp.model.calendar.DeleteEventResponse;
-import de.tum.in.tumcampusapp.database.TcaDb;
-import de.tum.in.tumcampusapp.model.Const;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.utils.DateTimeUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -284,7 +286,12 @@ public class CreateEventActivity extends ActivityForAccessingTumOnline<CreateEve
         }
         event.setDescription(description);
 
-        Call<CreateEventResponse> apiCall = getApiClient().createEvent(event, null);
+        String startTime = DateTimeUtils.INSTANCE.getDateTimeString(start);
+        String endTime = DateTimeUtils.INSTANCE.getDateTimeString(end);
+
+        // TODO Switch back to createEvent(event)
+        Call<CreateEventResponse> apiCall = getApiClient()
+                .createEvent(title, description, startTime, endTime, null);
         fetch(apiCall);
     }
 

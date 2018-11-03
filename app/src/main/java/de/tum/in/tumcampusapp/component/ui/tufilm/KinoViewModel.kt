@@ -2,7 +2,7 @@ package de.tum.`in`.tumcampusapp.component.ui.tufilm
 
 import androidx.lifecycle.ViewModel
 import de.tum.`in`.tumcampusapp.model.tufilm.RawKino
-import de.tum.`in`.tumcampusapp.utils.Utils
+import de.tum.`in`.tumcampusapp.core.Utils
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

@@ -6,7 +6,7 @@ import androidx.core.content.ContextCompat
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.component.notifications.model.FutureNotification
 import de.tum.`in`.tumcampusapp.component.notifications.persistence.NotificationType
-import de.tum.`in`.tumcampusapp.model.Const
+import de.tum.`in`.tumcampusapp.core.Const
 import de.tum.`in`.tumcampusapp.model.calendar.Event
 import de.tum.`in`.tumcampusapp.model.locations.Geo
 import de.tum.`in`.tumcampusapp.utils.DateTimeUtils

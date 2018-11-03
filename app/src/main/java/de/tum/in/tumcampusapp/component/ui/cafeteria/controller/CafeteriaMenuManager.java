@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.tum.in.tumcampusapp.api.cafeteria.CafeteriaAPIClient;
-import de.tum.in.tumcampusapp.api.tumonline.CacheControl;
+import de.tum.in.tumcampusapp.api.shared.CacheControl;
 import de.tum.in.tumcampusapp.component.notifications.NotificationScheduler;
 import de.tum.in.tumcampusapp.component.notifications.persistence.NotificationType;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.CafeteriaMenuDao;
@@ -20,7 +20,7 @@ import de.tum.in.tumcampusapp.model.cafeteria.CafeteriaMenu;
 import de.tum.in.tumcampusapp.model.cafeteria.CafeteriaResponse;
 import de.tum.in.tumcampusapp.database.TcaDb;
 import de.tum.in.tumcampusapp.utils.DateTimeUtils;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.Utils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

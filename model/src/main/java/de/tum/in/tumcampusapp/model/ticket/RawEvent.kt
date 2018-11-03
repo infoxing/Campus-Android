@@ -7,8 +7,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.RoomWarnings
 import com.google.gson.annotations.SerializedName
-import de.tum.`in`.tumcampusapp.model.readDateTime
-import de.tum.`in`.tumcampusapp.model.writeDateTime
+import de.tum.`in`.tumcampusapp.core.readDateTime
+import de.tum.`in`.tumcampusapp.core.writeDateTime
 import org.joda.time.DateTime
 
 /**

@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.JobIntentService
 import de.tum.`in`.tumcampusapp.component.other.wifimeasurement.WifiMeasurementManager
-import de.tum.`in`.tumcampusapp.model.Const
+import de.tum.`in`.tumcampusapp.core.Const
 
 /**
  * This service is getting used by StartSyncReceiver to send the accumulated WifiMeasurements

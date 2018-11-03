@@ -77,7 +77,6 @@ android {
     }
 }
 
-def retrofitVersion = '2.4.0'
 def tikXmlVersion = '0.8.13'
 
 configurations.all {
@@ -88,7 +87,7 @@ configurations.all {
 
 dependencies {
 
-    implementation project(':model')
+    implementation project(':api')
 
     // Support Libraries
     implementation 'androidx.cardview:cardview:1.0.0'
@@ -114,29 +113,14 @@ dependencies {
     // XML Parsing
     kapt "com.tickaroo.tikxml:processor:$tikXmlVersion"
 
-    // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "org.jetbrains.anko:anko:0.10.7"
-
     // RxJava
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
     implementation 'com.trello.rxlifecycle2:rxlifecycle-android-lifecycle:2.2.2'
     implementation 'com.trello.rxlifecycle2:rxlifecycle:2.2.2'
 
-    // Transport
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
-    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
-    implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation "com.tickaroo.tikxml:retrofit-converter:$tikXmlVersion"
-    implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
-
     // UI
     implementation 'se.emilsjolander:stickylistheaders:2.7.0'
     implementation 'com.github.chrisbanes:PhotoView:2.2.0'
-    implementation 'me.dm7.barcodescanner:zxing:1.9.8'
-    implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
     implementation 'de.psdev.licensesdialog:licensesdialog:1.9.0'
     implementation 'com.github.thellmund:Android-Week-View:2.0.1'
     implementation 'de.hdodenhof:circleimageview:2.2.0'

@@ -23,7 +23,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.ui.tufilm.viewmodel.KinoViewEntity;
-import de.tum.in.tumcampusapp.model.Const;
+import de.tum.in.tumcampusapp.core.Const;
 
 /**
  * Fragment for KinoDetails. Manages content that gets shown on the pagerView

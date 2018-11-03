@@ -26,12 +26,11 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+    api project(':core')
+
     api 'androidx.room:room-rxjava2:2.1.0-alpha02'
     api 'androidx.room:room-runtime:2.1.0-alpha02'
     kapt 'androidx.room:room-compiler:2.1.0-alpha02'
-
-    api 'net.danlew:android.joda:2.10.1'
-    api 'com.google.code.gson:gson:2.8.5'
 
     // XML Parsing
     api "com.tickaroo.tikxml:annotation:$tikXmlVersion"

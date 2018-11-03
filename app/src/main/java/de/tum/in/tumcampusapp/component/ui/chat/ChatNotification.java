@@ -32,8 +32,8 @@ import de.tum.in.tumcampusapp.component.ui.chat.repository.ChatMessageRemoteRepo
 import de.tum.in.tumcampusapp.component.ui.overview.CardManager;
 import de.tum.in.tumcampusapp.component.ui.overview.MainActivity;
 import de.tum.in.tumcampusapp.database.TcaDb;
-import de.tum.in.tumcampusapp.model.Const;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.Const;
+import de.tum.in.tumcampusapp.core.Utils;
 
 /**
  * Creates/modifies the notification when there is a new chat message.

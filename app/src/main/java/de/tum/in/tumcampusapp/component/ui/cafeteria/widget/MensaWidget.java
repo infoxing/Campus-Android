@@ -19,7 +19,7 @@ import de.tum.in.tumcampusapp.model.cafeteria.Cafeteria;
 import de.tum.in.tumcampusapp.component.ui.cafeteria.repository.CafeteriaLocalRepository;
 import de.tum.in.tumcampusapp.database.TcaDb;
 import de.tum.in.tumcampusapp.service.MensaWidgetService;
-import de.tum.in.tumcampusapp.model.Const;
+import de.tum.in.tumcampusapp.core.Const;
 
 /**
  * Implementation of Mensa Widget functionality.

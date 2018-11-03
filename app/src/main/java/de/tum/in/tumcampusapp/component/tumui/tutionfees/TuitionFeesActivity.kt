@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.TextView
 import com.google.android.material.button.MaterialButton
 import de.tum.`in`.tumcampusapp.R
-import de.tum.`in`.tumcampusapp.api.tumonline.CacheControl
+import de.tum.`in`.tumcampusapp.api.shared.CacheControl
 import de.tum.`in`.tumcampusapp.component.other.generic.activity.ActivityForAccessingTumOnline
 import de.tum.`in`.tumcampusapp.model.tuition.TuitionList
 import de.tum.`in`.tumcampusapp.component.tumui.tutionfees.viewmodel.TuitionViewEntity

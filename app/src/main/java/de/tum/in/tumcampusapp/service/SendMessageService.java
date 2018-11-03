@@ -15,9 +15,9 @@ import de.tum.in.tumcampusapp.model.chat.ChatMessage;
 import de.tum.in.tumcampusapp.component.ui.chat.repository.ChatMessageLocalRepository;
 import de.tum.in.tumcampusapp.component.ui.chat.repository.ChatMessageRemoteRepository;
 import de.tum.in.tumcampusapp.database.TcaDb;
-import de.tum.in.tumcampusapp.utils.Utils;
+import de.tum.in.tumcampusapp.core.Utils;
 
-import static de.tum.in.tumcampusapp.model.Const.SEND_MESSAGE_SERVICE_JOB_ID;
+import static de.tum.in.tumcampusapp.core.Const.SEND_MESSAGE_SERVICE_JOB_ID;
 
 /**
  * Service used to send chat messages.

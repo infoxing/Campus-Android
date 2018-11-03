@@ -9,6 +9,7 @@ import android.os.RemoteException
 import android.provider.ContactsContract
 import android.util.Base64
 import de.tum.`in`.tumcampusapp.R
+import de.tum.`in`.tumcampusapp.core.Utils
 import de.tum.`in`.tumcampusapp.model.person.Employee
 import de.tum.`in`.tumcampusapp.model.person.Contact
 import java.io.ByteArrayOutputStream

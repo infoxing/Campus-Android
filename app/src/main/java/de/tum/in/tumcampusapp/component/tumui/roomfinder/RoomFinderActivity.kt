@@ -15,8 +15,8 @@ import de.tum.`in`.tumcampusapp.component.tumui.roomfinder.viewmodel.RoomFinderR
 import de.tum.`in`.tumcampusapp.database.TcaDb
 import de.tum.`in`.tumcampusapp.model.recents.Recent
 import de.tum.`in`.tumcampusapp.model.roomfinder.RoomFinderRoom
-import de.tum.`in`.tumcampusapp.utils.NetUtils
-import de.tum.`in`.tumcampusapp.utils.Utils
+import de.tum.`in`.tumcampusapp.core.NetUtils
+import de.tum.`in`.tumcampusapp.core.Utils
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView
 import java.io.IOException
 import java.io.Serializable
