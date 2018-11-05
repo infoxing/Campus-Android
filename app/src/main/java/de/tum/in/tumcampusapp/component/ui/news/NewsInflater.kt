@@ -22,5 +22,4 @@ class NewsInflater(context: Context) {
         val newsSource = newsSourcesDao.getNewsSource(newsItem.src.toInt())
         viewHolder.bind(newsItem, newsSource)
     }
-
 }

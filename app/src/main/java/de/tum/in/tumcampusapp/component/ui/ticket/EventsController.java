@@ -1,15 +1,15 @@
 package de.tum.in.tumcampusapp.component.ui.ticket;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
 import android.content.Context;
-import androidx.annotation.NonNull;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
 import de.tum.in.tumcampusapp.api.app.exception.NoPrivateKey;
 import de.tum.in.tumcampusapp.api.tumonline.CacheControl;
@@ -207,8 +207,7 @@ public class EventsController implements ProvidesCard {
         // Only add the next upcoming event for now
         Event event = eventDao.getNextEvent();
         if (event != null) {
-            EventCard eventCard = new EventCard(context);
-            eventCard.setEvent(event);
+            EventCard eventCard = new EventCard(context, event);
             results.add(eventCard);
         }
 

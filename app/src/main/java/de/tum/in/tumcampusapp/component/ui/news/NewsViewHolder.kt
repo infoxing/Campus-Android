@@ -4,12 +4,12 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import androidx.constraintlayout.widget.Group
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.Group
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
@@ -34,8 +34,11 @@ class NewsViewHolder(
     private val sourceTextView: TextView by lazy { itemView.findViewById<TextView>(R.id.news_src_title) }
 
     fun bind(newsItem: News, newsSource: NewsSources) = with(itemView) {
-        val card = if (newsItem.isFilm) FilmCard(context) else NewsCard(context)
-        card.setNews(newsItem)
+        val card = if (newsItem.isFilm) {
+            FilmCard(context, newsItem)
+        } else {
+            NewsCard(context, newsItem)
+        }
         currentCard = card
 
         val dateFormatter = DateTimeFormat.mediumDate()

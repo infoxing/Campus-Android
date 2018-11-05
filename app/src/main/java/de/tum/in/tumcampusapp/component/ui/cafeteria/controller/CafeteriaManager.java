@@ -1,7 +1,6 @@
 package de.tum.in.tumcampusapp.component.ui.cafeteria.controller;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -11,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
 import de.tum.in.tumcampusapp.api.tumonline.CacheControl;
 import de.tum.in.tumcampusapp.component.notifications.ProvidesNotifications;
@@ -62,9 +62,7 @@ public class CafeteriaManager implements ProvidesCard, ProvidesNotifications {
             return results;
         }
 
-        CafeteriaMenuCard card = new CafeteriaMenuCard(mContext);
-        card.setCafeteriaWithMenus(cafeteria);
-
+        CafeteriaMenuCard card = new CafeteriaMenuCard(mContext, cafeteria);
         results.add(card.getIfShowOnStart());
         return results;
     }

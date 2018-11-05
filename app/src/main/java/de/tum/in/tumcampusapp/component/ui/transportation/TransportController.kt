@@ -117,10 +117,7 @@ class TransportController(private val context: Context) : ProvidesCard, Provides
         val station = locMan.getStation() ?: return emptyList()
 
         val departures = getDeparturesFromExternal(context, station.id).blockingFirst()
-        val card = MVVCard(context).apply {
-            setStation(station)
-            setDepartures(departures)
-        }
+        val card = MVVCard(context, station, departures)
 
         card.getIfShowOnStart()?.let {
             results.add(it)

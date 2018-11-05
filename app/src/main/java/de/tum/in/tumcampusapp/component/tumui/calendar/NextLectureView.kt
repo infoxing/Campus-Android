@@ -21,7 +21,7 @@ class NextLectureView @JvmOverloads constructor(
         view.lectureTitleTextView.text = lecture.title
         view.lectureTimeTextView.text = DateTimeUtils.formatFutureTime(lecture.start, context)
 
-        if (lecture.locations == null || lecture.locations.isEmpty()) {
+        if (lecture.locations.isEmpty()) {
             lectureLocationTextView.visibility = View.GONE
         } else {
             lectureLocationTextView.visibility = View.VISIBLE

@@ -3,9 +3,9 @@ package de.tum.`in`.tumcampusapp.component.ui.chat
 import android.content.Context
 import android.content.SharedPreferences.Editor
 import android.os.Bundle
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.component.other.navigation.NavigationDestination
@@ -14,12 +14,12 @@ import de.tum.`in`.tumcampusapp.component.ui.chat.activity.ChatActivity
 import de.tum.`in`.tumcampusapp.component.ui.chat.model.ChatMessage
 import de.tum.`in`.tumcampusapp.component.ui.chat.model.ChatRoom
 import de.tum.`in`.tumcampusapp.component.ui.chat.model.ChatRoomDbRow
+import de.tum.`in`.tumcampusapp.component.ui.overview.CardAdapter
 import de.tum.`in`.tumcampusapp.component.ui.overview.CardManager.CARD_CHAT
 import de.tum.`in`.tumcampusapp.component.ui.overview.card.Card
 import de.tum.`in`.tumcampusapp.component.ui.overview.card.CardViewHolder
 import de.tum.`in`.tumcampusapp.database.TcaDb
 import de.tum.`in`.tumcampusapp.utils.Const
-import java.util.*
 
 /**
  * Card that shows the cafeteria menu
@@ -27,8 +27,8 @@ import java.util.*
 class ChatMessagesCard(context: Context,
                        room: ChatRoomDbRow) : Card(CARD_CHAT, context, "card_chat") {
 
-    private var mUnread: List<ChatMessage> = ArrayList()
-    private var nrUnread = 0;
+    private var mUnread = emptyList<ChatMessage>()
+    private var nrUnread = 0
     private var mRoomName = ""
     private var mRoomId = 0
     private var mRoomIdString = ""
@@ -81,10 +81,10 @@ class ChatMessagesCard(context: Context,
 
     override fun discard(editor: Editor) = chatMessageDao.markAsRead(mRoomId)
 
-    companion object {
-        fun inflateViewHolder(parent: ViewGroup) =
-                CardViewHolder(LayoutInflater.from(parent.context)
-                        .inflate(R.layout.card_chat_messages, parent, false))
+    companion object : CardAdapter.CardViewHolderFactory {
+        override fun inflateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
+            return CardViewHolder(LayoutInflater.from(parent.context)
+                    .inflate(R.layout.card_chat_messages, parent, false))
+        }
     }
-
 }

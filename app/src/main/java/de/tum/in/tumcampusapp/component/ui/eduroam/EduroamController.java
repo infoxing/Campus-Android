@@ -11,6 +11,7 @@ import android.net.wifi.WifiManager;
 
 import java.util.List;
 
+import androidx.annotation.Nullable;
 import de.tum.in.tumcampusapp.utils.Const;
 import de.tum.in.tumcampusapp.utils.Utils;
 
@@ -30,6 +31,7 @@ public class EduroamController {
      *
      * @return true if eduroam is already setup, false otherwise
      */
+    @Nullable
     static public WifiConfiguration getEduroamConfig(Context c) {
         WifiManager wifiManager = (WifiManager) c.getApplicationContext()
                                                  .getSystemService(Context.WIFI_SERVICE);

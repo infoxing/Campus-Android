@@ -3,12 +3,13 @@ package de.tum.`in`.tumcampusapp.component.ui.ticket
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import de.tum.`in`.tumcampusapp.R
 import de.tum.`in`.tumcampusapp.component.other.navigation.NavigationDestination
 import de.tum.`in`.tumcampusapp.component.other.navigation.SystemActivity
+import de.tum.`in`.tumcampusapp.component.ui.overview.CardAdapter
 import de.tum.`in`.tumcampusapp.component.ui.overview.CardManager
 import de.tum.`in`.tumcampusapp.component.ui.overview.card.Card
 import de.tum.`in`.tumcampusapp.component.ui.overview.card.CardViewHolder
@@ -16,9 +17,9 @@ import de.tum.`in`.tumcampusapp.component.ui.ticket.activity.EventDetailsActivit
 import de.tum.`in`.tumcampusapp.component.ui.ticket.adapter.EventsAdapter
 import de.tum.`in`.tumcampusapp.component.ui.ticket.model.Event
 
-class EventCard(context: Context) : Card(CardManager.CARD_EVENT, context, "card_event") {
+class EventCard(context: Context, val event: Event)
+    : Card(CardManager.CARD_EVENT, context, "card_event") {
 
-    var event: Event? = null
     private val eventsController = EventsController(context)
 
     override fun updateViewHolder(viewHolder: RecyclerView.ViewHolder) {
@@ -35,19 +36,15 @@ class EventCard(context: Context) : Card(CardManager.CARD_EVENT, context, "card_
     }
 
     override fun shouldShow(prefs: SharedPreferences): Boolean {
-        return event?.dismissed == 0
+        return event.dismissed == 0
     }
 
     override fun discard(editor: SharedPreferences.Editor) {
-        event?.let {
-            eventsController.setDismissed(it.id)
-        }
+        eventsController.setDismissed(event.id)
     }
 
-    companion object {
-
-        @JvmStatic
-        fun inflateViewHolder(parent: ViewGroup): CardViewHolder {
+    companion object : CardAdapter.CardViewHolderFactory {
+        override fun inflateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
             val card = LayoutInflater.from(parent.context)
                     .inflate(R.layout.card_events_item, parent, false)
             return EventsAdapter.EventViewHolder(card, true)

@@ -1,7 +1,6 @@
 package de.tum.in.tumcampusapp.component.ui.news;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 
 import org.jetbrains.annotations.NotNull;
 import org.joda.time.DateTime;
@@ -11,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import de.tum.in.tumcampusapp.api.app.TUMCabeClient;
 import de.tum.in.tumcampusapp.api.tumonline.CacheControl;
 import de.tum.in.tumcampusapp.component.notifications.NotificationScheduler;
@@ -194,12 +194,10 @@ public class NewsController implements ProvidesCard, ProvidesNotifications {
         for (News n : news) {
             NewsCard card;
             if (n.isFilm()) {
-                card = new FilmCard(context);
+                card = new FilmCard(context, n);
             } else {
-                card = new NewsCard(context);
+                card = new NewsCard(context, n);
             }
-
-            card.setNews(n);
             results.add(card.getIfShowOnStart());
         }
 

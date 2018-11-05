@@ -2,12 +2,6 @@ package de.tum.in.tumcampusapp.component.ui.ticket.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.Group;
-import com.google.android.material.button.MaterialButton;
-import androidx.recyclerview.widget.DiffUtil;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.android.material.button.MaterialButton;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -22,6 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.Group;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.RecyclerView;
 import de.tum.in.tumcampusapp.R;
 import de.tum.in.tumcampusapp.component.ui.overview.card.CardViewHolder;
 import de.tum.in.tumcampusapp.component.ui.ticket.EventCard;
@@ -60,10 +60,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventViewH
     @Override
     public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
         Event event = mEvents.get(position);
-
-        EventCard eventCard = new EventCard(mContext);
-        eventCard.setEvent(event);
-        holder.setCurrentCard(eventCard);
+        holder.setCurrentCard(new EventCard(mContext, event));
 
         boolean hasTicket = mEventsController.isEventBooked(event);
         holder.bind(event, hasTicket);
